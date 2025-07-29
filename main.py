@@ -1,5 +1,6 @@
 import json
 import re
+import os
 from datetime import datetime, timedelta
 
 import arxiv
@@ -27,7 +28,7 @@ def search_papers(client) -> list:
     print(f"Found {len(yesterdays_papers)} papers published yesterday.\n")
 
     if not yesterdays_papers:
-        print(f"No machine learning papers found for {yesterday}\n")
+        print("No machine learning papers found for yesterday\n")
 
     reading_list = judge_papers(yesterdays_papers, client)
 
@@ -160,12 +161,26 @@ def summarize_read_list(read_list, client) -> None:
         4.  **Limitations**: A bulleted list of potential limitations, weaknesses, or unanswered questions mentioned or implied by the authors.
         """
 
+def remove_downloaded_papers() -> None:
+    papers_dir = "./papers"
+    if os.path.exists(papers_dir):
+        for filename in os.listdir(papers_dir):
+            file_path = os.path.join(papers_dir, filename)
+            try:
+                if os.path.isfile(file_path):
+                    os.remove(file_path)
+                    print(f"Removed: {file_path}")
+            except Exception as e:
+                print(f"Error removing {file_path}: {e}")
+
 def main():
     client = genai.Client()
 
     result = search_papers(client)
 
     summarize_read_list(result, client)
+
+    remove_downloaded_papers()
 
 if __name__ == "__main__":
     main()
