@@ -1,45 +1,50 @@
+import json
+import re
+from datetime import datetime, timedelta
+
 import arxiv
 from google import genai
 from google.genai import types
-import json
-import re
 
-from datetime import datetime
 
 def search_papers(client) -> list:
     arxiv_client = arxiv.Client()
 
-    today = datetime.utcnow().date()
+    yesterday = datetime.now().date() - timedelta(days=1)
     search = arxiv.Search(
         query="cat:cs.LG OR cat:cs.AI OR cat:stat.ML OR cat:cs.CV OR cat:cs.NE",
         sort_by=arxiv.SortCriterion.SubmittedDate,
         sort_order=arxiv.SortOrder.Descending,
-        max_results=3
+        max_results=5
     )
 
     results = arxiv_client.results(search)
-    todays_papers = []
-    
-    for result in results:
-        #if result.published.date() == today:
-        todays_papers.append(result)
-    print(f"Found {len(todays_papers)} papers published today.\n")
+    yesterdays_papers = []
 
-    if not todays_papers:
-        print(f"No machine learning papers found for {today}\n")
-    
-    reading_list = judge_papers(todays_papers, client)
+    for result in results:
+        if result.published.date() == yesterday:
+            yesterdays_papers.append(result)
+    print(f"Found {len(yesterdays_papers)} papers published yesterday.\n")
+
+    if not yesterdays_papers:
+        print(f"No machine learning papers found for {yesterday}\n")
+
+    reading_list = judge_papers(yesterdays_papers, client)
 
     downloaded_papers = []
     
     for paper in reading_list:
         url = f"{paper['id']}"
-        match = re.search(r'arxiv.org/abs/(\d{4}\.\d{5}v\d+)', url)
-        if not match:
-            print(f"Invalid URL format: {url}")
+        match = re.search(r'(?:arxiv\.org/abs/)?(\d{4}\.\d{5}v\d+|arxiv\.\d{4}\.\d{5}v\d+)', url)
+        if match:
+            arxiv_id = match.group(1)
+            if arxiv_id.startswith("arxiv."):
+                arxiv_id = arxiv_id[len("arxiv."):]
+        else:
+            print(f"Invalid arXiv ID or URL format: {url}")
             continue
 
-        pdf_paper = next(arxiv.Client().results(arxiv.Search(id_list=[f"{match.group(1)}"])))
+        pdf_paper = next(arxiv.Client().results(arxiv.Search(id_list=[arxiv_id])))
         pdf_paper.download_pdf(dirpath="./papers", filename=f"{pdf_paper.title}.pdf")
 
         if pdf_paper:
