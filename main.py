@@ -6,18 +6,18 @@ import re
 
 from datetime import datetime
 
-def search_papers():
-    client = arxiv.Client()
-    
+def search_papers(client) -> list:
+    arxiv_client = arxiv.Client()
+
     today = datetime.utcnow().date()
     search = arxiv.Search(
         query="cat:cs.LG OR cat:cs.AI OR cat:stat.ML OR cat:cs.CV OR cat:cs.NE",
         sort_by=arxiv.SortCriterion.SubmittedDate,
         sort_order=arxiv.SortOrder.Descending,
-        max_results=5 
+        max_results=3
     )
-    
-    results = client.results(search)
+
+    results = arxiv_client.results(search)
     todays_papers = []
     
     for result in results:
@@ -28,7 +28,26 @@ def search_papers():
     if not todays_papers:
         print(f"No machine learning papers found for {today}\n")
     
-    return todays_papers
+    reading_list = judge_papers(todays_papers, client)
+
+    downloaded_papers = []
+    
+    for paper in reading_list:
+        url = f"{paper['id']}"
+        match = re.search(r'arxiv.org/abs/(\d{4}\.\d{5}v\d+)', url)
+        if not match:
+            print(f"Invalid URL format: {url}")
+            continue
+
+        pdf_paper = next(arxiv.Client().results(arxiv.Search(id_list=[f"{match.group(1)}"])))
+        pdf_paper.download_pdf(dirpath="./papers", filename=f"{pdf_paper.title}.pdf")
+
+        if pdf_paper:
+            downloaded_papers.append(pdf_paper)
+        else: 
+            print(f"Failed to download: {pdf_paper.title}")
+
+    return downloaded_papers
 
 def judge_papers(papers, client, read_list=None) -> list | None:
     if read_list is None:
@@ -36,11 +55,12 @@ def judge_papers(papers, client, read_list=None) -> list | None:
 
     interests = """
                 - Strong Interests:
+                    - Self-evolving agents and adaptive AI systems (e.g., continual learning, agent evolution, memory/tool adaptation)
                     - Generative models for time-series data
-                    - Computer vision applications (especially when combined with temporal, multimodal, or interactive environments)
                     - Multimodal learning and video understanding
-                    - AI agents interacting with graphical or real-world environments (e.g., GUI agents, task automation, visual grounding)
+                    - Computer vision applications (especially in temporal, agentic, or multimodal contexts)
                     - Few-shot and meta-learning
+                    - Representation learning for multi-task systems (e.g., task saliency, cross-task transfer)
                     - Bayesian methods and probabilistic modeling
                     - Applications of ML in finance, especially time-dependent or causal settings
                     - Text-to-speech (TTS) and generative audio systems
@@ -52,15 +72,17 @@ def judge_papers(papers, client, read_list=None) -> list | None:
                     - Physics-informed neural networks (PINNs)
                     - Sim-to-real transfer and visual navigation in robotics
                     - Neural architecture search (NAS)
+                    - Static LLM alignment/prompt engineering unless tied to continual learning or real-time adaptation
+                    - Reinforcement learning (RL) in static settings, unless it involves continual learning or adaptive agents
+                    - Offline and local models
+
 
                 - General:
-                    - Deeply interested in computer science, with broad curiosity in theory, systems, and practical ML applications across domains such as finance, simulation, and perception.
+                    - Broadly interested in computer science, with curiosity spanning learning theory, agent design, systems, and real-world AI deployment — especially in domains involving perception, interaction, or simulation.
 
                 - Avoids / Not currently focused on:
-                    - Pure reinforcement learning or RLHF unless paired with real-world grounding or interpretability
-                    - LLM alignment and prompt engineering without deeper algorithmic or interactive innovation
-                    - Static image classification tasks with no temporal or agent-based context
-                    - Narrow biomedical ML unless tied to causal reasoning or generative modeling
+                    - Classic standalone image classification tasks
+                    - Domain-specific biomedical ML unless it links to adaptive agents or generative/causal modeling
                 """
 
     for paper in papers:
@@ -102,29 +124,43 @@ def judge_papers(papers, client, read_list=None) -> list | None:
 
             paper_analysis = json.loads(stripped_json)
 
-            print(f"-" * 50)
+            print("-" * 50)
             if paper_analysis.get('should_read', False):
                 read_list.append(paper_analysis)
-                print(f"{paper_analysis['title']}")
+                print(f"{paper_analysis['title']}, {paper_analysis['id']}")
                 print(f"Score: {paper_analysis['relevance_score']}/10")
                 print(f"Summary: {paper_analysis['one_sentence_summary']}")
             else:
                 print(f"Skipped: {paper_analysis['title']}")
+                print(f"Reasoning: {paper_analysis['reasoning']}")
 
         except (json.JSONDecodeError, KeyError) as e:
             print(f"\n⚠ Error parsing response for paper: {paper.title}")
             print(f"Error: {e}")
             print(f"Raw response: {response.text[:200]}...")
             continue
-    print(f"-" * 50)
+    print("-" * 50)
+    
     return read_list
 
-def main():
-    result = search_papers()
+def summarize_read_list(read_list, client) -> None:
+    prompt = """
+        You are an expert research analyst. You will be given a full research paper as a PDF.
+        Your task is to provide a comprehensive but concise summary formatted as a JSON object.
 
+        Analyze the entire document and provide the following:
+        1.  **Key Contributions**: A bulleted list (in a single string) of the 2-4 most important contributions of this paper.
+        2.  **Methodology**: A concise paragraph explaining the core method or approach used.
+        3.  **Strengths**: A bulleted list of the paper's main strengths (e.g., novel approach, strong empirical results, SOTA performance).
+        4.  **Limitations**: A bulleted list of potential limitations, weaknesses, or unanswered questions mentioned or implied by the authors.
+        """
+
+def main():
     client = genai.Client()
 
-    read_list = judge_papers(result, client)
+    result = search_papers(client)
+
+    summarize_read_list(result, client)
 
 if __name__ == "__main__":
     main()
