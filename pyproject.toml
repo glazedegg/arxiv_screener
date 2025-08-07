@@ -1,10 +1,11 @@
 [project]
 name = "arxiv-search"
 version = "0.1.0"
-description = "Add your description here"
+description = "Project for searching and looking for interesting arxiv research papers"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "arxiv>=2.2.0",
     "google-genai>=1.27.0",
+    "tweepy>=4.16.0",
 ]
