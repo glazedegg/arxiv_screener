@@ -38,11 +38,24 @@ def authenticate() -> tweepy.Client:
 
     return client
 
-def post(client: tweepy.Client, text: str):
-    try:
-        resp = client.create_tweet(text=text, user_auth=True)
-        print("Tweeted with id:", resp.data["id"])
-        return resp
-    except tweepy.TweepyException as e:
-        print(f"Failed to post: {e}")
-        raise
+def post(client: tweepy.Client, text: list[str]) -> tweepy.Response:
+    if len(text) < 2:
+        try:
+            resp = client.create_tweet(text=text, user_auth=True)
+            print("Tweeted with id:", resp.data["id"])
+            return resp
+        except tweepy.TweepyException as e:
+            print(f"Failed to post: {e}")
+            raise
+
+    else:
+        try:
+            resp = client.create_tweet(text=text[0], user_auth=True)
+            print("Tweeted with id:", resp.data["id"])
+            for t in text[1:]:
+                resp = client.create_tweet(text=t, in_reply_to_tweet_id=resp.data["id"], user_auth=True)
+                print("Replied with id:", resp.data["id"])
+            return resp
+        except tweepy.TweepyException as e:
+            print(f"Failed to post: {e}")
+            raise
