@@ -30,30 +30,20 @@ def authenticate() -> tweepy.Client:
 
     try:
         client.get_me(user_auth=True)
+        print("Successfully authenticated with Twitter API.")
     except tweepy.TweepyException as e:
         print(f"Authentication failed: {e}")
         raise
 
-    print("Authentication successful.")
-
     return client
 
-def post(client: tweepy.Client, text: list[str]) -> tweepy.Response:
-    if len(text) < 2:
+def post(client: tweepy.Client, text: list[list[str]]) -> tweepy.Response:
+    for t in text:
         try:
-            resp = client.create_tweet(text=text, user_auth=True)
+            resp = client.create_tweet(text=t[0], user_auth=True)
             print("Tweeted with id:", resp.data["id"])
-            return resp
-        except tweepy.TweepyException as e:
-            print(f"Failed to post: {e}")
-            raise
-
-    else:
-        try:
-            resp = client.create_tweet(text=text[0], user_auth=True)
-            print("Tweeted with id:", resp.data["id"])
-            for t in text[1:]:
-                resp = client.create_tweet(text=t, in_reply_to_tweet_id=resp.data["id"], user_auth=True)
+            for rply in t[1:]:
+                resp = client.create_tweet(text=rply, in_reply_to_tweet_id=resp.data["id"], user_auth=True)
                 print("Replied with id:", resp.data["id"])
             return resp
         except tweepy.TweepyException as e:

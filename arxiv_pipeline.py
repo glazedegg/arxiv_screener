@@ -14,15 +14,15 @@ def search_papers(client) -> list:
         query="cat:cs.LG OR cat:cs.AI OR cat:stat.ML OR cat:cs.CV OR cat:cs.NE",
         sort_by=arxiv.SortCriterion.SubmittedDate,
         sort_order=arxiv.SortOrder.Descending,
-        max_results=15
+        max_results=1
     )
 
     results = arxiv_client.results(search)
     yesterdays_papers = []
 
     for result in results:
-        if result.published.date() == yesterday:
-            yesterdays_papers.append(result)
+        #if result.published.date() == yesterday:
+        yesterdays_papers.append(result)
     print(f"Found {len(yesterdays_papers)} papers published yesterday.\n")
 
     if not yesterdays_papers:
@@ -98,9 +98,14 @@ def judge_papers(papers, client, read_list=None) -> list | None:
                 system_instruction=f"""
                                     You are an expert AI research assistant with deep knowledge of the machine learning landscape. Your goal is to analyze a paper's abstract based on the user's stated research interests and provide a concise, structured recommendation.
 
-                                    The user's interests will be provided, ranked by priority. Your analysis MUST be strictly guided by these interests: {interests}. When rating papers, because there is a lot of papers published every day, you MUST be very selective.
+                                    The user's interests will be provided, ranked by priority. Your analysis MUST be strictly guided by these interests: {interests}. When rating papers, because there is a lot of papers published every day, you MUST be very selective. Be extremely critical and only recommend papers that are only highly relevant to the user's interests.
 
-                                    You MUST respond with a valid JSON object. Do not include any text, notes, or explanations outside of the JSON structure. You MUST respond with a valid JSON object containing the following keys and nothing else:
+                                    For each paper, you will receive the following information:
+
+                                    OUTPUT REQUIREMENTS (must follow exactly):
+                                    - Output EXACTLY ONE JSON object (not an array, not multiple objects).
+                                    - NO markdown, NO code fences, NO surrounding text.
+                                    - Keys (all required, none extra):
                                     - "title": string
                                     - "id": string
                                     - "should_read": A boolean value (true if you strongly recommend reading it based on the user's high-priority interests, otherwise false).
@@ -145,8 +150,8 @@ def judge_papers(papers, client, read_list=None) -> list | None:
             print(f"Raw response: {response.text[:200]}...")
             continue
     print("-" * 50)
-    
-    return read_list
+
+    return sorted(read_list, key=lambda x: x['relevance_score'], reverse=True) if read_list else None
 
 def summarize_reading_list(read_list, client) -> list:
     system_prompt = """
@@ -193,6 +198,24 @@ def summarize_reading_list(read_list, client) -> list:
             print(response.text)
 
     return summary
+
+def parse_summary(summary) -> list:
+    parsed_summaries = []
+    for item in summary:
+        try:
+            json_match = re.search(r'```json\s*(\{.*?\})\s*```', item, re.DOTALL)
+            if json_match:
+                stripped_json = json_match.group(1)
+            else:
+                stripped_json = item.strip()
+
+            stripped = json.loads(stripped_json)
+            parsed_summaries.append(stripped)
+            print(f"Parsed summary: {stripped['title']}")
+        except json.JSONDecodeError as e:
+            print(f"Error parsing summary: {e}")
+            continue
+    return parsed_summaries
 
 def remove_downloaded_papers() -> None:
     papers_dir = "./papers"
