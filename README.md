@@ -26,6 +26,9 @@ Automated pipeline that discovers relevant arXiv papers, analyzes them with AI, 
    ```
 
 3. Set up Google AI API key in environment
+    ```bash
+    export GEMINI_API_KEY=<YOUR_API_KEY_HERE>
+    ```
 
 ## Usage
 
