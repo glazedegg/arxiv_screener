@@ -14,15 +14,15 @@ def search_papers(client) -> list:
         query="cat:cs.LG OR cat:cs.AI OR cat:stat.ML OR cat:cs.CV OR cat:cs.NE",
         sort_by=arxiv.SortCriterion.SubmittedDate,
         sort_order=arxiv.SortOrder.Descending,
-        max_results=1
+        max_results=5
     )
 
     results = arxiv_client.results(search)
     yesterdays_papers = []
 
     for result in results:
-        #if result.published.date() == yesterday:
-        yesterdays_papers.append(result)
+        if result.published.date() == yesterday:
+            yesterdays_papers.append(result)
     print(f"Found {len(yesterdays_papers)} papers published yesterday.\n")
 
     if not yesterdays_papers:
@@ -158,7 +158,7 @@ def summarize_reading_list(read_list, client) -> list:
             You are an expert research analyst. You will be given a full research paper as a PDF.
             Your task is to extract as much valuable information as possible and provide a comprehensive but concise summary formatted as a JSON object.
 
-            The purpose is to absorb the paper's core contributions and insights efficiently. The user may decide to read the full paper if it appears especially interesting or foundational.
+            The purpose is to absorb the paper's core contributions and insights efficiently. The user may decide to read the full paper if it appears especially interesting or foundational. Each field can at maximum be 280 characters long, so be concise but informative.
 
             Analyze the entire document and extract the following structured fields:
 
@@ -210,8 +210,45 @@ def parse_summary(summary) -> list:
                 stripped_json = item.strip()
 
             stripped = json.loads(stripped_json)
-            parsed_summaries.append(stripped)
-            print(f"Parsed summary: {stripped['title']}")
+
+            kv_list = []
+            for k, v in stripped.items():
+                if isinstance(v, (list, dict)):
+                    v_str = json.dumps(v, ensure_ascii=False)
+                else:
+                    v_str = str(v)
+                kv_list.append(f"{k}: {v_str}")
+
+            parsed_summaries.append(kv_list)
+        except json.JSONDecodeError as e:
+            print(f"Error parsing summary: {e}")
+            continue
+    return parsed_summaries
+
+def parse_summary_with_arxiv_id(summary, reading_list) -> list:
+    parsed_summaries = []
+    for i, item in enumerate(summary):
+        try:
+            json_match = re.search(r'```json\s*(\{.*?\})\s*```', item, re.DOTALL)
+            if json_match:
+                stripped_json = json_match.group(1)
+            else:
+                stripped_json = item.strip()
+
+            stripped = json.loads(stripped_json)
+            
+            if i < len(reading_list) and 'id' in reading_list[i]:
+                stripped['arxiv_id'] = reading_list[i]['id']
+
+            kv_list = []
+            for k, v in stripped.items():
+                if isinstance(v, (list, dict)):
+                    v_str = json.dumps(v, ensure_ascii=False)
+                else:
+                    v_str = str(v)
+                kv_list.append(f"{k}: {v_str}")
+
+            parsed_summaries.append(kv_list)
         except json.JSONDecodeError as e:
             print(f"Error parsing summary: {e}")
             continue
