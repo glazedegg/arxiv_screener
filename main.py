@@ -11,7 +11,7 @@ def main():
 
     reading_list = arxiv_pipeline.judge_papers([r for r in result], client)
     parsed_summaries = arxiv_pipeline.parse_summary_with_arxiv_id(summaries, reading_list)
-    x_tweet_module.post(x_auth, parsed_summaries, dry_run=False)
+    x_tweet_module.post(x_auth, parsed_summaries, dry_run=True)
     
     arxiv_pipeline.remove_downloaded_papers()
 

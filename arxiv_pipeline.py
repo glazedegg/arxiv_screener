@@ -199,33 +199,7 @@ def summarize_reading_list(read_list, client) -> list:
 
     return summary
 
-def parse_summary(summary) -> list:
-    parsed_summaries = []
-    for item in summary:
-        try:
-            json_match = re.search(r'```json\s*(\{.*?\})\s*```', item, re.DOTALL)
-            if json_match:
-                stripped_json = json_match.group(1)
-            else:
-                stripped_json = item.strip()
-
-            stripped = json.loads(stripped_json)
-
-            kv_list = []
-            for k, v in stripped.items():
-                if isinstance(v, (list, dict)):
-                    v_str = json.dumps(v, ensure_ascii=False)
-                else:
-                    v_str = str(v)
-                kv_list.append(f"{k}: {v_str}")
-
-            parsed_summaries.append(kv_list)
-        except json.JSONDecodeError as e:
-            print(f"Error parsing summary: {e}")
-            continue
-    return parsed_summaries
-
-def parse_summary_with_arxiv_id(summary, reading_list) -> list:
+def parse_summary(summary, reading_list) -> list:
     parsed_summaries = []
     for i, item in enumerate(summary):
         try:
@@ -237,6 +211,23 @@ def parse_summary_with_arxiv_id(summary, reading_list) -> list:
 
             stripped = json.loads(stripped_json)
             
+            log_path = "log.json"
+            entries = []
+
+            if os.path.exists(log_path):
+                try:
+                    with open(log_path, "r", encoding="utf-8") as f:
+                        entries = json.load(f)
+                        if not isinstance(entries, list):
+                            entries = [entries]
+                except (json.JSONDecodeError, IOError):
+                    entries = []
+
+            entries.append(stripped)
+
+            with open(log_path, "w", encoding="utf-8") as f:
+                json.dump(entries, f, indent=4, ensure_ascii=False)
+
             if i < len(reading_list) and 'id' in reading_list[i]:
                 stripped['arxiv_id'] = reading_list[i]['id']
 
