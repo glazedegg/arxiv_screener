@@ -30,6 +30,11 @@ Automated pipeline that discovers relevant arXiv papers, analyzes them with AI, 
     export GEMINI_API_KEY=<YOUR_API_KEY_HERE>
     ```
 
+4. Install dependencies
+   ```bash
+   uv sync
+   ```
+
 ## Usage
 
 ```bash

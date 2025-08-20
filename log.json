@@ -1,0 +1,39 @@
+[
+    {
+        "Title": "Beyond Simple Edits: Composed Video Retrieval with Dense Modifications",
+        "Field & Subfield": "Computer Science > Computer Vision",
+        "Key Contributions": "• Introduces Dense-WebVid-CoVR dataset with 1.6M samples & dense modification text. • Proposes a robust CoVR model with unified grounding encoder for input video, description, & modification text fusion. • Achieves SOTA on Dense-WebVid-CoVR (71.3% Recall@1), outperforming existing methods by 3.4%. • Shows improved performance on CoIR datasets (CIRR, FashionIQ) & Ego-CVR.",
+        "Methodology": "Dense-WebVid-CoVR created using Gemini-Pro for video descriptions & GPT-40 for dense modification texts, with manual verification. The model uses ViT-L for vision, BLIP-pretrained text encoder, & a BLIP-2 based grounding text encoder for unified fusion of query video, description, & modification text via cross-attention, trained with contrastive loss.",
+        "Strengths": "• Introduces a large-scale, high-quality dataset with dense modification texts (7x longer). • Novel unified fusion strategy for better multimodal alignment. • Achieves SOTA performance on multiple CoVR & CoIR benchmarks. • Enhanced fine-grained retrieval capturing subtle visual/temporal changes. • Robust quality control for dataset generation.",
+        "Limitations": "• Minor inaccuracies (2-3%) in training set, claimed minimal impact. • Future work: multilingual CoVR for low-resource languages. • Future work: efficient techniques for processing very long videos.",
+        "Datasets / Benchmarks": "Introduced: Dense-WebVid-CoVR (1.6M samples). Used/Compared against: WebVid-CoVR, EgoCVR, CIRR, FashionIQ.",
+        "Results Summary": "Achieves SOTA on Dense-WebVid-CoVR with 71.3% Recall@1 (3.4% gain over prior SOTA). Consistently outperforms baselines on Ego-CVR, CIRR (56.30% R@1), and FashionIQ, demonstrating superior fine-grained retrieval accuracy across all settings.",
+        "Why It Matters": "Advances composed video retrieval by providing a richer, contextually aware dataset & an effective model. Enables precise video retrieval based on subtle modifications, crucial for applications like video editing & media production. Dense modification texts are a key innovation.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig 1: Example CoVR triplets comparing modification texts. Fig 3: Proposed CoVR architecture. Table 1: Comparative analysis of CoVR benchmarks. Table 2: Main results on Dense-WebVid-CoVR. Fig 13: Detailed modification-text comparison."
+    },
+    {
+        "Title": "COMPUTERRL: SCALING END-TO-END ONLINE REINFORCEMENT LEARNING FOR COMPUTER USE AGENTS",
+        "Field & Subfield": "Artificial Intelligence > Reinforcement Learning",
+        "Key Contributions": "- Introduces API-GUI paradigm for machine-oriented desktop interaction, unifying API calls and GUI actions.\n- Establishes a large-scale, distributed RL infrastructure supporting thousands of parallel virtual desktop environments for scalable training.\n- Proposes Entropulse, a novel training strategy alternating RL with supervised fine-tuning to mitigate entropy collapse and ensure sustained learning.\n- Achieves new state-of-the-art accuracy of 48.1% on the OSWorld benchmark for general desktop automation agents.",
+        "Methodology": "COMPUTERRL combines a novel API-GUI paradigm unifying programmatic control and GUI interaction, a distributed RL infrastructure using Docker and gRPC for scalable parallel environments, and Entropulse, a training strategy that alternates RL with SFT to maintain exploration and prevent entropy collapse. It leverages LLMs for API construction and employs a step-level GRPO algorithm with rule-based verifiable rewards.",
+        "Strengths": [
+            "Novel API-GUI paradigm offers superior operational efficiency and generalization.",
+            "Highly scalable distributed RL infrastructure supports thousands of parallel environments.",
+            "Entropulse strategy ensures robust and sustained performance gains in extended RL training.",
+            "Achieves state-of-the-art performance on a challenging real-world desktop automation benchmark (OSWorld).",
+            "Significantly reduces steps required for task completion compared to baselines (1/3)."
+        ],
+        "Limitations": [
+            "Errors observed in visual perception and multi-application coordination.",
+            "Challenges with operational illusions and other miscellaneous errors.",
+            "Genuine universality and adaptation to unfamiliar applications remain open questions.",
+            "Long-horizon autonomy and complex, multi-step objectives are still being explored."
+        ],
+        "Datasets / Benchmarks": "Evaluated on the OSWorld benchmark and OSWorld-Verified benchmark. No new datasets were introduced by the paper.",
+        "Results Summary": "COMPUTERRL-trained AutoGLM-OS-9B achieved 48.1% success on OSWorld, surpassing SOTA models like OpenAI CUA (42.9%), UI-TARS-1.5 (42.5%), and Claude Sonnet 4 (30.7%). The API-GUI paradigm showed a 134% improvement over GUI-only approaches. Entropulse increased average training rewards and improved learning efficiency by mitigating entropy collapse.",
+        "Why It Matters": "This work addresses critical challenges in developing autonomous agents for complex digital workspaces, offering a scalable and robust framework for end-to-end online RL. By bridging the gap between machine and human-centric GUIs, it lays a foundational step towards truly intelligent desktop automation, improving efficiency and paving the way for more capable generalist agents.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1: Shows state-of-the-art success rates on OSWorld (1a) and COMPUTERRL training reward curves (1b), demonstrating Entropulse's benefits. Table 1: Provides a comprehensive comparison of AUTOGLM-OS performance against various proprietary and open models on OSWorld benchmarks."
+    }
+]
