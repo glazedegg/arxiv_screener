@@ -9,3 +9,8 @@ dependencies = [
     "google-genai>=1.27.0",
     "tweepy>=4.16.0",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+]
