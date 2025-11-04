@@ -5,14 +5,15 @@ import os
 
 def main():
     x_auth = x_tweet_module.authenticate()
-    
+
     api_key = os.getenv('GEMINI_API_KEY')
     if not api_key:
-        raise ValueError("GEMINI_API_KEY environment variable not set")
+        raise ValueError("GEMINI_API_KEY environment variable not set") 
     
     client = genai.Client(api_key=api_key)
     
     result = arxiv_pipeline.search_papers(client)
+    if not result: return
 
     summaries = arxiv_pipeline.summarize_reading_list(result, client)
 

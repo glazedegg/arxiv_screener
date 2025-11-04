@@ -27,6 +27,7 @@ def search_papers(client) -> list:
 
     if not yesterdays_papers:
         print("No machine learning papers found for yesterday\n")
+        return []
 
     reading_list = judge_papers(yesterdays_papers, client)
 
