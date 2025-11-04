@@ -13,7 +13,7 @@ Automated pipeline that discovers relevant arXiv papers, analyzes them with AI, 
 
 1. Install dependencies:
    ```bash
-   uv add tweepy arxiv google-genai
+   uv sync
    ```
 
 2. Create `.secrets` file with Twitter API credentials:
@@ -29,11 +29,6 @@ Automated pipeline that discovers relevant arXiv papers, analyzes them with AI, 
     ```bash
     export GEMINI_API_KEY=<YOUR_API_KEY_HERE>
     ```
-
-4. Install dependencies
-   ```bash
-   uv sync
-   ```
 
 ## Usage
 

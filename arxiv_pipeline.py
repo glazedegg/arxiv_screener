@@ -14,7 +14,7 @@ def search_papers(client) -> list:
         query="cat:cs.LG OR cat:cs.AI OR cat:stat.ML OR cat:cs.CV OR cat:cs.NE",
         sort_by=arxiv.SortCriterion.SubmittedDate,
         sort_order=arxiv.SortOrder.Descending,
-        max_results=5
+        max_results=3
     )
 
     results = arxiv_client.results(search)
