@@ -31,6 +31,9 @@ def search_papers(client) -> list:
 
     reading_list = judge_papers(yesterdays_papers, client)
 
+    papers_dir = "./papers"
+    os.makedirs(papers_dir, exist_ok=True)
+
     downloaded_papers = []
     
     for paper in reading_list:
