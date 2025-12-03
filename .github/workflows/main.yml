@@ -3,11 +3,13 @@ name: Publish Previous Day's Article
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 4 * * tue-sat'
+    - cron: '0 4 * * *'
 
 jobs:
   run_app:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     environment: secrets
     env:
       BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
@@ -31,8 +33,20 @@ jobs:
       - name: Install the project
         run: uv sync --locked --all-extras --dev
 
-      - name: Run environment setup tests
-        run: uv run test_env_setup.py
+      - name: Run test suite
+        run: uv run pytest tests
 
       - name: Run app
         run: uv run main.py
+
+      - name: Commit log.json updates
+        if: success()
+        run: |
+          if git diff --quiet -- log.json; then
+            echo "No log changes detected."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add log.json
+            git commit -m "chore: update log $(date -u +'%Y-%m-%d')"
+            git push origin HEAD:${GITHUB_REF#refs/heads/}

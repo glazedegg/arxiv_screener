@@ -1,262 +1,327 @@
 import json
 import re
-import os
+import difflib
 from datetime import datetime, timedelta
+from pathlib import Path
 
 import arxiv
 from google.genai import types
 
+
+SEARCH_QUERY = "cat:cs.LG OR cat:cs.AI OR cat:stat.ML OR cat:cs.CV OR cat:cs.NE"
+MAX_RESULTS = 3
+PAPERS_DIR = Path("papers")
+LOG_PATH = Path("log.json")
+
+INTERESTS_PROMPT = """
+- Strong Interests:
+    - Self-evolving agents and adaptive AI systems (e.g., continual learning, agent evolution, memory/tool adaptation)
+    - Generative models for time-series data
+    - Multimodal learning and video understanding
+    - Computer vision applications (especially in temporal, agentic, or multimodal contexts)
+    - Few-shot and meta-learning
+    - Representation learning for multi-task systems (e.g., task saliency, cross-task transfer)
+    - Bayesian methods and probabilistic modeling
+    - Applications of ML in finance, especially time-dependent or causal settings
+    - Text-to-speech (TTS) and generative audio systems
+
+- Moderate Interests:
+    - Efficient Transformer architectures
+    - Causal inference and interpretability
+    - Neuro-symbolic reasoning
+    - Physics-informed neural networks (PINNs)
+    - Sim-to-real transfer and visual navigation in robotics
+    - Neural architecture search (NAS)
+    - Static LLM alignment/prompt engineering unless tied to continual learning or real-time adaptation
+    - Reinforcement learning (RL) in static settings, unless it involves continual learning or adaptive agents
+    - Offline and local models
+
+- General:
+    - Broadly interested in computer science, with curiosity spanning learning theory, agent design, systems, and real-world AI deployment — especially in domains involving perception, interaction, or simulation.
+
+- Avoids / Not currently focused on:
+    - Classic standalone image classification tasks
+    - Domain-specific biomedical ML unless it links to adaptive agents or generative/causal modeling
+"""
+
 def search_papers(client) -> list:
-    arxiv_client = arxiv.Client()
-
-    yesterday = datetime.now().date() - timedelta(days=1)
-    search = arxiv.Search(
-        query="cat:cs.LG OR cat:cs.AI OR cat:stat.ML OR cat:cs.CV OR cat:cs.NE",
-        sort_by=arxiv.SortCriterion.SubmittedDate,
-        sort_order=arxiv.SortOrder.Descending,
-        max_results=3
-    )
-
-    results = arxiv_client.results(search)
-    yesterdays_papers = []
-
-    for result in results:
-        if result.published.date() == yesterday:
-            yesterdays_papers.append(result)
-    print(f"Found {len(yesterdays_papers)} papers published yesterday.\n")
-
-    if not yesterdays_papers:
+    papers = _fetch_yesterdays_papers()
+    if not papers:
         print("No machine learning papers found for yesterday\n")
         return []
 
-    reading_list = judge_papers(yesterdays_papers, client)
+    reading_list = judge_papers(papers, client)
+    if not reading_list:
+        return []
 
-    papers_dir = "./papers"
-    os.makedirs(papers_dir, exist_ok=True)
+    PAPERS_DIR.mkdir(exist_ok=True)
 
-    downloaded_papers = []
-    
-    for paper in reading_list:
-        url = f"{paper['id']}"
-        match = re.search(r'(?:arxiv\.org/abs/)?(\d{4}\.\d{5}v\d+|arxiv\.\d{4}\.\d{5}v\d+)', url)
-        if match:
-            arxiv_id = match.group(1)
-            if arxiv_id.startswith("arxiv."):
-                arxiv_id = arxiv_id[len("arxiv."):]
-        else:
-            print(f"Invalid arXiv ID or URL format: {url}")
+    downloaded: list[arxiv.Result] = []
+    for entry in reading_list:
+        arxiv_id = _extract_arxiv_id(entry.get("id", ""))
+        if not arxiv_id:
+            print(f"Invalid arXiv ID or URL format: {entry.get('id', '')}")
             continue
 
-        pdf_paper = next(arxiv.Client().results(arxiv.Search(id_list=[arxiv_id])))
-        pdf_paper.download_pdf(dirpath="./papers", filename=f"{pdf_paper.title}.pdf")
+        pdf = _download_pdf(arxiv_id)
+        if not pdf:
+            continue
 
-        if pdf_paper:
-            downloaded_papers.append(pdf_paper)
-            print(f"\rDownloaded: {len(downloaded_papers)} papers", end="")
-        else: 
-            print(f"Failed to download: {pdf_paper.title}")
+        pdf.download_pdf(dirpath=str(PAPERS_DIR), filename=f"{pdf.title}.pdf")
+        downloaded.append(pdf)
+        print(f"\rDownloaded: {len(downloaded)} papers", end="")
 
-    return downloaded_papers
+    if downloaded:
+        print()
+    return downloaded
 
 def judge_papers(papers, client, read_list=None) -> list | None:
-    if read_list is None:
-        read_list = []
-
-    interests = """
-                - Strong Interests:
-                    - Self-evolving agents and adaptive AI systems (e.g., continual learning, agent evolution, memory/tool adaptation)
-                    - Generative models for time-series data
-                    - Multimodal learning and video understanding
-                    - Computer vision applications (especially in temporal, agentic, or multimodal contexts)
-                    - Few-shot and meta-learning
-                    - Representation learning for multi-task systems (e.g., task saliency, cross-task transfer)
-                    - Bayesian methods and probabilistic modeling
-                    - Applications of ML in finance, especially time-dependent or causal settings
-                    - Text-to-speech (TTS) and generative audio systems
-
-                - Moderate Interests:
-                    - Efficient Transformer architectures
-                    - Causal inference and interpretability
-                    - Neuro-symbolic reasoning
-                    - Physics-informed neural networks (PINNs)
-                    - Sim-to-real transfer and visual navigation in robotics
-                    - Neural architecture search (NAS)
-                    - Static LLM alignment/prompt engineering unless tied to continual learning or real-time adaptation
-                    - Reinforcement learning (RL) in static settings, unless it involves continual learning or adaptive agents
-                    - Offline and local models
-
-
-                - General:
-                    - Broadly interested in computer science, with curiosity spanning learning theory, agent design, systems, and real-world AI deployment — especially in domains involving perception, interaction, or simulation.
-
-                - Avoids / Not currently focused on:
-                    - Classic standalone image classification tasks
-                    - Domain-specific biomedical ML unless it links to adaptive agents or generative/causal modeling
-                """
+    selections = [] if read_list is None else read_list
 
     for paper in papers:
-
         response = client.models.generate_content(
             model="gemini-2.5-flash-lite",
             config=types.GenerateContentConfig(
-                system_instruction=f"""
-                                    You are an expert AI research assistant with deep knowledge of the machine learning landscape. Your goal is to analyze a paper's abstract based on the user's stated research interests and provide a concise, structured recommendation.
-
-                                    The user's interests will be provided, ranked by priority. Your analysis MUST be strictly guided by these interests: {interests}. When rating papers, because there is a lot of papers published every day, you MUST be very selective. Be extremely critical and only recommend papers that are only highly relevant to the user's interests.
-
-                                    For each paper, you will receive the following information:
-
-                                    OUTPUT REQUIREMENTS (must follow exactly):
-                                    - Output EXACTLY ONE JSON object (not an array, not multiple objects).
-                                    - NO markdown, NO code fences, NO surrounding text.
-                                    - Keys (all required, none extra):
-                                    - "title": string
-                                    - "id": string
-                                    - "should_read": A boolean value (true if you strongly recommend reading it based on the user's high-priority interests, otherwise false).
-                                    - "relevance_score": An integer from 1 to 10, where 10 is a perfect match for the user's high-priority interests. A score below 6 indicates it is not relevant.
-                                    - "one_sentence_summary": A single, non-technical sentence summarizing the paper's core contribution.
-                                    - "reasoning": A brief, objective explanation for your recommendation and score, directly referencing keywords from the user's interests and the paper's abstract.
-                                    - "keywords": An array of 3-5 strings, listing the most important technical terms from the abstract (e.g., "Variational Inference", "Mixture of Experts", "Direct Preference Optimization").
-                                    """
+                system_instruction=(
+                    "You are an expert AI research assistant with deep knowledge of the machine learning landscape. "
+                    "Your goal is to analyze a paper's abstract based on the user's stated research interests and provide "
+                    "a concise, structured recommendation.\n\n"
+                    "The user's interests will be provided, ranked by priority. Your analysis MUST be strictly guided by "
+                    f"these interests: {INTERESTS_PROMPT}. When rating papers, be extremely selective.\n\n"
+                    "OUTPUT REQUIREMENTS (must follow exactly):\n"
+                    "- Output EXACTLY ONE JSON object (not an array, not multiple objects).\n"
+                    "- NO markdown, NO code fences, NO surrounding text.\n"
+                    "- Keys (all required, none extra):\n"
+                    '  - "title": string\n'
+                    '  - "id": string\n'
+                    '  - "should_read": boolean\n'
+                    '  - "relevance_score": integer 1-10\n'
+                    '  - "one_sentence_summary": string\n'
+                    '  - "reasoning": string\n'
+                    '  - "keywords": array of strings\n'
+                )
             ),
-            contents = [f"""
-                        {paper.title},
-                        {paper.entry_id},
-                        {paper.summary},
-                        {paper.authors},
-                        {paper.primary_category},
-                        """
-            ]
+            contents=[
+                (
+                    f"{paper.title},\n"
+                    f"{paper.entry_id},\n"
+                    f"{paper.summary},\n"
+                    f"{paper.authors},\n"
+                    f"{paper.primary_category},"
+                )
+            ],
         )
 
-        try:
-            json_match = re.search(r'```json\s*(\{.*?\})\s*```', response.text, re.DOTALL)
-            if json_match:
-                stripped_json = json_match.group(1)
-            else:
-                stripped_json = response.text.strip()
-
-            paper_analysis = json.loads(stripped_json)
-
-            print("-" * 50)
-            if paper_analysis.get('should_read', False):
-                read_list.append(paper_analysis)
-                print(f"{paper_analysis['title']}, {paper_analysis['id']}")
-                print(f"Score: {paper_analysis['relevance_score']}/10")
-                print(f"Summary: {paper_analysis['one_sentence_summary']}")
-            else:
-                print(f"Skipped: {paper_analysis['title']}")
-                print(f"Reasoning: {paper_analysis['reasoning']}")
-
-        except (json.JSONDecodeError, KeyError) as e:
-            print(f"\n⚠ Error parsing response for paper: {paper.title}")
-            print(f"Error: {e}")
-            print(f"Raw response: {response.text[:200]}...")
+        analysis = _parse_model_response(response.text, paper.title)
+        if not analysis:
             continue
-    print("-" * 50)
 
-    return sorted(read_list, key=lambda x: x['relevance_score'], reverse=True) if read_list else None
+        print("-" * 50)
+        if analysis.get("should_read"):
+            selections.append(analysis)
+            print(f"{analysis['title']}, {analysis['id']}")
+            print(f"Score: {analysis['relevance_score']}/10")
+            print(f"Summary: {analysis['one_sentence_summary']}")
+        else:
+            print(f"Skipped: {analysis.get('title', paper.title)}")
+            print(f"Reasoning: {analysis.get('reasoning', 'No reasoning provided.')}")
+
+    print("-" * 50)
+    if not selections:
+        return None
+
+    return sorted(selections, key=lambda item: item.get("relevance_score", 0), reverse=True)
 
 def summarize_reading_list(read_list, client) -> list:
     system_prompt = """
-            You are an expert research analyst. You will be given a full research paper as a PDF.
-            Your task is to extract as much valuable information as possible and provide a comprehensive but concise summary formatted as a JSON object.
+You are an expert research analyst. You will be given a full research paper as a PDF. Your task is to extract as much valuable information as possible and provide a comprehensive but concise summary formatted as a JSON object. Each field must be at most 280 characters.
 
-            The purpose is to absorb the paper's core contributions and insights efficiently. The user may decide to read the full paper if it appears especially interesting or foundational. Each field can at maximum be 280 characters long, so be concise but informative.
+Required fields:
+1. Title
+2. Field & Subfield
+3. Key Contributions (single string with bullet-style entries)
+4. Methodology
+5. Strengths
+6. Limitations
+7. Datasets / Benchmarks
+8. Results Summary
+9. Why It Matters
+10. Should Read Fully? (Yes/No)
+11. Key Figures or Tables (optional)
+"""
 
-            Analyze the entire document and extract the following structured fields:
+    summaries = []
+    if not PAPERS_DIR.exists():
+        return summaries
 
-            1. **Title**: The full title of the paper.
-            2. **Field & Subfield**: E.g., "Machine Learning > Computer Vision" or "Physics > Quantum Computing".
-            3. **Key Contributions**: A bulleted list (in a single string) of the 2-4 most important contributions.
-            4. **Methodology**: A concise paragraph explaining the core method, technique, or approach.
-            5. **Strengths**: Bulleted list of the main strengths (e.g., novel algorithm, strong theoretical guarantee, state-of-the-art performance).
-            6. **Limitations**: Bulleted list of potential limitations or open questions.
-            7. **Datasets / Benchmarks**: Mention any datasets used or introduced, and benchmarks compared against.
-            8. **Results Summary**: A short paragraph on key quantitative or qualitative results.
-            9. **Why It Matters**: A short paragraph on why this work is important, novel, or useful in practice.
-            10. **Should Read Fully?**: "Yes" or "No" depending on how fundamental, novel, or surprising the paper is.
-            11. **Key Figures or Tables** (optional): If any figure/table seems essential, mention its purpose briefly.
+    for pdf_path in sorted(PAPERS_DIR.iterdir()):
+        if pdf_path.suffix.lower() != ".pdf":
+            continue
 
-            Output the entire summary as a JSON object.
-            Be precise, clear, and helpful.
-            """
+        uploaded = client.files.upload(file=str(pdf_path))
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            config=types.GenerateContentConfig(system_instruction=system_prompt),
+            contents=[
+                "Please analyze this research paper PDF and provide a comprehensive summary following the JSON format specified in the system instructions:",
+                uploaded,
+            ],
+        )
+        summaries.append(response.text)
+        print(response.text)
 
-    summary = []
-    papers_dir = "./papers"
-    if os.path.exists(papers_dir):
-        for filename in os.listdir(papers_dir):
-            if not filename.endswith(".pdf"):
-                continue
-            file_path = os.path.join(papers_dir, filename)
-            paper_pdf = client.files.upload(file=file_path)
-
-            response = client.models.generate_content(
-                model="gemini-2.5-flash",
-                config=types.GenerateContentConfig(
-                    system_instruction=f"{system_prompt}"
-                ),
-                contents= ["Please analyze this research paper PDF and provide a comprehensive summary following the JSON format specified in the system instructions:", paper_pdf]
-            )
-            summary.append(response.text)
-            print(response.text)
-
-    return summary
+    return summaries
 
 def parse_summary(summary, reading_list) -> list:
-    parsed_summaries = []
-    for i, item in enumerate(summary):
-        try:
-            json_match = re.search(r'```json\s*(\{.*?\})\s*```', item, re.DOTALL)
-            if json_match:
-                stripped_json = json_match.group(1)
-            else:
-                stripped_json = item.strip()
+    parsed = []
+    log_entries = _load_log_entries()
+    reading_lookup = _build_reading_lookup(reading_list)
+    updated = False
 
-            stripped = json.loads(stripped_json)
-            
-            log_path = "log.json"
-            entries = []
-
-            if os.path.exists(log_path):
-                try:
-                    with open(log_path, "r", encoding="utf-8") as f:
-                        entries = json.load(f)
-                        if not isinstance(entries, list):
-                            entries = [entries]
-                except (json.JSONDecodeError, IOError):
-                    entries = []
-
-            entries.append(stripped)
-
-            with open(log_path, "w", encoding="utf-8") as f:
-                json.dump(entries, f, indent=4, ensure_ascii=False)
-
-            if i < len(reading_list) and 'id' in reading_list[i]:
-                stripped['arxiv_id'] = reading_list[i]['id']
-
-            kv_list = []
-            for k, v in stripped.items():
-                if isinstance(v, (list, dict)):
-                    v_str = json.dumps(v, ensure_ascii=False)
-                else:
-                    v_str = str(v)
-                kv_list.append(f"{k}: {v_str}")
-
-            parsed_summaries.append(kv_list)
-        except json.JSONDecodeError as e:
-            print(f"Error parsing summary: {e}")
+    for item in summary:
+        document = _coerce_json_document(item)
+        if document is None:
             continue
-    return parsed_summaries
+
+        matched_id = _match_reading_entry(document, reading_lookup)
+        if matched_id:
+            document["arxiv_id"] = matched_id
+
+        log_entries.append(document)
+        updated = True
+
+        kv_list = []
+        for key, value in document.items():
+            if isinstance(value, (list, dict)):
+                value_str = json.dumps(value, ensure_ascii=False)
+            else:
+                value_str = str(value)
+            kv_list.append(f"{key}: {value_str}")
+        parsed.append(kv_list)
+
+        if updated:
+            _write_log_entries(log_entries)
+    return parsed
 
 def remove_downloaded_papers() -> None:
-    papers_dir = "./papers"
-    if os.path.exists(papers_dir):
-        for filename in os.listdir(papers_dir):
-            file_path = os.path.join(papers_dir, filename)
+    if not PAPERS_DIR.exists():
+        return
+
+    for path in PAPERS_DIR.iterdir():
+        if path.is_file():
             try:
-                if os.path.isfile(file_path):
-                    os.remove(file_path)
-                    print(f"Removed: {file_path}")
-            except Exception as e:
-                print(f"Error removing {file_path}: {e}")
+                path.unlink()
+                print(f"Removed: {path}")
+            except OSError as exc:
+                print(f"Error removing {path}: {exc}")
+
+
+def _fetch_yesterdays_papers() -> list[arxiv.Result]:
+    client = arxiv.Client()
+    search = arxiv.Search(
+        query=SEARCH_QUERY,
+        sort_by=arxiv.SortCriterion.SubmittedDate,
+        sort_order=arxiv.SortOrder.Descending,
+        max_results=MAX_RESULTS,
+    )
+
+    yesterday = datetime.now().date() - timedelta(days=1)
+    results = [result for result in client.results(search) if result.published.date() == yesterday]
+    print(f"Found {len(results)} papers published yesterday.\n")
+    return results
+
+
+def _extract_arxiv_id(url: str) -> str | None:
+    match = re.search(r"(?:arxiv\.org/abs/)?(\d{4}\.\d{5}v\d+|arxiv\.\d{4}\.\d{5}v\d+)", url)
+    if not match:
+        return None
+
+    arxiv_id = match.group(1)
+    if arxiv_id.startswith("arxiv."):
+        return arxiv_id[len("arxiv."):]
+    return arxiv_id
+
+
+def _download_pdf(arxiv_id: str) -> arxiv.Result | None:
+    try:
+        return next(arxiv.Client().results(arxiv.Search(id_list=[arxiv_id])))
+    except StopIteration:
+        print(f"Failed to download paper with id {arxiv_id}")
+        return None
+
+
+def _parse_model_response(raw_text: str, title: str) -> dict | None:
+    try:
+        json_match = re.search(r"```json\s*(\{.*?\})\s*```", raw_text, re.DOTALL)
+        payload = json_match.group(1) if json_match else raw_text.strip()
+        return json.loads(payload)
+    except (json.JSONDecodeError, TypeError) as exc:
+        print(f"\n⚠ Error parsing response for paper: {title}")
+        print(f"Error: {exc}")
+        print(f"Raw response: {raw_text[:200]}...")
+        return None
+
+
+def _load_log_entries() -> list:
+    if not LOG_PATH.exists():
+        return []
+
+    try:
+        content = json.loads(LOG_PATH.read_text(encoding="utf-8"))
+        if isinstance(content, list):
+            return content
+        return [content]
+    except (json.JSONDecodeError, OSError):
+        return []
+
+
+def _write_log_entries(entries: list) -> None:
+    LOG_PATH.write_text(json.dumps(entries, indent=4, ensure_ascii=False), encoding="utf-8")
+
+
+def _build_reading_lookup(reading_list) -> dict[str, dict]:
+    lookup = {}
+    if not reading_list:
+        return lookup
+
+    for item in reading_list:
+        title_value = item.get("title") or item.get("Title")
+        normalized = _normalize_title(title_value)
+        if normalized:
+            lookup[normalized] = item
+    return lookup
+
+
+def _match_reading_entry(document: dict, lookup: dict[str, dict]) -> str | None:
+    if not lookup:
+        return None
+
+    title_candidate = document.get("Title") or document.get("title")
+    normalized = _normalize_title(title_candidate)
+    if not normalized:
+        return None
+
+    if normalized in lookup:
+        matched = lookup.pop(normalized)
+        return matched.get("id")
+
+    close_match = difflib.get_close_matches(normalized, list(lookup.keys()), n=1, cutoff=0.8)
+    if close_match:
+        matched = lookup.pop(close_match[0])
+        return matched.get("id")
+
+    return None
+
+
+def _normalize_title(value: str | None) -> str:
+    return re.sub(r"\W+", "", value).lower() if value else ""
+
+
+def _coerce_json_document(raw: str) -> dict | None:
+    try:
+        json_match = re.search(r"```json\s*(\{.*?\})\s*```", raw, re.DOTALL)
+        payload = json_match.group(1) if json_match else raw.strip()
+        return json.loads(payload)
+    except json.JSONDecodeError as exc:
+        print(f"Error parsing summary: {exc}")
+        return None
