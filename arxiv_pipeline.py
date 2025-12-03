@@ -35,13 +35,13 @@ INTERESTS_PROMPT = """
     - Static LLM alignment/prompt engineering unless tied to continual learning or real-time adaptation
     - Reinforcement learning (RL) in static settings, unless it involves continual learning or adaptive agents
     - Offline and local models
+    - Classic standalone image classification tasks
+    - Domain-specific biomedical ML unless it links to adaptive agents or generative/causal modeling
 
 - General:
     - Broadly interested in computer science, with curiosity spanning learning theory, agent design, systems, and real-world AI deployment — especially in domains involving perception, interaction, or simulation.
 
 - Avoids / Not currently focused on:
-    - Classic standalone image classification tasks
-    - Domain-specific biomedical ML unless it links to adaptive agents or generative/causal modeling
 """
 
 def search_papers(client) -> list:
