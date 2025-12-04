@@ -37,7 +37,7 @@ jobs:
         run: uv run pytest tests
 
       - name: Run app
-        run: uv run main.py
+        run: DRY_RUN=false uv run main.py
 
       - name: Commit log.json updates
         if: success()

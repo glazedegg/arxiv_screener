@@ -34,4 +34,4 @@ uv run pytest tests
 
 ## Automation
 
-GitHub Actions (`.github/workflows/main.yml`) runs the pipeline nightly, commits the updated `log.json`, and tweets (unless you leave `dry_run=True`). Make sure repository actions have read/write permissions and the secrets listed above are set.
+GitHub Actions (`.github/workflows/main.yml`) runs the pipeline nightly, commits the updated `log.json`, and tweets (set `DRY_RUN=false` to post for real). Make sure repository actions have read/write permissions and the secrets listed above are set.

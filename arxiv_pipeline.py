@@ -36,7 +36,7 @@ INTERESTS_PROMPT = """
     - Reinforcement learning (RL) in static settings, unless it involves continual learning or adaptive agents
     - Offline and local models
     - Classic standalone image classification tasks
-    - Domain-specific biomedical ML unless it links to adaptive agents or generative/causal modeling
+    - Domain-specific biomedical ML
 
 - General:
     - Broadly interested in computer science, with curiosity spanning learning theory, agent design, systems, and real-world AI deployment — especially in domains involving perception, interaction, or simulation.
