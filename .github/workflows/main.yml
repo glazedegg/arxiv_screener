@@ -50,3 +50,4 @@ jobs:
             git add log.json
             git commit -m "chore: update log $(date -u +'%Y-%m-%d')"
             git push origin HEAD:${GITHUB_REF#refs/heads/}
+          fi
