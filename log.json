@@ -35,5 +35,25 @@
         "Why It Matters": "This work addresses critical challenges in developing autonomous agents for complex digital workspaces, offering a scalable and robust framework for end-to-end online RL. By bridging the gap between machine and human-centric GUIs, it lays a foundational step towards truly intelligent desktop automation, improving efficiency and paving the way for more capable generalist agents.",
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1: Shows state-of-the-art success rates on OSWorld (1a) and COMPUTERRL training reward curves (1b), demonstrating Entropulse's benefits. Table 1: Provides a comprehensive comparison of AUTOGLM-OS performance against various proprietary and open models on OSWorld benchmarks."
+    },
+    {
+        "Title": "Relational Visual Similarity",
+        "Field & Subfield": "Computer Vision & Image Understanding. Focuses on a novel visual similarity metric leveraging Vision-Language Models for abstract relational reasoning, moving beyond surface attributes to capture human-like conceptual similarities.",
+        "Key Contributions": [
+            "Introduced 'relational visual similarity' as a new dimension.",
+            "Curated a 114k {image-anonymous caption} dataset for relational training.",
+            "Developed 'relsim,' a new metric for relational visual similarity.",
+            "Demonstrated relsim's utility in image retrieval & generation.",
+            "Analyzed relationship between attribute and relational similarity."
+        ],
+        "Methodology": "Proposed `relsim` by: 1) Filtering LAION-2B to select images with relational cues. 2) Generating anonymous captions (describing relational logic, not surface content) from image groups using a fine-tuned VLM. 3) Training `relsim` (Qwen2.5-VL-7B) with InfoNCE loss to align image/caption embeddings.",
+        "Strengths": "Captures human-like abstract relational reasoning, a key missing dimension in visual AI. `relsim` significantly outperforms existing attribute-based metrics in recognizing deeper conceptual similarities, validated by user studies & GPT-40 evaluation. Enables novel image retrieval/generation applications.",
+        "Limitations": "Anonymous caption dataset curated manually (532 groups), limiting scalability & prone to bias. VLMs can hallucinate captions. Difficulty in specifying user intent for multi-relational images. Expanding dataset/pipeline is a future direction.",
+        "Datasets / Benchmarks": "New: Relational Dataset (114k {image, anonymous caption} pairs derived from LAION-2B). Baselines: LPIPS, DINO, CLIP, dreamsim (image-to-image); CLIP-T, Qwen-T (caption-based). Evaluation: GPT-40 automated judge & human user study.",
+        "Results Summary": "`relsim` achieved a GPT score of 6.77 (vs. LPIPS 4.56, CLIP-I 5.91), indicating superior relational similarity detection. User studies showed consistent human preference for `relsim` (42.5-60.7%). Proprietary models excel in analogical generation (GPT40 relsim 0.82) over open-source models.",
+        "Why It Matters": "Addresses a critical gap in AI's visual understanding by moving beyond surface attributes to capture abstract, relational logic, mirroring human cognition. This unlocks new possibilities for creative AI applications, enhancing image retrieval, and analogical content generation.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Illustrates relational vs. attribute similarity), Figure 2 (Overall Pipeline), Figure 6 (relsim performance vs. baselines), Figure 8 (User study results), Table 2 (Analogical image generation benchmarks).",
+        "arxiv_id": "http://arxiv.org/abs/2512.07833v1"
     }
 ]
