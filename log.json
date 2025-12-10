@@ -55,5 +55,47 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (Illustrates relational vs. attribute similarity), Figure 2 (Overall Pipeline), Figure 6 (relsim performance vs. baselines), Figure 8 (User study results), Table 2 (Analogical image generation benchmarks).",
         "arxiv_id": "http://arxiv.org/abs/2512.07833v1"
+    },
+    {
+        "Title": "ASTRA: General INTERACTIVE WORLD MODEL WITH AUTOREGRESSIVE DENOISING",
+        "Field & Subfield": "Computer Vision, Generative Models, World Models",
+        "Key Contributions": "Introduces Astra, an interactive general world model. Key contributions: Autoregressive denoising with temporal causal attention; Action-aware adapter for precise control; Noise-augmented history memory for consistency; Mixture of Action Experts for diverse modalities.",
+        "Methodology": "Autoregressive denoising framework based on a pre-trained video diffusion backbone. Utilizes an Action-Aware Flow Transformer (AFT) with ACT-Adapter for action injection, a noise-as-mask strategy for history memory to reduce visual inertia, and a Mixture of Action Experts (MoAE) for multimodal actions.",
+        "Strengths": "Achieves high visual fidelity, strong temporal consistency, and precise action responsiveness. Versatile across diverse tasks (robotics, AD, exploration) and generalizes well to out-of-domain scenes. Parameter-efficient design with low compute overhead.",
+        "Limitations": "Inference efficiency is limited, requiring multiple denoising steps per frame. This makes real-time deployment challenging for latency-sensitive applications like online control or interactive robotics.",
+        "Datasets / Benchmarks": "nuScenes, Sekai, SpatialVID, RT-1, Multi-Cam Video. Evaluated on Astra-Bench (custom benchmark) and CityWalker for out-of-domain generalization.",
+        "Results Summary": "Outperforms SOTA models (Wan-2.1, MatrixGame, YUME) across all metrics: instruction following, subject/background consistency, motion smoothness, and visual quality. Achieves lower rotation/translation errors and superior action-following accuracy on diverse benchmarks.",
+        "Why It Matters": "Astra advances interactive world modeling, enabling more general, scalable simulators for exploration, robotics, autonomous driving, and embodied intelligence, bridging the gap to true interactive world simulation.",
+        "Should Read Fully?": "Yes, for researchers and practitioners interested in interactive world models, diffusion-based video generation, robotics, autonomous driving, or embodied AI.",
+        "Key Figures or Tables": "Fig. 1 (diverse applications), Fig. 3 (Astra framework), Fig. 5 & 6 (qualitative results), Table 2 (SOTA comparison), Table 3 (ablation studies).",
+        "arxiv_id": "http://arxiv.org/abs/2512.08931v1"
+    },
+    {
+        "Title": "Efficiently Reconstructing Dynamic Scenes One D4RT at a Time",
+        "Field & Subfield": "Computer Vision; 4D Reconstruction & Tracking",
+        "Key Contributions": "Novel query-based feedforward model for efficient 4D scene reconstruction. Unified transformer architecture for depth, correspondence, point clouds, camera params. SOTA accuracy & speed in dynamic 4D reconstruction & tracking. Enables efficient dense, holistic scene reconstruction.",
+        "Methodology": "D4RT uses an encoder (ViT-g) to create a global scene representation (F) from video. A lightweight cross-attention decoder queries F with spatio-temporal parameters (u,v, t_src, t_tgt, t_cam) and local RGB patch to predict 3D point positions.",
+        "Strengths": "Highly efficient (18-300x faster, 200+ FPS), scalable, unified interface for multiple 4D tasks, SOTA accuracy across diverse benchmarks, handles dynamic scenes, supports subpixel precision & high-res decoding with novel querying.",
+        "Limitations": "No explicit limitations for D4RT are stated, as the paper focuses on overcoming prior methods' drawbacks. Implicitly, a large encoder requires pre-training. Dense inference still has computational cost, partially addressed by occupancy grid optimization.",
+        "Datasets / Benchmarks": "BlendedMVS, Co3Dv2, Dynamic Replica, Kubric, MVS-Synth, PointOdyssey, ScanNet, ScanNet++, Tartanair, VirtualKitti, Waymo Open (training). Sintel, ScanNet, KITTI, Bonn, TapVid-3D (evaluation).",
+        "Results Summary": "D4RT sets SOTA across 4D tasks (depth, point cloud, 3D tracking, camera pose) on various benchmarks. Achieves significantly higher throughput (e.g., 200+ FPS, 100x faster than MegaSaM) while delivering superior accuracy. Generalizes to long videos & high-res decoding.",
+        "Why It Matters": "Offers a unified, efficient, and highly scalable framework for 4D reconstruction, overcoming fragmentation and computational bottlenecks of prior methods, paving the way for next-generation 4D perception in complex dynamic environments.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig. 1 (Model overview), Fig. 3 (Pose accuracy vs. speed), Fig. 4 (Qualitative reconstruction), Table 3 (3D tracking throughput), Table 4 (4D tracking metrics).",
+        "arxiv_id": "http://arxiv.org/abs/2512.08924v1"
+    },
+    {
+        "Title": "Selfi: Self Improving Reconstruction Engine via 3D Geometric Feature Alignment",
+        "Field & Subfield": "Computer Vision & 3D Reconstruction, Novel View Synthesis",
+        "Key Contributions": "• Self-improving geometric feature learning from unposed RGB via reprojection-based consistency loss. • Achieves state-of-the-art NVS and pose estimation using a frozen VFM backbone. • Enhances NVS quality and pose accuracy via dense bundle adjustment with depth shift.",
+        "Methodology": "Selfi uses a pre-trained VGGT (3D VFM) as a backbone. A DPT adapter learns geometrically-aligned features using a self-supervised reprojection-based consistency loss with pseudo-ground-truth from VGGT outputs. These features predict 3D Gaussian parameters via a U-Net decoder. Poses are refined using dense bundle adjustment, with Gaussian centers adjusted via an affine depth shift.",
+        "Strengths": "State-of-the-art NVS and pose estimation from unposed, uncalibrated images. Achieves high-fidelity rendering, including thin structures and fine details. Robust to varying input views/overlap. Self-supervised, efficiently leveraging VFMs.",
+        "Limitations": "Relies on VGGT's normalized scale, leading to depth inaccuracies in distant regions (e.g., sky). Sensitive to exposure discrepancies between input and target images. Currently restricted to static scenes, failing on dynamic environments.",
+        "Datasets / Benchmarks": "Trained on DL3DV and RealEstate10K. Evaluated on DL3DV, RealEstate10K, MipNeRF, Tanks&Temples, and RayZer split. Metrics include PSNR, SSIM, LPIPS for NVS; AUC@3, AUC@5, AUC@15 for pose estimation.",
+        "Results Summary": "Selfi consistently outperforms existing pose-free feed-forward Gaussian methods (e.g., AnySplat, WorldMirror) and achieves performance comparable to/exceeding 3DGS with ground-truth poses. Achieves SOTA on NVS & pose estimation benchmarks across various input settings (varying sequence lengths, overlap).",
+        "Why It Matters": "Selfi advances novel view synthesis and 3D reconstruction by bypassing the fragile and computationally intensive SfM pipeline. It enables robust, high-fidelity 3D scene understanding from unposed images, making 3D VFMs more practical for real-world applications without explicit 3D ground truth.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Selfi pipeline overview), Figure 3 & 5 (Qualitative NVS comparisons), Table 1 & 2 (NVS performance with varying inputs/overlap), Table 5 (BA for NVS/Pose).",
+        "arxiv_id": "http://arxiv.org/abs/2512.08930v1"
     }
 ]
