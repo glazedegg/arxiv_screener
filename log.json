@@ -97,5 +97,46 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (Selfi pipeline overview), Figure 3 & 5 (Qualitative NVS comparisons), Table 1 & 2 (NVS performance with varying inputs/overlap), Table 5 (BA for NVS/Pose).",
         "arxiv_id": "http://arxiv.org/abs/2512.08930v1"
+    },
+    {
+        "Title": "Closing the Train-Test Gap in World Models for Gradient-Based Planning",
+        "Field & Subfield": "Reinforcement Learning & Robotics; Model-Based Planning",
+        "Key Contributions": "- Proposes Online World Modeling (OWM) to expand WM's reliable state space via simulator-corrected trajectories.\n- Introduces Adversarial World Modeling (AWM) to smooth loss landscape & promote robustness by finetuning on perturbed inputs.\n- Achieves CEM-level performance with 10x speedup for gradient-based planning.",
+        "Methodology": "Two finetuning methods (OWM, AWM) for latent world models (DINO-WM) used in gradient-based planning (GBP). OWM generates and finetunes on simulator-corrected GBP trajectories. AWM perturbs inputs to maximize prediction error, smoothing the planning loss landscape.",
+        "Strengths": "Significantly improves gradient-based planning reliability and performance, often matching or exceeding CEM. Achieves a 10x computational speedup over CEM. Smooths the planning loss landscape, reducing local minima. Narrows the train-test gap in world model error.",
+        "Limitations": "Online World Modeling relies on access to an environment simulator, which might be costly or infeasible in real-world settings. Performance benefits vary by task and specific gradient optimizer used (e.g., Adam generally outperforms GD).",
+        "Datasets / Benchmarks": "PushT, PointMaze, Wall (main experiments); Rope, Granular (additional robotic manipulation tasks). Utilizes existing DINO-WM datasets and architectures.",
+        "Results Summary": "AWM with Adam GBP outperforms or matches CEM on PushT, PointMaze, Wall tasks, achieving up to +30% success rate increase over DINO-WM (open-loop) and up to 10x faster execution. Both OWM and AWM narrow the train-test gap.",
+        "Why It Matters": "Enables practical and efficient gradient-based planning with world models, a critical step for real-world robotics. Addresses a fundamental train-test gap, making learned dynamics models more reliable for long-horizon control.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Table 1 (Planning Results), Figure 2 (Optimization landscape of DINO-WM vs. AWM), Figure 3 (Planning efficiency)",
+        "arxiv_id": "2512.09929v1"
+    },
+    {
+        "Title": "GAINS: Gaussian-based Inverse Rendering from Sparse Multi-View Captures",
+        "Field & Subfield": "Computer Vision & Graphics, Inverse Rendering",
+        "Key Contributions": "- Two-stage inverse rendering for sparse multi-view captures.\n- Synergizes learning-based priors (depth/normal, diffusion) for robust geometry.\n- Combines segmentation, IID, and diffusion priors for stable material recovery.\n- Achieves SOTA relighting, NVS, and material accuracy on sparse inputs.",
+        "Methodology": "Two-stage pipeline using 2DGS. Stage I: Geometry refinement with monocular depth/normal and diffusion priors. Stage II: Material properties & lighting estimation using segmentation, intrinsic image decomposition (IID), and diffusion priors, all combined with PBR.",
+        "Strengths": "Significantly improves material parameter accuracy, relighting quality, and novel-view synthesis, especially under sparse-view conditions. More robust against overfitting and ambiguity than prior methods. Better intrinsic separation and reduced reflection baking.",
+        "Limitations": "Segmentation guidance can trade off robustness for high-frequency detail under dense supervision. IID prior can exhibit view-inconsistency, though mitigated by a weighted loss.",
+        "Datasets / Benchmarks": "Synthetic4Relight [44], TensorIR [10], Ref-Real [29]. Evaluated using PSNR, SSIM, LPIPS for NVS/Albedo/Relighting, and MSE for Roughness.",
+        "Results Summary": "GAINS consistently outperforms SOTA Gaussian-based IR methods (Ref-GS, GI-GS) on all datasets and metrics, especially with sparse (4-8) views. Achieves higher PSNR, SSIM, lower LPIPS/MSE for NVS, albedo, roughness, and relighting.",
+        "Why It Matters": "Addresses the challenging problem of inverse rendering from sparse inputs, which is critical for real-world applications where dense multi-view captures are impractical or impossible, enabling more robust 3D scene understanding.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Table 1, Table 2 (Quantitative evaluation across datasets), Table 3 (Ablation study of priors), Figure 1 (Qualitative intrinsics/relighting), Figure 6 (View-dependent performance)."
+    },
+    {
+        "Title": "ReViSE: Towards Reason-Informed Video Editing in Unified Models with Self-Reflective Learning",
+        "Field & Subfield": "Computer Vision & Generative AI: Video Editing",
+        "Key Contributions": "- Introduces Reason-Informed Video Editing (RVE) task.\n- Proposes RVE-Bench, a comprehensive benchmark for RVE.\n- Develops ReViSE, a Self-Reflective Reasoning (SRF) framework.\n- Leverages internal VLM for intrinsic, differential feedback.\n- Achieves SOTA on RVE-Bench.",
+        "Methodology": "ReViSE employs a Self-Reflective Reasoning (SRF) framework, unifying generation & internal evaluation. An internal VLM acts as a critic, providing differential feedback. Training uses Unified Semantic Optimization (USO) & Reward Weighted Optimization (RWO) with flow-matching loss.",
+        "Strengths": "Bridges the reasoning-editing gap in video models, provides self-supervised intrinsic feedback, significantly improves reasoning accuracy & visual fidelity, and introduces a robust, reasoning-aware evaluation framework using GPT-4o.",
+        "Limitations": "Performance is primarily constrained by the capabilities of the base models. Cannot fully exploit potential without access to more powerful foundational models due to resource limitations.",
+        "Datasets / Benchmarks": "RVE-Bench (new, 1,000 unique triplets), comprising two subsets: Reasoning-Informed Video Editing (809 samples) & In-Context Video Generation (200 samples). Leverages Ditto-1M and collected movie data.",
+        "Results Summary": "ReViSE significantly enhances editing accuracy and visual fidelity on RVE-Bench, achieving a 32% improvement in Overall score on the reasoning-informed video editing subset over state-of-the-art methods across all reasoning categories.",
+        "Why It Matters": "Addresses a crucial gap in video editing by enabling models to understand & incorporate complex reasoning (physical plausibility, causal dynamics), moving beyond literal transformations to generate more realistic, logically coherent, and contextually rich videos.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (ReViSE framework overview), Figure 2 (RVE-Bench overview & statistics), Table 1 (Quantitative Results on RVE-Bench).",
+        "arxiv_id": "http://arxiv.org/abs/2512.09924v1"
     }
 ]
