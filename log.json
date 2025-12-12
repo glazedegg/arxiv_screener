@@ -138,5 +138,47 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (ReViSE framework overview), Figure 2 (RVE-Bench overview & statistics), Table 1 (Quantitative Results on RVE-Bench).",
         "arxiv_id": "http://arxiv.org/abs/2512.09924v1"
+    },
+    {
+        "Title": "SceneMaker: Open-set 3D Scene Generation with Decoupled De-occlusion and Pose Estimation Model",
+        "Field & Subfield": "Computer Vision & 3D Scene Generation",
+        "Key Contributions": "- Decoupled 3D scene generation framework for better open-set prior learning.\n- Robust de-occlusion model leveraging image datasets & a new 10K curated dataset.\n- Unified pose estimation diffusion model with global/local attention & new 200K synthetic scene dataset for generalization.",
+        "Methodology": "Decoupled 3D scene generation into de-occlusion, 3D object generation, and pose estimation. De-occlusion model finetunes Flux Kontext on a 10K image dataset. Pose estimation uses a diffusion model with global/local self/cross-attention, trained on a 200K synthetic scene dataset, predicting 6D pose & size.",
+        "Strengths": "Achieves SOTA on indoor & open-set scenes for geometry quality & pose accuracy. Robust under severe occlusion & diverse objects. Strong generalization. Enables text-controllable de-occlusion, enhancing quality & controllability.",
+        "Limitations": "Real-world object arrangements (e.g., force interactions, interpenetration) are not fully captured by datasets. Existing methods have limited control signals (images/simple captions). Deeper understanding for embodied AI tasks remains an unsolved challenge.",
+        "Datasets / Benchmarks": "New 10K object image de-occlusion dataset, new 200K synthetic open-set scene dataset. Trained on Objaverse. Evaluated against MIDI, 3D-Front, and other SOTA methods.",
+        "Results Summary": "Outperforms SOTA methods on indoor & open-set scenes in both geometry quality (CD-S, F-Score-S, IoU-B) and pose accuracy, and de-occlusion metrics (PSNR, SSIM, CLIP). Demonstrates superior performance, especially under severe occlusion.",
+        "Why It Matters": "Advances realistic open-set 3D scene generation, addressing crucial limitations in occlusion handling and accurate pose estimation. Essential for progress in AIGC, embodied AI, simulation environment construction, and 3D perception.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (SceneMaker outputs), Figure 3 (Framework), Table 3 (Quantitative comparison on indoor & open-set), Figure 6 (De-occlusion comparison).",
+        "arxiv_id": "http://arxiv.org/abs/2512.10957v1"
+    },
+    {
+        "Title": "StereoSpace: Depth-Free Synthesis of Stereo Geometry via End-to-End Diffusion in a Canonical Space",
+        "Field & Subfield": "Computer Vision & Novel View Synthesis / Stereo Generation",
+        "Key Contributions": "- Depth-free monocular-to-stereo synthesis via end-to-end diffusion in a canonical space.\n- Viewpoint-conditioned framework using Plücker ray embeddings for metric baseline control.\n- Novel evaluation protocol with iSQoE (perceptual comfort) and MEt3R (geometric consistency).",
+        "Methodology": "Diffusion-based framework (LDM) using a dual U-Net architecture (initialized from Stable Diffusion 2.0). Models geometry via viewpoint conditioning with Plücker ray embeddings in a canonical rectified space, avoiding explicit depth or warping.",
+        "Strengths": "Depth-free handling of complex multi-layer and non-Lambertian scenes. Strong cross-baseline generalization with metric control. Superior perceptual comfort (iSQoE) and geometric consistency (MEt3R) compared to baselines.",
+        "Limitations": "All methods, including StereoSpace, still exhibit degradation on extreme multi-layer/transparent scenes. Auxiliary disparity loss slightly degrades iSQoE scores.",
+        "Datasets / Benchmarks": "Training: TartanAir, Dynamic Replica, IRS, Falling Things, LayeredFlow, NeRF-Stereo, SceneSplat-7K. Evaluation: Middlebury 2014, DrivingStereo, Booster, LayeredFlow.",
+        "Results Summary": "Outperforms prior warp/inpaint, latent-warping, and warped-conditioning methods on iSQoE and MEt3R metrics. Achieves best perceptual comfort and geometric consistency, particularly on complex multi-layer geometries.",
+        "Why It Matters": "Enables high-quality stereo image generation from monocular inputs without costly 3D reconstruction, reducing production costs and facilitating 2D to 3D content conversion for immersive media.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Framework Overview), Table 2 (Main Results on Middlebury & DrivingStereo)",
+        "arxiv_id": "http://arxiv.org/abs/2512.10959v1"
+    },
+    {
+        "Title": "WorldLens: Full-Spectrum Evaluations of Driving World Models in Real World",
+        "Field & Subfield": "Embodied AI & Computer Vision; Generative World Models",
+        "Key Contributions": "- Introduces WorldLens, a benchmark for driving world models.\n- Defines 5 evaluation aspects: Generation, Reconstruction, Action-Following, Downstream Task, Human Preference.\n- Curates WorldLens-26K, a large-scale human-annotated video dataset.\n- Develops WorldLens-Agent, an auto-evaluator distilled from human preferences.",
+        "Methodology": "WorldLens evaluates driving world models across 5 aspects using 20+ metrics. It combines quantitative metrics (e.g., FVD, LPIPS, NDS) with human preference scores via WorldLens-26K. WorldLens-Agent (Qwen3-VL-8B fine-tuned) enables scalable, human-aligned auto-evaluation.",
+        "Strengths": "Comprehensive, multi-dimensional evaluation covering visual realism, geometric consistency, physical plausibility, and functional reliability. Integrates human judgment for alignment. Scalable and interpretable auto-evaluation via WorldLens-Agent. Bridges objective metrics with subjective perception.",
+        "Limitations": "Primarily focused on driving scenarios. Human preference dataset may reflect annotator bias. Evaluation agent inherits LLM limitations. Physical realism evaluation is open-ended, requiring new metrics for interactive/multimodal 4D.",
+        "Datasets / Benchmarks": "WorldLens (benchmark), WorldLens-26K (human-annotated video dataset), nuScenes (for some evaluations), Kinetics (for I3D features).",
+        "Results Summary": "No single world model excels universally. Models with strong textures often violate physics; geometry-stable ones lack behavioral fidelity. DiST-4D performs well in geometry/novel-view. Perceptual quality doesn't imply usability. Temporal consistency and dataset alignment are critical for task-specific effectiveness.",
+        "Why It Matters": "Establishes a unified protocol to measure driving world model fidelity, beyond visual realism, to include physical reliability & functional safety. Essential for developing robust embodied AI, safer autonomous driving, and more trustworthy synthetic data generation.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (WorldLens Framework), Figure 2 (Evaluation Aspects), Table 1 (Benchmarking Results).",
+        "arxiv_id": "http://arxiv.org/abs/2512.10958v1"
     }
 ]
