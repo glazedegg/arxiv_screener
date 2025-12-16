@@ -180,5 +180,19 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (WorldLens Framework), Figure 2 (Evaluation Aspects), Table 1 (Benchmarking Results).",
         "arxiv_id": "http://arxiv.org/abs/2512.10958v1"
+    },
+    {
+        "Title": "DiffusionBrowser: Interactive Diffusion Previews via Multi-Branch Decoders",
+        "Field & Subfield": "Computer Vision; Generative Models; Human-Computer Interaction",
+        "Key Contributions": "- Lightweight, model-agnostic framework for interactive video diffusion previews.\n- Preserves full generation quality, supports rapid iteration, and is plug-and-play.\n- Generates rich multi-modal previews (RGB, albedo, depth, normals) via multi-branch, multi-loss predictor.\n- Enables novel interactive generation control via stochasticity renoising and latent steering.",
+        "Methodology": "A model-agnostic, lightweight multi-branch decoder framework. Linear probing identifies early intrinsic emergence. A multi-loss predictor mitigates superposition. Variations are generated via stochastic renoising (diff. noise) & latent steering (gradient-based optimization).",
+        "Strengths": "Provides fast (sub-second), multi-modal previews, enabling early termination & rapid iteration. Offers interactive control over generation. Addresses superposition artifacts. Preserves full base model quality & is plug-and-play. User study confirms high perceptual value.",
+        "Limitations": "Scope limited to scene intrinsics; text prompts not explicitly considered. Steering can have failure cases due to out-of-distribution issues or limited model capacity. Higher resolution/coherence could be improved. Simplified steering methods.",
+        "Datasets / Benchmarks": "Synthetic video dataset (1,000 videos, 40 categories) generated using DiffusionRenderer. Compared against x0-pred, Video Depth Anything, Diffusion Renderer, Linear Probing. PSNR, MSE, L1, LPIPS metrics used.",
+        "Results Summary": "Achieves previews in <1s for 4s videos, outperforming baselines in PSNR for most channels (e.g., RGB 18.03 Ours vs 16.98 x0-pred at 10% steps) and being significantly more efficient. Multi-branch decoder reduces artifacts. User study favors DiffusionBrowser for content predictability, visual fidelity, & scene clarity (74-77% preference).",
+        "Why It Matters": "Transforms opaque video diffusion into an interactive, controllable, and resource-efficient process. Allows users to guide generations, terminate unpromising outcomes early, and better understand diffusion's internal dynamics, crucial for practical deployment and advanced research.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (DiffusionBrowser overview), Figure 2 (Linear probing results), Figure 5 (MB decoder comparison), Table 1 (Baselines comparison), Table 3 (User study results).",
+        "arxiv_id": "http://arxiv.org/abs/2512.13690v1"
     }
 ]
