@@ -194,5 +194,47 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (DiffusionBrowser overview), Figure 2 (Linear probing results), Figure 5 (MB decoder comparison), Table 1 (Baselines comparison), Table 3 (User study results).",
         "arxiv_id": "http://arxiv.org/abs/2512.13690v1"
+    },
+    {
+        "Title": "MemFlow: Flowing Adaptive Memory for Consistent and Efficient Long Video Narratives",
+        "Field & Subfield": "Computer Vision, Video Generation",
+        "Key Contributions": "- Proposes MemFlow for consistent and efficient long video generation.\n- Introduces Narrative Adaptive Memory (NAM) for dynamic retrieval of semantically-aligned context.\n- Develops Sparse Memory Activation (SMA) for relevance-gated memory filtering to balance efficiency and quality.\n- Achieves SOTA quality with real-time inference (18.7 FPS) on H100.",
+        "Methodology": "MemFlow integrates Narrative Adaptive Memory (NAM) for dynamic context retrieval (semantic retrieval, redundant removal) and Sparse Memory Activation (SMA) for efficiency. It's built upon an autoregressive-diffusion framework, using a streaming long-tuning strategy with Self-Forcing and DMD loss.",
+        "Strengths": "Maintains long-term consistency and narrative coherence, even with complex character/scene changes. Achieves state-of-the-art visual quality and semantic alignment. Balances memory efficiency and quality effectively. Compatible with existing streaming video generation models with KV cache.",
+        "Limitations": "Incurs a slight speed reduction (7.9% vs. memory-free baseline, 8.6% vs. LongLive) due to memory updating/activation. Larger memory capacities in NAM can lead to performance instability or underperform baselines due to attention field imbalance.",
+        "Datasets / Benchmarks": "Customized 100 narrative scripts (6x10s prompts) for multi-prompt generation. Evaluated using VBench-Long metrics for quality, consistency, and aesthetics. CLIP score for text alignment.",
+        "Results Summary": "MemFlow achieved highest overall quality (85.02) and aesthetic score (61.07) for multi-prompt 60s videos. Demonstrated superior subject/background consistency and prompt adherence. Achieved 18.7 FPS inference on a single NVIDIA H100 while maintaining high quality.",
+        "Why It Matters": "Addresses the critical challenge of maintaining content consistency in interactive long video generation, which is crucial for advancing creative and cinematic applications. Enables coherent narratives that adapt to dynamic prompts and scene transitions.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Qualitative comparison), Figure 2 (Overall Framework), Table 1 (Multi-prompt 60s comparison), Table 2 (Single-prompt 5s comparison), Table 3 (Memory mechanism ablation).",
+        "arxiv_id": "2512.14699v1"
+    },
+    {
+        "Title": "Spherical Leech Quantization for Visual Tokenization and Generation",
+        "Field & Subfield": "Computer Vision, Image Quantization & Generation",
+        "Key Contributions": "- Unified NPQ methods via lattice coding.\n- Introduced Spherical Leech Quantization (A24-SQ) based on Leech lattice.\n- Simplified autoencoder training without entropy regularization.\n- Achieved state-of-the-art visual tokenization/generation with large codebooks (~200K).",
+        "Methodology": "A24-SQ uses fixed 24-dimensional Leech lattice vectors for quantization, mapped from a hypersphere. It's integrated into auto-encoders and autoregressive models using standard l1, GAN, LPIPS losses, eliminating entropy regularization. Efficiency maintained by tiling/JIT-compiling and VF loss for alignment.",
+        "Strengths": "Simplified training (no regularization), high efficiency (fixed lattice, no gradient updates, memory/runtime efficient), improved rate-distortion tradeoff, better reconstruction & generation quality, and scalability to very large codebooks, achieving oracle-like performance.",
+        "Limitations": "Factorized d-itwise prediction yields worse gFID and lower recall. Codebook usage imbalance with large codebooks requires specific training techniques (Z-loss, Dion optimizer). Future work includes larger-scale, text-conditioned visual generation.",
+        "Datasets / Benchmarks": "ImageNet-1k, COCO2017 val, Kodak Lossless True Color Image Suite. Metrics: PSNR, SSIM, LPIPS, rFID, gFID, IS, Precision, Recall.",
+        "Results Summary": "A24-SQ outperforms BSQ in reconstruction (rFID 0.83 vs 1.14, better PSNR/SSIM/LPIPS) using fewer bits. Achieved 1.82 FID for AR generation on ImageNet-1k, comparable to oracle (1.78 FID), with a 196,560-way codebook. Pushed precision-recall frontier closer to oracle.",
+        "Why It Matters": "Addresses codebook scalability and principled design in visual tokenization. Enables high-quality image compression and generation with very large vocabularies, bridging the gap between vision and language models' vocabulary sizes for general-purpose visual AI.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Method overview & results), Figure 2 (dmin comparison of lattices), Table 4 (A24-SQ vs BSQ details), Table 5 (Reconstruction results), Table 7 (Generation results).",
+        "arxiv_id": "http://arxiv.org/abs/2512.14697v1"
+    },
+    {
+        "Title": "TimeLens: Rethinking Video Temporal Grounding with Multimodal LLMs",
+        "Field & Subfield": "Multimodal AI, Video Understanding, Temporal Grounding",
+        "Key Contributions": "• Exposed critical quality issues in existing VTG benchmarks. • Introduced TimeLens-Bench (re-annotated, high-quality eval suite). • Created TimeLens-100K (large-scale, high-quality training data). • Derived optimal algorithmic practices: interleaved textual encoding & thinking-free RLVR. • TimeLens models: SOTA VTG, surpasses GPT-5/Gemini-2.5-Flash.",
+        "Methodology": "Systematic investigation on data quality (manual & automated re-annotation for benchmarks/training) & algorithmic design. Key insights: interleaved textual encoding for time; thinking-free RLVR with early stopping & difficulty-based sampling.",
+        "Strengths": "Rigorous data overhaul created high-quality, reliable benchmarks & training data. Comprehensive algorithmic study yields practical insights. Achieves SOTA performance. All code, data, models are open-sourced.",
+        "Limitations": "Paper focuses on establishing an 'essential baseline' rather than novel methods. Current work is not focused on reasoning-intensive VTG scenarios, which is left for future exploration.",
+        "Datasets / Benchmarks": "TimeLens-Bench (re-annotated Charades-STA, ActivityNet Captions, QVHighlights). TimeLens-100K (large-scale, high-quality training dataset).",
+        "Results Summary": "TimeLens models achieve SOTA VTG, outperforming open-source and surpassing proprietary models (GPT-5, Gemini-2.5-Flash) on TimeLens-Bench. Performance significantly improved by high-quality data & optimized algorithmic practices.",
+        "Why It Matters": "Addresses a critical limitation of MLLMs in temporal awareness for video understanding. Provides robust tools and insights, offering a reliable foundation for future research and evaluation in this vital field.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig 2 (Data quality impact, performance gains), Table 1 (Main Results), Fig 5 (Timestamp encoding schemes), Table 3 (Training paradigms).",
+        "arxiv_id": "http://arxiv.org/abs/2512.14698v1"
     }
 ]
