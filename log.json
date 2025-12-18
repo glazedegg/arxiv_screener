@@ -236,5 +236,55 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Fig 2 (Data quality impact, performance gains), Table 1 (Main Results), Fig 5 (Timestamp encoding schemes), Table 3 (Training paradigms).",
         "arxiv_id": "http://arxiv.org/abs/2512.14698v1"
+    },
+    {
+        "Title": "DiffusionVL: Translating Any Autoregressive Models into Diffusion Vision Language Models",
+        "Field & Subfield": "Artificial Intelligence, Vision-Language Models, Diffusion Models",
+        "Key Contributions": "- Proposes DiffusionVL, translating any AR models into diffusion VLMs.\n- Achieves SOTA among diffusion VLMs with <5% of prior data.\n- Narrows performance gap with advanced AR-VLMs.\n- Introduces block-decoding for arbitrary-length generation & KV cache reuse.\n- Attains 2x inference speedup.",
+        "Methodology": "Simple diffusion finetuning converts AR-VLMs directly. For AR-LMs, a two-stage process (connector pretraining, then diffusion finetuning) is used. Employs a block diffusion strategy for parallel decoding, arbitrary length generation, and efficient KV-cache reuse.",
+        "Strengths": "Achieves SOTA among diffusion VLMs with significantly less training data (<5%). Provides 2x inference speedup over prior dVLMs. Supports arbitrary-length generation and efficient KV-cache reuse, previously absent. Enables feasible conversion from *any* AR model.",
+        "Limitations": "Performance, while competitive with AR-VLMs, may still lag top-tier models in some specific aspects. There is a trade-off between smaller block size (slightly better performance) and poorer parallelism.",
+        "Datasets / Benchmarks": "MMMU (Pro/Std/Val), MME (Cog/Perp), SeedBench (Image/Video), ChartQA, AI2D, MMBench, RealworldQA, Muirbench. Trained on LLaVA-Pretrain (580K) and LLaVA-Next (738K).",
+        "Results Summary": "DiffusionVL achieves SOTA among diffusion VLMs (e.g., 34.4% gain on MMMU-Pro, 37.5% on MME) using <5% data, is competitive with advanced AR-VLMs, and achieves a 2x inference speedup.",
+        "Why It Matters": "This work bridges the gap between autoregressive and diffusion paradigms for Vision Language Models, enabling the efficient development of high-performance dVLMs with superior parallel decoding, arbitrary-length generation, and KV cache reuse capabilities.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Performance Comparison), Figure 4 (Speed & Quality for Image Captioning), Tables 1 & 2 (Benchmark Performance Comparison of DiffusionVL vs. AR & other Diffusion Models).",
+        "arxiv_id": "http://arxiv.org/abs/2512.15713v1"
+    },
+    {
+        "Title": "In Pursuit of Pixel Supervision for Visual Pre-training",
+        "Field & Subfield": "Computer Vision, Self-Supervised Learning, Masked Autoencoders (MAE)",
+        "Key Contributions": "- Introduces \"Pixio,\" an enhanced MAE with a deeper decoder, larger mask blocks, and multiple [CLS] tokens.\n- Trains on 2B web-crawled images with a novel, soft self-curation strategy.\n- Achieves competitive or superior performance over SOTA DINOv3 on various dense prediction tasks.",
+        "Methodology": "Pixio is an enhanced MAE for pixel-space self-supervised learning. It uses a deeper decoder, larger 4x4 patch mask blocks for challenging pretext, and 8 class tokens. Trained on 2B web images with reconstruction loss and soft self-curation based on reconstruction difficulty.",
+        "Strengths": "Demonstrates pixel-space SSL's competitiveness, simplicity, stability, & efficiency. Outperforms or matches DINOv3 on many dense prediction and robot learning tasks. Uses minimally-curated web-scale data, reducing benchmark bias.",
+        "Limitations": "Masking is an artificial distortion introducing biases. Fixed masking ratios/granularities can be suboptimal for diverse image complexities. Inferior on KITTI (driving) due to less domain-specific training data than DINOv3.",
+        "Datasets / Benchmarks": "Pre-training: 2B web-crawled images (self-curated). Evaluation: NYUv2, KITTI, DIODE, Sintel, DA-2K (Depth); ScanNet++, ETH3D, TartanAirV2-WB (3D Recon); ADE20K, Pascal VOC, LoveDA (Semantic Seg); CortexBench (Robot Learning).",
+        "Results Summary": "Pixio significantly outperforms original MAE. It surpasses DINOv3 on most depth estimation benchmarks (e.g., 0.268 RMSE vs 0.320 on NYUv2), 3D reconstruction, & robot learning, and is competitive in semantic segmentation.",
+        "Why It Matters": "Validates pixel-space self-supervised learning as a powerful, scalable, and less biased alternative or complement to latent-space methods. Offers a promising path for generic visual representations, especially for future video SSL.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Visualizations of Pixio's understanding), Figure 2 (Pixio updates over MAE), Table 1 (Monocular Depth Estimation), Table 3 (Feed-Forward 3D Reconstruction), Table 5 (Robot Learning).",
+        "arxiv_id": "http://arxiv.org/abs/2512.15715v1"
+    },
+    {
+        "Title": "Spatia: Video Generation with Updatable Spatial Memory",
+        "Field & Subfield": "Computer Vision & Graphics, Video Generation, 3D-Aware Synthesis, Long-Horizon Consistency",
+        "Key Contributions": [
+            "Explicit 3D scene point cloud as updatable spatial memory.",
+            "Dynamic-static disentanglement for consistent videos with dynamic entities.",
+            "Spatially consistent generation across multiple views.",
+            "Explicit 3D-aware camera control & interactive editing."
+        ],
+        "Methodology": "Iterative generation: estimates initial 3D point cloud from image, generates video clips conditioned on memory, then updates memory via visual SLAM. Uses a multi-modal conditional diffusion transformer (Wan2.2) with ControlNet. Static entities are disentangled during point cloud estimation.",
+        "Strengths": "Achieves robust long-term spatial/temporal consistency. Handles dynamic entities while preserving static scenes. Enables explicit camera control & 3D-aware interactive editing. Outperforms SOTA in consistency and visual quality metrics. Provides a geometrically grounded framework.",
+        "Limitations": "Point cloud density (memory vs. fine-grained guidance tradeoff). Potential for error accumulation in extremely long sequences, though mitigated by iterative updates. Dependency on accurate 3D scene point cloud estimation and camera pose.",
+        "Datasets / Benchmarks": [
+            "Training: RealEstate (40K videos), SpatialVID (10K HD videos).",
+            "Evaluation: WorldScore benchmark, RealEstate test set."
+        ],
+        "Results Summary": "Achieves SOTA on WorldScore (Avg Score 69.73) and RealEstate (PSNR 18.58, SSIM 0.646, LPIPS 0.254), significantly improving static scene consistency while maintaining dynamic entity quality. Superior memory consistency in closed-loop generation (Match Acc 0.698).",
+        "Why It Matters": "Addresses a critical challenge in video generation: long-term consistency. Enables novel applications like interactive 3D editing and precise camera control, moving towards robust \"world models\" for AI with persistent memory and geometrically grounded, scalable frameworks.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Spatia Overview), Figure 2 (Training Pipeline), Table 1 (WorldScore Results), Table 3 (Memory Evaluation).",
+        "arxiv_id": "http://arxiv.org/abs/2512.15716v1"
     }
 ]
