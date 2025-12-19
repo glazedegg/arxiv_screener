@@ -286,5 +286,51 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (Spatia Overview), Figure 2 (Training Pipeline), Table 1 (WorldScore Results), Table 3 (Memory Evaluation).",
         "arxiv_id": "http://arxiv.org/abs/2512.15716v1"
+    },
+    {
+        "Title": "Generative Refocusing: Flexible Defocus Control from a Single Image",
+        "Field & Subfield": "Computer Vision & Image Processing",
+        "Key Contributions": [
+            "Flexible refocusing pipeline accepts any focus state, offering control over focus plane, bokeh intensity, and aperture shape via two-stage decomposition.",
+            "Semi-supervised framework connects synthetic & unpaired real bokeh images, learning genuine optical characteristics from EXIF metadata.",
+            "Achieves top performance in defocus deblurring, bokeh synthesis, and refocusing; supports text-guided adjustments & custom aperture shapes."
+        ],
+        "Methodology": "Two-stage diffusion framework: DeblurNet recovers all-in-focus images using diffusion guided by initial deblurring predictions; BokehNet synthesizes controllable bokeh via semi-supervised training with synthetic paired data and real unpaired bokeh images (leveraging EXIF metadata).",
+        "Strengths": "Flexible input (any focus state), comprehensive user control (focus plane, bokeh intensity, aperture shape), robust to depth-scale inaccuracies, captures authentic lens characteristics, outperforms SOTA across multiple benchmarks.",
+        "Limitations": "Relies on monocular depth estimation (prone to mislocalized focal planes), complex aperture shapes require simulator data, occasional hallucination of incorrect details in severe blur.",
+        "Datasets / Benchmarks": "DPDD, REALDOF (deblurring); LF-BOKEH (bokeh synthesis); LF-REFOCUS (refocusing); POINTLIGHT-1K (custom aperture shapes); REALBOKEH_3MP, EBB!, Flickr-collected unpaired bokeh.",
+        "Results Summary": "Outperforms all baselines in defocus deblurring, bokeh synthesis, and refocusing across fidelity and perceptual metrics, demonstrating realistic blur gradients, accurate focus-plane placement, and natural scene consistency.",
+        "Why It Matters": "Enables advanced post-capture depth-of-field control from a single image, democratizing professional photographic effects, and pushing boundaries in image restoration and generative AI with a novel semi-supervised approach.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Visualizing controls), Table 2 (Defocus deblurring benchmark), Table 3 (Bokeh synthesis benchmark), Table 4 (Refocusing benchmark).",
+        "arxiv_id": "http://arxiv.org/abs/2512.16923v1"
+    },
+    {
+        "Title": "Next-Embedding Prediction Makes Strong Vision Learners",
+        "Field & Subfield": "Computer Vision & Self-supervised Learning",
+        "Key Contributions": "• Introduces Next-Embedding Predictive Autoregression (NEPA) for vision, predicting future patch embeddings autoregressively.\n• Achieves strong SOTA performance on ImageNet-1K (83.8% ViT-B, 85.3% ViT-L) and ADE20K (48.3% ViT-B, 54.0% ViT-L).\n• Demonstrates a minimalist approach (no pixel reconstruction, discrete tokens, contrastive loss, separate decoders).\n• Shows autoregression in continuous embedding space is a simple, scalable, modality-agnostic SSL alternative.",
+        "Methodology": "NEPA trains a Vision Transformer to autoregressively predict future patch embeddings in continuous space. It uses causal masking, a similarity-based loss with stop-gradient, and modern architecture stabilization (RoPE, LayerScale, SwiGLU, QK-Norm). No pixel decoder or discrete tokens are used.",
+        "Strengths": "Architectural simplicity & scalability, competitive SOTA performance on classification & segmentation without complex heads or decoders. Learns semantically meaningful, long-range dependencies & object-level structure. Modality-agnostic potential.",
+        "Limitations": "Poor performance under standard linear probing. Struggles with images requiring complex physical understanding (reflections, shading, small/overlapping objects). Potential for dataset biases like other large models.",
+        "Datasets / Benchmarks": "Pretraining on ImageNet-1K (unlabeled). Evaluated on ImageNet-1K for classification and ADE20K for semantic segmentation.",
+        "Results Summary": "NEPA-B achieved 83.8% top-1 accuracy on ImageNet-1K and 48.3% mIoU on ADE20K. NEPA-L achieved 85.3% top-1 accuracy on ImageNet-1K and 54.0% mIoU on ADE20K, outperforming/matching prior SOTA SSL methods.",
+        "Why It Matters": "This work shows that the generative pretraining paradigm, successful in NLP, can be directly applied to vision by predicting embeddings. It offers a simpler, more scalable, and potentially modality-agnostic alternative to current visual self-supervised learning methods.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Table 1 (Ablation studies on NEPA components); Table 2 (ImageNet-1K classification comparison); Table 3 (ADE20K segmentation comparison); Figure 5 (Attention and embedding analysis visualizations).",
+        "arxiv_id": "http://arxiv.org/abs/2512.16922v1"
+    },
+    {
+        "Title": "The World is Your Canvas: Painting Promptable Events with Reference Images, Trajectories, and Text",
+        "Field & Subfield": "Computer Vision & Generative AI: Video Generation & World Models",
+        "Key Contributions": "• Multimodal framework (text, trajectories, ref. images) for controllable world events. • Novel data curation pipeline for trajectory-video-text triplets. • Spatial-Aware Weighted Cross-Attention for text-trajectory alignment. • Demonstrates object/scene consistency, physical plausibility, causal reasoning, & counterfactual generation.",
+        "Methodology": "WorldCanvas builds on Wan2.2 I2V 14B. It uses a novel data curation pipeline (keypoint tracking, motion captioning, ref. image extraction) to generate trajectory-video-text triplets. Incorporates Trajectory Injection & Spatial-Aware Weighted Cross-Attention for fine-grained control and alignment. Trained using flow matching (L1 loss).",
+        "Strengths": "Offers precise, fine-grained control (when, where, who, what) for video generation. Achieves strong temporal coherence, maintaining object identity & scene consistency across occlusions. Demonstrates physical plausibility, causal reasoning, & counterfactual generation capabilities.",
+        "Limitations": "Fails in some challenging scenarios involving complex spatial transformations or logical reasoning, e.g., precise water level tracking during camera pans or maintaining object consistency during drastic camera rotations.",
+        "Datasets / Benchmarks": "Curated dataset of 280k trajectory-video-text triplets for training. Evaluated on 100 image-trajectory pairs. Compared against Wan2.2 I2V, ATI, & Frame In-N-Out baselines.",
+        "Results Summary": "Outperforms baselines (Wan2.2 I2V, ATI, Frame In-N-Out) in ObjMC, Appearance Rate, Subject/Background Consistency, & CLIP-T (Global/Local) metrics. Human evaluation confirms superiority in trajectory following, prompt adherence, text-trajectory alignment, reference fidelity, & overall video quality.",
+        "Why It Matters": "Transforms world models from passive predictors to interactive, user-shaped simulators. Enables creation of complex, coherent, promptable world events with precise multimodal control, advancing controllable video generation and foundational AI research.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig 1 (examples), Fig 2 (architecture), Table 1 (quantitative results), Table S2 (human evaluation)",
+        "arxiv_id": "http://arxiv.org/abs/2512.16924v1"
     }
 ]
