@@ -332,5 +332,33 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Fig 1 (examples), Fig 2 (architecture), Table 1 (quantitative results), Table S2 (human evaluation)",
         "arxiv_id": "http://arxiv.org/abs/2512.16924v1"
+    },
+    {
+        "Title": "Interact2Ar: Full-Body Human-Human Interaction Generation via Autoregressive Diffusion Models",
+        "Field & Subfield": "Computer Vision, Human Motion Generation",
+        "Key Contributions": "- End-to-end text-conditioned autoregressive diffusion model for full-body human-human interactions.\n- Novel cooperative denoiser architecture with body-part-specialized heads for detailed hand motions.\n- Autoregressive pipeline with Mixed Memory for adaptive motion synthesis.\n- Extended evaluation pipeline with robust, specialized metrics.",
+        "Methodology": "Text-conditioned autoregressive diffusion model with cooperative denoisers & body-part-specialized heads (trajectory, body, hands). Employs a novel Mixed Memory strategy for efficient short/long-term context during sequential motion generation. Trained on SMPL-X parameters with various kinematic losses.",
+        "Strengths": "Achieves SOTA performance on Inter-X for full-body interaction generation, including detailed hands. Enables adaptive capabilities: temporal composition, real-time disturbance adaptation, & sequential multi-person interactions. Robust evaluation pipeline.",
+        "Limitations": "Dataset constraints limit human diversity (e.g., body shapes, hand contact precision), affecting the precision of hand contacts. Future work needs to address body shape variations.",
+        "Datasets / Benchmarks": "Inter-X dataset (11K full-body interactions, 40 actions, detailed textual descriptions). Evaluated against InterMask, InterGen, T2M benchmarks.",
+        "Results Summary": "Outperforms previous SOTA methods (InterMask) on Inter-X across all metrics (R-Prec.↑, FID↓, PJ↑, AUJ↓) for full-body, body, & hands. Autoregressive version consistently outperforms non-autoregressive. User study confirms superior text alignment & hand realism.",
+        "Why It Matters": "Addresses the challenging task of generating realistic, coherent, and adaptable human-human interactions with detailed motions, crucial for virtual agents, robotics, and creative applications. Enables dynamic, reactive motion synthesis beyond pre-planned sequences.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (overview), Figure 2 (architecture), Figure 3 (Mixed Memory), Table 2 (SOTA comparison), Figure 4 (User Study).",
+        "arxiv_id": "http://arxiv.org/abs/2512.19692v1"
+    },
+    {
+        "Title": "The Prism Hypothesis: Harmonizing Semantic and Pixel Representations via Unified Autoencoding",
+        "Field & Subfield": "Computer Vision & Generative Models / Representation Learning",
+        "Key Contributions": "- Introduces 'Prism Hypothesis' for spectral characteristics of semantic & pixel encoders.\n- Proposes Unified Autoencoding (UAE) with a frequency-band modulator.\n- Achieves SOTA reconstruction and semantic alignment in a unified latent space.\n- Provides diffusion-friendly latents for generation.",
+        "Methodology": "Unified Autoencoding (UAE) learns a shared latent space by factorizing content into fundamental semantic (low-frequency) and residual pixel (high-frequency) bands using an innovative frequency-band modulator, guided by the Prism Hypothesis.",
+        "Strengths": "SOTA reconstruction quality (PSNR, SSIM, rFID) and generative capability. Effectively unifies semantic abstraction and pixel fidelity. Robust to frequency band granularity. Preserves strong semantic discriminability.",
+        "Limitations": "The paper does not explicitly state limitations of the proposed UAE model; it primarily focuses on its strengths and superior performance compared to existing methods.",
+        "Datasets / Benchmarks": "ImageNet-1K, MS-COCO 2017",
+        "Results Summary": "UAE achieves SOTA reconstruction (e.g., ImageNet PSNR 33.08, SSIM 0.94, rFID 0.16 with DINOv2-L) and competitive generative performance (gFID 1.68, IS 301.6). It matches RAE's 83.0% top-1 accuracy in linear probing semantic understanding.",
+        "Why It Matters": "It unifies previously fragmented semantic and pixel representations into a single, compact latent space. This streamlines the development of foundation models for both understanding and generation, leading to more efficient and coherent multimodal AI.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Prism Hypothesis), Figure 2 (Frequency Energy Distribution), Table 1 (Reconstruction Quality), Table 3 (Linear Probing Accuracy)",
+        "arxiv_id": "http://arxiv.org/abs/2512.19693v1"
     }
 ]
