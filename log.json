@@ -360,5 +360,47 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (Prism Hypothesis), Figure 2 (Frequency Energy Distribution), Table 1 (Reconstruction Quality), Table 3 (Linear Probing Accuracy)",
         "arxiv_id": "http://arxiv.org/abs/2512.19693v1"
+    },
+    {
+        "Title": "LongVideoAgent: Multi-Agent Reasoning with Long Videos",
+        "Field & Subfield": "Artificial Intelligence & Multimodal Large Language Models (MLLMs)",
+        "Key Contributions": "- Novel multi-agent architecture for long-video QA, coordinating master LLM, grounding agent, and vision agent.\n- Reward-driven reinforcement learning scheme for concise, step-wise reasoning in MLLMs.\n- Introduction of new episode-level long video datasets: LongTVQA and LongTVQA+.",
+        "Methodology": "A master LLM coordinates a grounding agent (temporal localization) and a vision agent (visual info extraction). The master iteratively reasons using accumulated evidence. It's fine-tuned with GRPO using structural and answer rewards to promote efficient, multi-step, tool-augmented reasoning.",
+        "Strengths": "Achieves superior accuracy on long-video QA, provides interpretable decision-making trajectories, effectively handles sparse information in long videos, and is model-agnostic. Ablations show grounding and vision agents are critical.",
+        "Limitations": "Relies on provided subtitles (no raw audio/ASR). Grounding and vision modules are fixed during RL training (no joint optimization). Reward function is intentionally simple, with room for improvement.",
+        "Datasets / Benchmarks": "LongTVQA and LongTVQA+ (episode-level aggregations from TVQA/TVQA+), designed for hour-scale video QA. Evaluated against closed-source (GPT-4o, Gemini 2.5 Pro, Grok) and open-source LLM baselines.",
+        "Results Summary": "LongVideoAgent significantly outperforms non-agent baselines on LongTVQA/+. Agentic RL yields substantial gains, especially for open-source models (e.g., Qwen2.5-7B with RL matches GPT-5-mini). Grounding+vision improves accuracy by +10.5%.",
+        "Why It Matters": "Addresses key challenges in long-form video understanding by enabling efficient, fine-grained temporal reasoning. Its multi-agent framework provides interpretability and enhances LLM capabilities for complex multimodal tasks, setting new SOTA benchmarks.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Multi-agent Reasoning Architecture), Table 2 (Performance on LongTVQA/LongTVQA+), Table 4 (Ablation Studies).",
+        "arxiv_id": "http://arxiv.org/abs/2512.20618v1"
+    },
+    {
+        "Title": "SemanticGen: Video Generation in Semantic Space",
+        "Field & Subfield": "Computer Vision & Generative AI, Video Generation",
+        "Key Contributions": "- Proposed SemanticGen: novel two-stage framework for video generation in compact semantic space.\n- Identified semantic encoder requirements & developed MLP-based semantic representation compression.\n- Demonstrated faster convergence, high-quality, and robust scalability to long video generation.",
+        "Methodology": "Two-stage diffusion model framework. Stage 1: Diffusion model generates compact semantic video features via pre-trained semantic encoder (Qwen-2.5-VL) & MLP compression. Stage 2: Another diffusion model generates VAE latents conditioned on these features. Uses Swin attention for long videos.",
+        "Strengths": "Faster convergence than VAE latent-space methods. Generates high-quality, long-form videos with superior temporal consistency & reduced drift. Computationally efficient, especially for long videos, by operating in a compact semantic space.",
+        "Limitations": "Struggles to maintain fine-grained texture consistency in very long videos. Performance is constrained by semantic encoder's ability to capture high-frequency temporal information, especially at low sampling FPS.",
+        "Datasets / Benchmarks": "Internal text-video pair dataset. Standard VBench & VBench-Long benchmarks for evaluation.",
+        "Results Summary": "SemanticGen achieves comparable/superior performance to SOTA on short videos. Substantially outperforms baselines in long video consistency & temporal stability (lower drift) on VBench-Long. Semantic space compression accelerates convergence.",
+        "Why It Matters": "It addresses key challenges in video generation: slow convergence and poor scalability to long videos. By planning globally in a compact semantic space, SemanticGen enables more efficient, higher-quality, and temporally consistent generation of both short and long videos.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig 1: Examples synthesized by SemanticGen.\nFig 2: Overview of SemanticGen vs. previous methods.\nFig 8 & Table 3: Semantic space compression ablation studies.\nFig 9: Ablation on representation space (semantic vs. VAE latent).",
+        "arxiv_id": "http://arxiv.org/abs/2512.20619v1"
+    },
+    {
+        "Title": "SpatialTree: How Spatial Abilities Branch Out in MLLMs",
+        "Field & Subfield": "AI, Multimodal Large Language Models (MLLMs), Spatial Reasoning",
+        "Key Contributions": "• First capability-centric hierarchical benchmark (SpatialTree) for spatial intelligence in MLLMs. • Revealed structural transfer dynamics of spatial skills via SFT: L1 prerequisite for L4 agentic competence. • Identified reasoning-perception trade-off in RL; proposed auto-think strategy for consistent improvement.",
+        "Methodology": "Proposed SpatialTree: 4-level cognitive hierarchy (Perception, Mental Mapping, Simulation, Agentic). Constructed SpatialTree-Bench from existing & new data (SpatialPlus) using expert models/LLM rephrasing. Evaluated 27 sub-abilities via SFT and Hierarchy-Aware Reinforcement Learning (RLVR) with auto-think strategy.",
+        "Strengths": "First capability-centric benchmark. Systematic evaluation across diverse MLLMs and 27 sub-abilities. Revealed crucial cross-level transfer dynamics & reasoning-perception trade-off. Proposes an effective 'auto-think' RL strategy for consistent performance gains.",
+        "Limitations": "Naive RL on low-level skills can overfit, leading to limited generalization. Uniform RL strategies struggle to balance diverse requirements from atomic perception to complex planning, hindering broad performance gains.",
+        "Datasets / Benchmarks": "SpatialTree-Bench (primary, custom-built), SpatialPlus (new data for underrepresented abilities). Reorganized existing datasets: SUNRGBD, Hypersim, Matterport3D, ArkitScenes, LLaVA-Video, LLaVA-NeXT-Interleave, LLaVA-OneVision, EmbodiedBench, etc.",
+        "Results Summary": "SpatialTree reveals hierarchical structure: L1 orthogonal, L2-L4 correlated. SFT showed negative transfer within L1 but strong cross-level transfer. Naive RL is unreliable; auto-think strategy consistently improves all levels by suppressing unnecessary deliberation for perception. Gemini2.5-Pro performed best.",
+        "Why It Matters": "Provides a proof-of-concept framework for understanding and systematically scaling spatial abilities in MLLMs. Offers fundamental insights into how spatial intelligence emerges, composes, and transfers, paving the way for more capable and robust spatial AI agents.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (SpatialTree hierarchy), Figure 5 (Inter-Capability Dependencies heatmap), Table 1 (Overall Performance), Table 3 (RLVR Comparisons)",
+        "arxiv_id": "http://arxiv.org/abs/2512.20617v1"
     }
 ]
