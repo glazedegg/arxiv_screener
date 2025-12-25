@@ -402,5 +402,47 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (SpatialTree hierarchy), Figure 5 (Inter-Capability Dependencies heatmap), Table 1 (Overall Performance), Table 3 (RLVR Comparisons)",
         "arxiv_id": "http://arxiv.org/abs/2512.20617v1"
+    },
+    {
+        "Title": "Beyond Memorization: A Multi-Modal Ordinal Regression Benchmark to Expose Popularity Bias in Vision-Language Models",
+        "Field & Subfield": "Computer Vision & Vision-Language Models; Ordinal Regression, Explainable AI",
+        "Key Contributions": "• Introduced YearGuessr: largest open, global, multi-modal building age dataset (55k images, 1001-2024 CE); • Proposed YearCLIP: CLIP-based model with ordinal regression, GPS integration & reasoning prompts for explainable age prediction; • Exposed significant popularity bias in VLMs (up to +34% accuracy on popular buildings); • Provided comprehensive benchmark of 30+ models & novel popularity-aware metrics.",
+        "Methodology": "Developed YearGuessr dataset from Wikipedia (55k images, GPS, text, page views). Framed building age as ordinal regression. Proposed YearCLIP, a CLIP-based model integrating GPS via zero-convolution and reasoning prompts for explainability. Evaluated with MAE, Interval Accuracy, and new popularity-aware metrics.",
+        "Strengths": "First open, global, large-scale benchmark for building age. Addresses VLM memorization bias beyond true architectural understanding. YearCLIP offers explainable predictions with architectural rationales. Comprehensive evaluation across 30+ diverse models.",
+        "Limitations": "Dataset is geographically & temporally skewed towards modern examples. Labels are based on original construction years, even for renovated/rebuilt buildings, introducing noise. Generalization to underrepresented regions/early styles is limited.",
+        "Datasets / Benchmarks": "YearGuessr (new, 55,546 images, 157 countries, 1001-2024 CE, CC BY-SA 4.0). Compared against MyCD, CMAB, MTBF-33. Benchmarked CNNs, Transformers, CLIP-based, Closed VLMs (Gemini, Claude, Grok), and Open VLMs.",
+        "Results Summary": "VLMs show significant popularity bias (e.g., Gemini2.0-flash +34.18% IA5 gain on popular buildings) due to memorization. YearCLIP reduces MAE to 39.52, outperforming baselines and improving fine-grained prediction and explainability. Closed-source VLMs generally dominate, but all models struggle with early-period buildings and regional disparities.",
+        "Why It Matters": "Provides a crucial benchmark for automated building age estimation, vital for sustainability, heritage, and disaster assessment. Exposes a fundamental flaw (memorization bias) in state-of-the-art VLMs, pushing for more robust and generalizable AI.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (YearGuessr/YearCLIP overview); Table 2 (Main results: MAE, Interval Accuracy, Popularity Bias); Figure 6 (YearCLIP Explainable Predictions).",
+        "arxiv_id": "http://arxiv.org/abs/2512.21337v1"
+    },
+    {
+        "Title": "HiStream: Efficient High-Resolution Video Generation via Redundancy-Eliminated Streaming",
+        "Field & Subfield": "Computer Vision; High-Resolution Video Generation; Diffusion Models",
+        "Key Contributions": "HiStream framework for efficient autoregressive high-resolution video generation via redundancy elimination. Includes Dual-Resolution Caching (spatial), Anchor-Guided Sliding Window (temporal), & Asymmetric Denoising (timestep). Achieves up to 107.5x faster 1080p video generation with SOTA quality.",
+        "Methodology": "Autoregressive diffusion model on WAN-2.1 DiT. Employs Dual-Resolution Caching (low-res denoising, high-res refinement), Anchor-Guided Sliding Window (fixed-size chunking with keyframe/cache), and Asymmetric Denoising (fewer steps for subsequent chunks).",
+        "Strengths": "Significantly reduces inference cost (up to 107.5x faster), maintains state-of-the-art visual quality & temporal consistency, practical for 1080p, scalable. User study & VBench show superior perceptual quality across metrics.",
+        "Limitations": "VAE decoder is a new primary bottleneck (16.45s/81 frames on A100). High memory costs during distillation limited training to 1.3B student model, not full 1080p data supervision. Remaining flaws like lack of physical realism.",
+        "Datasets / Benchmarks": "Evaluated on 1080p video generation benchmarks. Quantitative comparison using VBench metrics. User preference study. Based on Wan2.1-T2V-1.3B model.",
+        "Results Summary": "HiStream: 76.2x faster (0.48s/frame) than Wan2.1 baseline (36.56s/frame), SOTA quality. HiStream+: 107.5x faster (0.34s/frame) than baseline, with compelling speed-quality trade-off. Achieves highest user preference.",
+        "Why It Matters": "Makes high-resolution, high-fidelity video generation practical and scalable for digital media, film, and VR, overcoming current diffusion model bottlenecks. Provides a foundation for accessible cinematic content creation.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1: Per-Frame Denoising Latency & Higher Preference (speedup, user study). Table 1: Quantitative comparisons with baselines (speed, quality metrics). Figure 2: Pipeline details (core mechanisms).",
+        "arxiv_id": "2512.21338v1"
+    },
+    {
+        "Title": "OPTIMIZING DECODING PATHS IN MASKED DIFFUSION MODELS BY QUANTIFYING UNCERTAINTY",
+        "Field & Subfield": "Natural Language Processing & Generative Models (Masked Diffusion Models, Decoding Strategies)",
+        "Key Contributions": "- First to formalize MDM decoding order sensitivity as Path Uncertainty.\n- Introduced Denoising Entropy (State/Path Entropy) to quantify generative uncertainty.\n- Proposed E-BON (post-hoc selection) and E-SMC (real-time guidance) algorithms.\n- Theoretically justified Denoising Entropy as proxy for generation quality & loss.\n- Significantly improved MDM generation quality on various benchmarks.",
+        "Methodology": "Introduced Denoising Entropy (State Entropy, Path Entropy) to quantify cumulative predictive uncertainty in Masked Diffusion Models (MDMs). Proposed two algorithms: E-BON for post-hoc path selection based on minimizing Path Entropy, and E-SMC for real-time guidance via weighted resampling using State Entropy.",
+        "Strengths": "Provides a principled, computable internal signal (Denoising Entropy) for MDMs. Significantly improves generation quality, consistency, and accuracy across challenging tasks. Scalable to large models and complex reasoning/planning tasks. Turns MDM uncertainty into a key advantage.",
+        "Limitations": "Finding a globally optimal decoding path remains intractable, with algorithms providing approximations. E-BON uses uniform computational budget. Greedy search variants may sacrifice generation diversity. Theoretical bounds show local errors accumulate over denoising steps.",
+        "Datasets / Benchmarks": "OpenWebText (for PPL); Reasoning & Planning: GSM8K, MATH500, GPQA, Countdown, Sudoku; Code Generation: HumanEval, HumanEval+, MBPP, MBPP+.",
+        "Results Summary": "Denoising Entropy correlated strongly with text quality (lower HDE = lower PPL). E-SMC consistently outperformed vanilla and E-BON, achieving significant accuracy gains (up to +5.9% on Countdown, +1.9% on GSM8K over PC-Sampler). Performance improved with increased particles and resampling frequency, demonstrating scalability.",
+        "Why It Matters": "Addresses a critical, previously unquantified problem in MDMs: the sensitivity of output quality to decoding order. Introduces a foundational tool (Denoising Entropy) for understanding and controlling MDM generation uncertainty, paving the way for more calibrated decoding strategies and improved overall generative performance.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1: Quantifying Path Uncertainty in MDMs with Denoising Entropy.\nFigure 2: Overview of entropy-guided decoding algorithms (E-BON, E-SMC).\nTable 2: Accuracy (%) on LLADA models across reasoning & planning benchmarks.",
+        "arxiv_id": "http://arxiv.org/abs/2512.21336v1"
     }
 ]
