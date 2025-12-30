@@ -444,5 +444,33 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1: Quantifying Path Uncertainty in MDMs with Denoising Entropy.\nFigure 2: Overview of entropy-guided decoding algorithms (E-BON, E-SMC).\nTable 2: Accuracy (%) on LLADA models across reasoning & planning benchmarks.",
         "arxiv_id": "http://arxiv.org/abs/2512.21336v1"
+    },
+    {
+        "Title": "Diffusion Knows Transparency: Repurposing Video Diffusion for Transparent Object Depth and Normal Estimation",
+        "Field & Subfield": "Computer Vision & Robotics, Deep Learning",
+        "Key Contributions": "- Introduces TransPhy3D (1.32M frames), the first synthetic video dataset for transparent/reflective objects. - DKT: foundation model for video depth/normal, repurposing VDM via LoRA & co-training. - Achieves zero-shot SOTA on real/synthetic transparency benchmarks. - Significantly improves robotic grasping success rates.",
+        "Methodology": "Leverages video diffusion models (VDM) for their implicit optical rule understanding. Creates TransPhy3D: 11k physically-based rendered video sequences of transparent/reflective objects. DKT: VDM fine-tuned with LoRA adapters for video-to-video translation (RGB to depth/normals). Co-trains on TransPhy3D & existing image datasets.",
+        "Strengths": "Achieves SOTA zero-shot depth/normal estimation for transparent/reflective objects. Provides temporally consistent predictions. Improves robotic grasping success significantly. High computational efficiency (1.3B version at 0.17 s/frame). Robust generalization to in-the-wild videos.",
+        "Limitations": "Primarily relies on synthetic data for training, despite its scale. While robust, inherent ambiguities of transparency & reflection still present complex generalization challenges for some real-world edge cases. Explicit exploration of failure modes is not detailed.",
+        "Datasets / Benchmarks": "TransPhy3D (new, 1.32M frames). ClearPose, DREDS (CatKnown/CatNovel), HISS, ClearGrasp. Evaluated zero-shot on all. Robotic grasping experiments on reflective, translucent, diffusive surfaces.",
+        "Results Summary": "DKT achieves SOTA on ClearPose, DREDS, & TransPhy3D-Test for depth. DKT-Normal sets SOTA for normal estimation on ClearPose. Significantly outperforms prior methods, boosting robotic grasping success (e.g., 0.73 mean vs 0.48). 1.3B DKT runs at 0.17 s/frame (832x480).",
+        "Why It Matters": "Addresses a critical challenge in robotics and 3D perception: robustly perceiving transparent and reflective objects. Enables more reliable robotic manipulation in complex environments, leveraging generative AI for perception without real-world labels.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig. 1 (Qualitative Results), Fig. 2 (DKT Qualitative Comparison), Table I & II (Quantitative Comparisons for Depth), Table VI (Grasping Success Rate)",
+        "arxiv_id": "http://arxiv.org/abs/2512.23705v1"
+    },
+    {
+        "Title": "Stream-DiffVSR: Low-Latency Streamable Video Super-Resolution via Auto-Regressive Diffusion",
+        "Field & Subfield": "Computer Vision & Deep Learning; Video Super-Resolution",
+        "Key Contributions": "- First diffusion-based framework for online, low-latency VSR via 4-step distillation.\n- Novel Auto-regressive Temporal Guidance (ARTG) & Temporal-aware Decoder to leverage past frames for consistency.\n- Outperforms existing methods in perceptual quality & consistency with practical inference speeds.",
+        "Methodology": "A causally conditioned diffusion framework using a 4-step distilled U-Net for fast inference. Integrates Auto-regressive Temporal Guidance (ARTG) for motion-aligned latent denoising & a Temporal-aware Decoder (with TPM) for detail enhancement & coherence, strictly on past frames.",
+        "Strengths": "Achieves superior perceptual quality (lowest LPIPS) & high temporal consistency. Drastically reduces inference latency (0.328s vs. 4600s for prior diffusion methods) and memory footprint (20.8GB), making diffusion VSR viable for real-time online deployment.",
+        "Limitations": "Remains heavier than CNN/Transformer models. Optical flow usage can introduce artifacts in fast motion. Auto-regressive design may weaken initial frames due to lack of prior temporal context. Robustness to real-world degradations needs improvement.",
+        "Datasets / Benchmarks": "Evaluated on REDS4, Vimeo-90K-T, VideoLQ, and Vid4. Compared against CNN-based (BasicVSR++, TMP), Transformer-based (RVRT, MIA-VSR, RealViformer), and Diffusion-based (StableVSR, MGLD-VSR) methods.",
+        "Results Summary": "Achieved LPIPS 0.099 (REDS4) and 0.056 (Vimeo-90K-T), superior to all baselines. Reduced latency from >4600s to 0.328s. Maintained competitive runtime (0.328s/frame) vs. online CNN/Transformer methods while vastly outperforming diffusion counterparts in speed and memory.",
+        "Why It Matters": "Bridges the gap between high-quality but slow diffusion models and fast but lower-quality CNN/Transformer VSR. Enables practical, low-latency online deployment of diffusion-based VSR for critical applications like AR/VR, video conferencing, and surveillance.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Quality & Runtime Comparison), Table 1 (Diffusion VSR Comparison), Table 2 (REDS4 Quantitative Comparison), Table 6 (Memory & Speed).",
+        "arxiv_id": "http://arxiv.org/abs/2512.23709v1"
     }
 ]
