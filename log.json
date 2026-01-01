@@ -472,5 +472,33 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (Quality & Runtime Comparison), Table 1 (Diffusion VSR Comparison), Table 2 (REDS4 Quantitative Comparison), Table 6 (Memory & Speed).",
         "arxiv_id": "http://arxiv.org/abs/2512.23709v1"
+    },
+    {
+        "Title": "Edit3r: Instant 3D Scene Editing from Sparse Unposed Images",
+        "Field & Subfield": "Computer Vision & 3D Scene Editing / Generative AI",
+        "Key Contributions": "- Feed-forward framework for single-pass 3D scene editing from unposed, view-inconsistent images; - SAM2-based recoloring for view-consistent supervision; - Asymmetric input strategy for robustness against inconsistencies; - DL3DV-Edit-Bench benchmark for 3D editing.",
+        "Methodology": "A feed-forward network predicts 3D Gaussian splats from sparse, unposed, 2D edited images in one pass. Trained with SAM2-based recoloring for view-consistent supervision, using an asymmetric input scheme (recolored ref. view + original aux. views) & 3D regularization losses.",
+        "Strengths": "Orders of magnitude faster inference (0.5s/view vs. 325-584s for baselines). Achieves superior semantic alignment and enhanced 3D consistency. Photorealistic rendering, flexible with various 2D editors, and generalizes well without per-scene optimization.",
+        "Limitations": "Recoloring supervision doesn't fully capture large geometric changes or extreme material/illumination shifts. Future work could include generative augmentation & dynamic scenes.",
+        "Datasets / Benchmarks": "DL3DV-Edit-Bench (introduced in paper, built on DL3DV test split), featuring 20 scenes and 4 edit types (Add, Remove, Modify, Global).",
+        "Results Summary": "Edit3r is significantly faster (0.51s/view vs. 325-584s) and achieves highest CLIPt2i (0.266), indicating better instruction following, while maintaining competitive C-FID (171.3) & C-KID (0.116) for realism/consistency.",
+        "Why It Matters": "Enables real-time, interactive 3D scene editing for content creation, visual effects, AR/VR, and game design. Overcomes slow optimization/inconsistency issues of prior methods, paving the way for practical applications.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Overview), Figure 5 (Qualitative comparison), Table 1 (Quantitative comparison on methods).",
+        "arxiv_id": "2512.25071v1"
+    },
+    {
+        "Title": "SpaceTimePilot: Generative Rendering of Dynamic Scenes Across Space and Time",
+        "Field & Subfield": "Computer Vision, Generative AI / Video Diffusion Models",
+        "Key Contributions": "- First video diffusion model enabling joint spatial & temporal control from a single video.\n- Novel animation time-embedding for explicit motion sequence control.\n- Temporal-warping training scheme repurposes multi-view datasets for temporal diversity.\n- Cam×Time: New synthetic dataset for dense spatiotemporal supervision.",
+        "Methodology": "A latent video diffusion backbone (DiT) with 3D-VAE. Introduces a dedicated 'animation time' embedding (E_ani) and a source-aware camera conditioning (E_cam) that disentangle space and time. Uses temporal warping augmentation on existing datasets & a new synthetic Cam×Time dataset. Employs multi-turn autoregressive inference for long videos.",
+        "Strengths": "Achieves fully disentangled control over camera motion and scene dynamics. Supports diverse temporal effects like slow-motion, reverse, bullet-time, and arbitrary initial poses. Significantly outperforms SOTA baselines in temporal control accuracy and visual quality. Enables generation of long, coherent videos via autoregressive scheme.",
+        "Limitations": "Relies on synthetic data (CamxTime) for comprehensive temporal supervision. While autoregressive generation extends video length, native generation is limited to 81 frames. The complexity of modeling continuous 4D space-time for dynamic scenes remains a challenging problem.",
+        "Datasets / Benchmarks": "Cam×Time (new synthetic), ReCamMaster, SynCamMaster, DL3DV-10K, OpenVideoHD, static-scene datasets (RE10k, Mannequin Challenge). Evaluated using PSNR, SSIM, LPIPS, VBench, RotErr, TransErr, RTA@15, RTA@30.",
+        "Results Summary": "SpaceTimePilot outperforms baselines significantly in temporal control (PSNR↑, SSIM↑, LPIPS↓). Achieves comparable visual quality on VBench. Demonstrates superior camera accuracy (lower RotErr, TransErr, higher RTA) and robust disentangled control qualitatively, enabling complex retiming effects.",
+        "Why It Matters": "Revolutionizes video editing by offering unprecedented joint control over camera viewpoints and motion dynamics, from a single input video. Enables interactive 4D scene exploration and advanced re-rendering, opening new possibilities for creative content generation and simulation.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Qualitative results of space-time control), Figure 3 (Temporal Wrapping), Table 2 (Quantitative comparison on temporal controls), Figure 4 (Cam×Time visualization), Table 4 (Camera accuracy).",
+        "arxiv_id": "http://arxiv.org/abs/2512.25075v1"
     }
 ]
