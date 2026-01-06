@@ -500,5 +500,33 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (Qualitative results of space-time control), Figure 3 (Temporal Wrapping), Table 2 (Quantitative comparison on temporal controls), Figure 4 (Cam×Time visualization), Table 4 (Camera accuracy).",
         "arxiv_id": "http://arxiv.org/abs/2512.25075v1"
+    },
+    {
+        "Title": "ExposeAnyone: Personalized Audio-to-Expression Diffusion Models Are Robust Zero-Shot Face Forgery Detectors",
+        "Field & Subfield": "Computer Vision; Deepfake Detection; Generative Models",
+        "Key Contributions": "• Self-supervised audio-to-expression diffusion for zero-shot face forgery detection. • Personalized via subject-specific adapters. • Novel 3DMM extraction & content-agnostic authentication. • SOTA performance on traditional/Sora2 deepfakes, robust to corruptions. • Introduced Sora2 Cameo Forensics Preview dataset.",
+        "Methodology": "Self-supervised audio-to-expression diffusion model (EXAM) pre-trained on a large dataset. Personalized via subject-specific adapters. Authenticates videos by identity distances from diffusion reconstruction errors using a novel content-agnostic mechanism and 3DMM extraction.",
+        "Strengths": "Exhibits SOTA zero-shot generalization to unseen manipulations & Sora2 deepfakes. Highly robust to corruptions (blur, compression). Self-supervised training on pristine data avoids overfitting. Personalized detection for real-world person-of-interest scenarios.",
+        "Limitations": "Relies on off-the-shelf models (FLAME, SPECTRE, Wav2Vec). High computational overhead during inference due to iterative 3DMM extraction and multi-timestep diffusion reconstruction. Authentication scores can be unstable in silent video frames.",
+        "Datasets / Benchmarks": "Pre-training: Custom audio-expression dataset (VoxCeleb2, AVSpeech, Acappella). Evaluation: DF-TIMIT, DFDCP, KoDF, IDForge. Introduced Sora2 Cameo Forensics Preview (S2CFP) for Sora2-generated video detection.",
+        "Results Summary": "Achieved 95.22% avg AUC on DF-TIMIT, DFDCP, KoDF, IDForge, surpassing SOTA by 4.22%. Detected Sora2-generated videos with 94.44% AUC (others failed). Highly robust to corruptions; 2% AUC drop vs. 36.71% for SOTA under severe compression.",
+        "Why It Matters": "Addresses key challenge of deepfake generalization to unseen manipulations. Self-supervised design prevents overfitting, enabling robust, real-world detection, even for cutting-edge AI-generated content like Sora2. Crucial for combating misinformation & protecting public trust.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig 1: Framework overview. Fig 3: Robustness to corruptions. Table 2: Generalization AUC on deepfake datasets (SOTA comparison).",
+        "arxiv_id": "http://arxiv.org/abs/2601.02359v1"
+    },
+    {
+        "Title": "VInO: A Unified Visual Generator with Interleaved OmniModal Context",
+        "Field & Subfield": "Computer Vision, Generative Models",
+        "Key Contributions": "- Unified diffusion architecture for image/video generation & editing via VLM-MMDiT coupling.\n- Learnable query tokens for improved multimodal conditioning & optimization stability.\n- Token-boundary mechanism for consistent grounding across semantic & latent representations.\n- Progressive training strategy to upgrade a pretrained video model to multi-task generator.",
+        "Methodology": "VINO couples a VLM with a Multimodal Diffusion Transformer (MMDiT). VLM processes text, reference images/videos as interleaved conditioning tokens. MMDiT operates as token-based diffusion backbone. Learnable query tokens and token-boundary mechanism for VAE latents enhance conditioning. Progressive multi-stage training from a T2V base model.",
+        "Strengths": "Achieves strong visual quality, faithful instruction following, improved reference/attribute preservation, and controllable multi-identity edits across images and videos. Unified framework avoids task-specific models, preserving base model strengths while expanding capabilities. Robust to diverse instruction formats.",
+        "Limitations": "Lacks text-rendering capability, limiting performance on text editing benchmarks. Lower quality instruction-based editing datasets can bias model. Quadratic complexity of MMDiT attention increases latency with many references. Modalities constrained by VLM.",
+        "Datasets / Benchmarks": "Image/Video collections (e.g., Laion-5B), distillation data. Evaluated on Geneval (T2I/T2V), VBench (T2V, video editing), OpenS2V (reference video gen), ImgEdit (image editing), GEdit (image editing).",
+        "Results Summary": "VINO demonstrates strong visual quality and instruction following. It maintains T2V capabilities comparable to its base model while surpassing baselines in diverse editing tasks. Learnable tokens and special VAE latent tokens significantly improve stability, instruction adherence, and identity preservation. User studies confirm preference.",
+        "Why It Matters": "VINO offers a scalable and practical pathway towards unified, general-purpose visual generation. It shows the promise of interleaved, in-context computation for multimodal creation, consolidating fragmented pipelines into a single framework for diverse generation and editing tasks.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 3 (VINO pipeline overview), Figure 7 (Qualitative video editing comparison), Table 2 (Geneval T2I/T2V results), Table 7 (VBench video editing quality).",
+        "arxiv_id": "2601.02358v1"
     }
 ]
