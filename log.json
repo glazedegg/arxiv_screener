@@ -528,5 +528,33 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 3 (VINO pipeline overview), Figure 7 (Qualitative video editing comparison), Table 2 (Geneval T2I/T2V results), Table 7 (VBench video editing quality).",
         "arxiv_id": "2601.02358v1"
+    },
+    {
+        "Title": "A Versatile Multimodal Agent for Multimedia Content Generation",
+        "Field & Subfield": "AI, Multimodal Content Generation",
+        "Key Contributions": "- Developed plan generation system with tool library & evaluation metrics.\n- Introduced two-stage plan curation (self-reflection, preference-based optimization).\n- Proposed Agent Skill Acquisition (3-stage training pipeline).",
+        "Methodology": "MultiMedia-Agent trained via 3 stages of Skill Acquisition Theory (Cognitive, Associative, Autonomous). GPT-4o for plan generation & 2-stage curation (self-correction, preference model). Utilizes a diverse tool library & custom dataset. Minicpm-v2 backbone.",
+        "Strengths": "Handles complex, end-to-end multimodal content generation; incorporates human aesthetic/preference alignment; learns skills progressively like humans; comprehensive tool library; robust evaluation metrics.",
+        "Limitations": "Tool selection is prompt-based; could benefit from RAG for vast tools. Current system is single-agent; future work may explore multi-agent systems for complex tasks.",
+        "Datasets / Benchmarks": "Custom dataset of 18 multimodal tasks (1260 user requests, 3 plans/request). Evaluated against Claude 3.5 Sonnet, GPT-4o, GPT-4o-Mini.",
+        "Results Summary": "Agent-2 showed significant success rate improvement. Agent-3 enhanced human preference alignment across metrics, despite a slight dip in execution success for longer plans. Overall, progressive quality improvement from Agent-1 to Agent-3.",
+        "Why It Matters": "Enables more versatile, human-aligned AIGC by tackling complex multimodal content creation end-to-end and integrating human preferences, paving the way for advanced automated content production.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Table 1 (Agent comparison), Figure 2 (Plan curation), Table 4 (Success rates), Table 5 (Preference metrics), Figure 4 (Visualizations).",
+        "arxiv_id": "http://arxiv.org/abs/2601.03250v1"
+    },
+    {
+        "Title": "Muses: Designing, Composing, Generating Nonexistent Fantasy 3D Creatures without Training",
+        "Field & Subfield": "Computer Vision & Graphics; 3D Content Generation",
+        "Key Contributions": "- First training-free framework for fantastic 3D creature generation in a feed-forward paradigm. - Novel skeleton-based method for designing and composing diverse skeletal structures. - Geometry and texture generation modules ensure reasonable, harmonious, and style-consistent 3D assets. - Achieves SOTA visual fidelity and efficiency.",
+        "Methodology": "Muses employs a 3-stage pipeline: 1) Skeleton-guided concept design using graph-constrained LLM reasoning. 2) SLAT-based content composition via skinning weights and voxel interpolation. 3) Style-consistent texture generation using image-guided appearance modeling (FLUX.1 Kontext).",
+        "Strengths": "Training-free, rapid generation (<1 min/instance). Achieves high visual fidelity, structural coherence, and strong textual alignment. Supports diverse, complex compositions and flexible 3D editing. Outperforms SOTA in quality metrics and human preference.",
+        "Limitations": "Relies on external 3D generation models (Trellis) for initial assets; performance is sensitive to their quality. Susceptible to failures in skeleton generation (Puppeteer) or initial 3D asset extraction. Not suitable for abstract objects without clear skeletal forms.",
+        "Datasets / Benchmarks": "No specific dataset for *training* Muses as it's training-free. Initial 3D assets derived from models trained on large-scale datasets like Objaverse. Evaluated using CLIPScore, VQAScore, and user studies comparing against SOTA baselines.",
+        "Results Summary": "Muses significantly outperforms SOTA methods (DreamBeast, Trellis-Text-to-3D, OmniPart) in CLIP (0.2878), VQA (0.9254), visual fidelity (66.67), and textual alignment (85.40). Generates diverse, high-quality, geometrically coherent, and style-consistent fantasy 3D creatures.",
+        "Why It Matters": "Addresses challenges in generating creative, out-of-domain 3D content by leveraging 3D skeletons. Provides a flexible, training-free approach that enhances realism and coherence, opening new possibilities for interactive 3D editing, gaming, VR, and animation.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Generated Creatures), Figure 3 (Overview of Muses), Figure 5 (SOTA Comparison), Table 1 (Quantitative Comparison).",
+        "arxiv_id": "2601.03256v1"
     }
 ]
