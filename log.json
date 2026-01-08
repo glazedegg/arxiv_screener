@@ -556,5 +556,33 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (Generated Creatures), Figure 3 (Overview of Muses), Figure 5 (SOTA Comparison), Table 1 (Quantitative Comparison).",
         "arxiv_id": "2601.03256v1"
+    },
+    {
+        "Title": "Choreographing a World of Dynamic Objects",
+        "Field & Subfield": "Computer Vision & Graphics, 4D Scene Generation, Robotics",
+        "Key Contributions": "- Novel 4D motion representation with Fenwick tree-inspired temporal structure & hierarchical DoF parameterization.\n- Distillation strategy for modern flow-based video generative models (RF-SDS).\n- Robust framework for physically-grounded 4D motions, applicable to diverse objects & robotic manipulation.",
+        "Methodology": "Iteratively optimizes a hierarchical 4D scene motion representation (Gaussian splatting, Fenwick tree for temporal coherence, coarse-to-fine control points for spatial hierarchy) using guidance from a rectified flow-based video generative model (Wan 2.2) via a novel Score Distillation Sampling (RF-SDS) target, incorporating spatial/temporal regularizations.",
+        "Strengths": "Universal, versatile, & category-agnostic 4D scene motion generation for multiple interacting objects. Produces physically-grounded motions. Supports long-horizon motion & real-world robot manipulation. Achieves high realism and prompt alignment compared to baselines.",
+        "Limitations": "Dependent on underlying video generative model capabilities. Cannot generate newly appearing objects not in the initial scene. Suffers from extensive training time due to VAE backpropagation.",
+        "Datasets / Benchmarks": "Object assets from Sketchfab/BlenderKit. Video generation model: Wan 2.2 (14B). Baselines: Animate3D, AnimateAnyMesh, MotionDreamer, TrajectoryCrafter. Evaluation: User studies & VideoPhy-2 [5] metrics (Semantic Adherence, Physical Commonsense).",
+        "Results Summary": "CHORD achieves state-of-the-art performance in user studies for prompt alignment (87.71% preference) and motion realism (87.37% preference) in multi-object 4D scene generation, significantly outperforming existing methods. Qualitatively, it produces more natural and prompt-aligned motions.",
+        "Why It Matters": "Enables scalable, realistic 4D animation of dynamic objects and complex scenes, crucial for building immersive 3D world models, embodied AI, and robotics manipulation. Overcomes limitations of category-specific and data-intensive methods for 4D content creation.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (4D scene motion examples), Figure 2 (Pipeline Overview), Table 1 (Quantitative comparisons with baselines).",
+        "arxiv_id": "http://arxiv.org/abs/2601.04194v1"
+    },
+    {
+        "Title": "Embedding Autonomous Agents in Resource-Constrained Robotic Platforms",
+        "Field & Subfield": "Robotics & Multi-Agent Systems, Embedded Systems",
+        "Key Contributions": "- Demonstrated embedding BDI autonomous agents on resource-constrained microcontrollers.\n- Integrated AgentSpeak logic with Pololu 3pi+ 2040 robot via Embedded-BDI framework.\n- Validated real-time decision-making efficiency for maze exploration on limited hardware.",
+        "Methodology": "A BDI agent, programmed in AgentSpeak and compiled to C++ via Embedded-BDI framework, was embedded on a Pololu 3pi+ 2040 robot. The agent used line sensors for perception and actuators for movement, following a left-hand rule to solve a maze autonomously.",
+        "Strengths": "Enables high-level agent-based control for real-time autonomous operation on resource-constrained hardware. Shows efficient reasoning cycles (sub-ms for belief/plan selection). Low memory footprint: 5.44% Flash, 6.25% RAM.",
+        "Limitations": "Demonstrated on a specific robot for a single maze-solving task. Intention execution dominates cycle time due to sensor/motor operations. Scalability to more complex environments or multi-robot coordination is future work.",
+        "Datasets / Benchmarks": "A custom-designed maze for line-following and intersection detection. Performance benchmarks measured belief update, plan selection, and intention execution times during maze solving.",
+        "Results Summary": "The robot solved the maze in ~59 seconds, completing 287 reasoning cycles. Average belief update: 0.004 ms; plan selection: 0.024 ms; intention execution: 197 ms. Decision-making phases were efficient enough for real-time.",
+        "Why It Matters": "Paves the way for deploying intelligent, autonomous agents on low-cost, resource-limited robots, reducing reliance on centralized control. It advances autonomy for applications like IoT and swarm robotics, enabling local, rational decision-making.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1: Digital design and real-world implementation of the maze. Figure 2: Annotated GPIO activity during agent execution, illustrating cycle phases.",
+        "arxiv_id": "http://arxiv.org/abs/2601.04191v1"
     }
 ]
