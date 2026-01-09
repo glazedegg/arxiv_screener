@@ -584,5 +584,46 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1: Digital design and real-world implementation of the maze. Figure 2: Annotated GPIO activity during agent execution, illustrating cycle phases.",
         "arxiv_id": "http://arxiv.org/abs/2601.04191v1"
+    },
+    {
+        "Title": "Mesh4D: 4D Mesh Reconstruction and Tracking from Monocular Video",
+        "Field & Subfield": "Computer Vision, 4D Mesh Reconstruction & Tracking",
+        "Key Contributions": "- Novel feed-forward Mesh4D for complete 4D mesh reconstruction.\n- Compact latent space for entire animation sequence via VAE.\n- Skeletal structure guidance during VAE training (not inference).\n- Spatio-temporal attention for stable deformation.\n- New benchmark for 3D shape/motion quality.",
+        "Methodology": "A feed-forward model builds on a pre-trained image-to-3D generator (Hunyuan3D 2.1) for static mesh M1. A novel VAE encodes deformation fields into a compact latent space, guided by skeletal structure. A latent diffusion model predicts full animation conditioned on video and M1.",
+        "Strengths": "Accurate & complete 3D shape and motion reconstruction from monocular video. Temporally coherent 4D meshes with dense tracking. Generalizes to diverse scenarios without per-scene optimization. Robustness from large-scale pre-trained models.",
+        "Limitations": "Relies on high-quality canonical mesh & skeletons for training. Inability to represent topological changes. Difficulty with extremely non-rigid objects. Does not choose optimal reference frame.",
+        "Datasets / Benchmarks": "Objaverse-1.0 (filtered for dynamic objects) for training. Custom benchmark of 50 animated 3D assets from Objaverse for evaluation (disjoint from training).",
+        "Results Summary": "Outperforms prior SOTA (HY3D 2.1, L4GM, GVFD) in 3D shape (IoU↑, P2S↓, Chamfer↓) and motion reconstruction (l2-Corr↓). Achieves SOTA on novel view synthesis (PSNR↑, SSIM↑, LPIPS↓, FVD↓), with better pose, geometry, and temporal consistency.",
+        "Why It Matters": "Addresses the challenging problem of full 4D mesh reconstruction & tracking from monocular video, crucial for applications in computer vision, graphics, & robotics, by providing an efficient, feed-forward, and robust solution.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Method Illustration), Figure 2 (VAE Pipeline), Table 1 (Geometry & Tracking Results), Table 2 (NVS Results)",
+        "arxiv_id": "2601.05251v1"
+    },
+    {
+        "Title": "QNeRF: Neural Radiance Fields on a Simulated Gate-based Quantum Computer",
+        "Field & Subfield": "Quantum Machine Learning, Computer Vision, Novel-View Synthesis",
+        "Key Contributions": "• First hybrid quantum-classical QNeRF for novel-view synthesis. • Dual-Branch quantum embedding for scalability & noise tolerance. • Output scaling and local measurements mitigate quantum challenges. • Outperforms/matches NeRF with fewer parameters.",
+        "Methodology": "Hybrid quantum-classical QNeRF. Classical embedding maps coordinates to quantum state, processed by QNN (parametric circuits). Full QNeRF vs. Dual-Branch (separated spatial/view-dependent encoding). Uses amplitude embedding, Ry rotations, entangling layers, parity measurements, output scaling.",
+        "Strengths": "Full QNeRF: Outperforms NeRF in PSNR with <50% parameters. Dual-Branch: Comparable PSNR, higher noise tolerance, more scalable, fewer amplitudes. Both offer exponential data compression & hardware compatibility with existing rendering pipelines.",
+        "Limitations": "High computational cost for quantum simulations (CPU-bound, slow). Limited by NISQ hardware (qubit count, gate depth, noise). Scalability challenges for Full QNeRF. Conservative noise analysis without advanced transpilation or error mitigation.",
+        "Datasets / Benchmarks": "Blender dataset (materials, ficus, lego, drums), LLFF dataset (horns, fern, trex, room). Compared against classical NeRF. Evaluated using PSNR, SSIM, and State Fidelity for noise analysis.",
+        "Results Summary": "Full QNeRF (8 qubits) outperforms classical NeRF (31.67 vs 29.53 dB PSNR on Blender) with <50% parameters. Dual-Branch QNeRF achieves comparable performance with higher noise tolerance. Output scaling is crucial for performance.",
+        "Why It Matters": "First QML application for novel-view synthesis, demonstrating quantum models can achieve competitive performance with increased compactness. Highlights QML's potential for expressive signal representation and future quantum advantage in 3D computer vision tasks.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (PSNR vs Complexity, Fidelity, Synthesis example), Figure 2 (Architectural Schemes), Table 2 (PSNR Comparison), Figure 5 (Noise Resilience)."
+    },
+    {
+        "Title": "RL-AWB: Deep Reinforcement Learning for Auto White Balance Correction in Low-Light Night-time Scenes",
+        "Field & Subfield": "Computer Vision & Image Processing (Color Constancy, Reinforcement Learning)",
+        "Key Contributions": "- Novel statistical color constancy algorithm (SGP-LRD) for nighttime.\n- First deep reinforcement learning (RL-AWB) for adaptive AWB parameter tuning.\n- Introduces LEVI, the first multi-camera nighttime color constancy dataset.\n- Demonstrates superior cross-sensor generalization with minimal training data.",
+        "Methodology": "Hybrid approach combining SGP-LRD (Salient Gray Pixels with Local Reflectance Differences) statistical algorithm with Soft Actor-Critic (SAC) reinforcement learning. Uses two-stage curriculum learning for adaptive parameter optimization (N%, Minkowski p).",
+        "Strengths": "Achieves state-of-the-art performance in low-light/nighttime, superior cross-sensor generalization, high data efficiency (5-shot learning), adaptive per-image parameter optimization, robust to noise/complex lighting.",
+        "Limitations": "Currently controls only two AWB parameters, potential for over-correction in some challenging scenes, training pipeline not yet fully GPU-resident, increasing action space adds complexity.",
+        "Datasets / Benchmarks": "Introduced LEVI (700 images, multi-camera, nighttime, color checker annotations). Evaluated on NCC (existing nighttime) and Gehler-Shi (daytime) datasets.",
+        "Results Summary": "RL-AWB achieved best median/mean angular errors in 5-shot setting on NCC/LEVI datasets. Showed significant reduction in cross-dataset generalization errors compared to learning-based baselines, outperforming fully supervised methods.",
+        "Why It Matters": "Addresses the critical and challenging problem of AWB in low-light, noisy nighttime scenes, improving image quality for real-world applications like mobile photography and surveillance, with strong cross-sensor adaptability.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (RL-AWB overview), Figure 6 (Cross-dataset qualitative comparison), Table 1 (In-dataset evaluation), Table 2 (Cross-dataset evaluation).",
+        "arxiv_id": "http://arxiv.org/abs/2601.05249v1"
     }
 ]
