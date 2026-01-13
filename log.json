@@ -625,5 +625,33 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (RL-AWB overview), Figure 6 (Cross-dataset qualitative comparison), Table 1 (In-dataset evaluation), Table 2 (Cross-dataset evaluation).",
         "arxiv_id": "http://arxiv.org/abs/2601.05249v1"
+    },
+    {
+        "Title": "SecureCAI: Injection-Resilient LLM Assistants for Cybersecurity Operations",
+        "Field & Subfield": "Cybersecurity, AI Safety, Large Language Models",
+        "Key Contributions": "• Formalized threat model for LLM injection attacks in SOCs. • SecureCAI: security-aware CAI with adaptive evolution via red-teaming. • DPO for unlearning unsafe responses while preserving task performance. • Extensive validation showing significant ASR reduction & utility.",
+        "Methodology": "SecureCAI extends Constitutional AI with security-aware guardrails, adaptive constitution evolution (red-teaming), & DPO for unlearning unsafe patterns. This ensures both safety & task performance in adversarial cybersecurity contexts.",
+        "Strengths": "94.7% ASR reduction, 95.1% clean accuracy. High constitutional adherence & strong generalization to unseen attacks. Adaptive defense via continuous red-teaming. Effectively balances security & utility, unlike filtering methods.",
+        "Limitations": "Increased inference latency (23%). Residual vulnerability to novel attacks. Effectiveness depends on principle quality. Potential instability/overhead during adaptive constitution updates.",
+        "Datasets / Benchmarks": "Security Artifact Corpus (logs, emails, malware) + 51,750 adversarial preference pairs for training. Evaluated on 51,750 adversarial samples (6 categories) & 15,000 benign samples. Held-out 5,000 samples for unseen attack generalization.",
+        "Results Summary": "Reduced attack success rate by 94.7% (to 4.3% avg ASR) vs. baseline (80.4%). Maintained 95.1% clean accuracy on security tasks. Achieved >0.92 Constitutional Adherence Score under high adversarial pressure. Generalizes well to unseen attacks.",
+        "Why It Matters": "Addresses a critical gap in AI safety for adversarial cybersecurity, enabling trustworthy LLM integration in Security Operations Centers. Provides robust defense against prompt injection, crucial for automating threat analysis in high-stakes environments.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Table 2 (Attack Success Rates), Table 3 (Clean Accuracy), Figure 4 (Constitutional Adherence Score under Adversarial Pressure), Figure 2 (SecureCAI Architecture).",
+        "arxiv_id": "http://arxiv.org/abs/2601.07835v1"
+    },
+    {
+        "Title": "Tuning-free Visual Effect Transfer across Videos",
+        "Field & Subfield": "Computer Vision, Video Generation & Editing",
+        "Key Contributions": "- RefVFX: tuning-free framework for reference-based temporal video effect transfer. \n- Large-scale, effect-aligned dataset: 120K triplets covering 1700+ effects.\n- Multi-source conditioning architecture on diffusion backbones. \n- Extensive evaluation demonstrating superior coherence & generalization.",
+        "Methodology": "A diffusion-based video generation model (RefVFX) conditioned on reference video dynamics, input video/image content, and text prompts. Trained on a new large-scale triplet dataset (reference, input, output) compiled from LoRA I2V, custom V2V, and programmatic effects.",
+        "Strengths": "Produces visually consistent & temporally coherent edits. Generalizes across unseen effect categories. Outperforms prompt-only baselines in human preference. Operates in a feed-forward manner without inference-time optimization.",
+        "Limitations": "Struggles with fine-grained occlusions or complex subject-effect interactions. Dataset is primarily human-centric, limiting generalization to environmental/abstract effects. Inference is computationally expensive (approx. double baseline).",
+        "Datasets / Benchmarks": "Introduces a new large-scale triplet dataset (~120K triplets, 1700+ effects). Uses LoRA-based models, Senorita dataset. Evaluated with VideoPrism and CLIP embeddings, human preference studies, and VBench metrics.",
+        "Results Summary": "RefVFX achieved 78-98% win rates in human preference over baselines for reference adherence and maintains input video adherence. Achieved higher reference video embedding similarity compared to prompt-only baselines, demonstrating effective temporal effect transfer.",
+        "Why It Matters": "Enables transfer of complex, dynamic temporal visual effects between videos using a reference video, a capability challenging for existing text/keyframe-based methods. This broadens video editing possibilities beyond static or semantic edits.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Overview of RefVFX), Figure 2 (Dataset Examples), Figure 5 (Architecture Overview), Tables 1 & 2 (User Study Results)",
+        "arxiv_id": "2601.07833v1"
     }
 ]
