@@ -653,5 +653,46 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (Overview of RefVFX), Figure 2 (Dataset Examples), Figure 5 (Architecture Overview), Tables 1 & 2 (User Study Results)",
         "arxiv_id": "2601.07833v1"
+    },
+    {
+        "Title": "3AM: Segment Anything with Geometric Consistency in Videos",
+        "Field & Subfield": "Computer Vision; Video Object Segmentation, 3D Instance Segmentation",
+        "Key Contributions": "• Bridges 2D tracking & 3D consistency gap. • Integrates 3D-aware features (MUSt3R) with SAM2's appearance features via Feature Merger. • Employs Field-of-View aware training for 3D correspondence. • Validated substantial improvements on challenging wide-baseline datasets.",
+        "Methodology": "3AM enhances SAM2 by integrating multi-level 3D-aware features from MUSt3R via a Feature Merger. It uses a Field-of-View aware sampling strategy during training to learn 3D consistency from posed RGB video. Requires only RGB input at inference, no camera poses or depth.",
+        "Strengths": "Achieves geometry-consistent object tracking robust to large viewpoint changes, occlusions, and reappearance. Maintains promptability & efficiency without requiring explicit 3D supervision or camera poses at inference. Outperforms SOTA VOS significantly.",
+        "Limitations": "Full FOV-aware sampling can degrade SAM2's original within-view feature-matching. MUSt3R features require precomputation for FOV sampling on some datasets. Original SAM2 memory can be mistrained without MUSt3R grounding.",
+        "Datasets / Benchmarks": "Training: ScanNet++, ASE, MOSE. Evaluation: ScanNet++ (Whole/Selected Subset), Replica. Compared to SAM2, SAM2Long, DAM4SAM, SegMASt3R.",
+        "Results Summary": "On ScanNet++ Selected Subset, 3AM achieved 90.6% IoU (+15.9 over SOTA) and 71.7% Positive IoU (+30.4 over SOTA). Consistently outperforms SAM2, SAM2Long, and DAM4SAM across ScanNet++ and Replica for VOS and 3D instance segmentation.",
+        "Why It Matters": "Enables robust, viewpoint-consistent video object segmentation for embodied AI, robotics, AR, and video editing by combining 2D model efficiency with 3D geometric awareness, without explicit 3D inputs at inference.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (3AM Overview), Figure 3 (Pipeline), Figure 5 (Sampling Strategy), Table 2 (ScanNet++ Results), Table 4 (Replica Results).",
+        "arxiv_id": "http://arxiv.org/abs/2601.08831v1"
+    },
+    {
+        "Title": "Modeling LLM Agent Reviewer Dynamics in Elo-Ranked Review System",
+        "Field & Subfield": "Artificial Intelligence & Natural Language Processing (LLM Agents, Peer Review Simulation)",
+        "Key Contributions": "Introduces LLM agent reviewer simulation w/ Elo-ranked system. Improves Area Chair (AC) decision accuracy. Reveals reviewer adaptive strategies for Elo, not always quality. Offers insights into Elo-ranked peer review benefits & challenges.",
+        "Methodology": "Multi-round simulation using Gemini-2.5-Flash LLM agents with 6 personas. Elo-ranked system based on AC quality ratings; reviewers adapt strategies via memory. Compared Baseline, AC Access, & Full Access Elo settings on ICLR 2025 papers.",
+        "Strengths": "Simulates complex multi-round peer review, revealing dynamics unobservable in reality. Shows how Elo improves AC decisions & identifies reviewer quality. Offers insights into incentive design for better peer review systems.",
+        "Limitations": "Limited review rounds restrict long-term convergence analysis, focusing on short-horizon dynamics. Reviewers adapt strategically for Elo, potentially without substantive review quality improvement, highlighting design sensitivity.",
+        "Datasets / Benchmarks": "150 real-world ICLR 2025 paper submissions, sampled uniformly from different average rating intervals and filtered for high rating variance.",
+        "Results Summary": "Elo-based feedback greatly improves AC decision accuracy (up to 0.70 Acc). Elo introduces clear reviewer stratification; Experts dominate, low-effort Skimmers are penalized. Visible Elo incentivizes strategic adaptation for ratings, not always quality.",
+        "Why It Matters": "Provides a novel framework to study peer review dynamics & incentive mechanisms using LLM agents. Highlights Elo's potential to improve review quality & AC decisions but also reveals challenges of strategic behavior, informing system design.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1: Elo-ranked Review System Dynamic. Figure 3: Elo Rating Dynamics of Personas. Table 1: Decision Performance Across Setups.",
+        "arxiv_id": "http://arxiv.org/abs/2601.08829v1"
+    },
+    {
+        "Title": "RAVEN: Erasing Invisible Watermarks via Novel View Synthesis",
+        "Field & Subfield": "Computer Vision; AI Security & Image Forensics",
+        "Key Contributions": "Novel view synthesis attack vector. Zero-shot diffusion framework with latent viewpoint modulation. View-guided attention for structural consistency. SOTA watermark suppression across 15 methods with high perceptual quality.",
+        "Methodology": "Zero-shot diffusion model uses partial inversion, latent viewpoint modulation (geometric shifts), & view-guided attention to synthesize a new view, disrupting watermarks while preserving content. Followed by CIELAB color/contrast transfer. Black-box, no retraining.",
+        "Strengths": "Novel approach with SOTA suppression & high perceptual fidelity. Operates black-box without detector access or training data. Efficient (seconds/image on single GPU). Generalizable across diffusion models.",
+        "Limitations": "Trade-off between watermark suppression strength and visual quality/artifacts. Primarily focuses on subtle, global viewpoint shifts rather than large geometric changes. Does not reconstruct unseen geometry.",
+        "Datasets / Benchmarks": "MS-COCO, SD-Prompts, DiffusionDB. Evaluated against 15 watermarking schemes & 14 baseline attacks (Regen, CtrlGen+, IRA, UnMarker, etc.).",
+        "Results Summary": "Achieves SOTA watermark suppression (e.g., 0.026 avg TPR@1%FPR on MS-COCO, >60% better than baselines) with superior perceptual fidelity (low FID, high CLIP-Text scores). Preserves fine details and natural textures without artifacts.",
+        "Why It Matters": "Exposes a critical vulnerability in invisible watermarking to semantic-preserving geometric transformations. This necessitates more robust watermarking designs and improves assessment of AI-generated content provenance.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Table 1 (Method Comparison), Figure 1 (RAVEN Pipeline), Table 2/6 (Watermark Removal Performance), Table 3 (Image Quality Metrics), Figures 2/6/7/8 (Qualitative Comparisons)."
     }
 ]
