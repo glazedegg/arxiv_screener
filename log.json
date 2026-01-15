@@ -694,5 +694,19 @@
         "Why It Matters": "Exposes a critical vulnerability in invisible watermarking to semantic-preserving geometric transformations. This necessitates more robust watermarking designs and improves assessment of AI-generated content provenance.",
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Table 1 (Method Comparison), Figure 1 (RAVEN Pipeline), Table 2/6 (Watermark Removal Performance), Table 3 (Image Quality Metrics), Figures 2/6/7/8 (Qualitative Comparisons)."
+    },
+    {
+        "Title": "Fast-ThinkAct: Efficient Vision-Language-Action Reasoning via Verbalizable Latent Planning",
+        "Field & Subfield": "Vision-Language-Action (VLA) Models, Embodied AI, Robotics, Efficient Reasoning",
+        "Key Contributions": "Efficient VLA reasoning via verbalizable latent planning. Preference-guided distillation with trajectory alignment. Bridges high-level visual planning to low-level action. Up to 89.3% inference latency reduction over SOTA VLAs.",
+        "Methodology": "Teacher-student framework distills explicit CoT into compact latent tokens. Uses preference-guided distillation with a verbalizer LLM. Incorporates action-aligned visual plan distillation and latent reasoning for trajectory prediction. Guides action model with visual latent planning.",
+        "Strengths": "Significantly reduces inference latency (up to 89.3%). Maintains/improves SOTA performance across diverse benchmarks. Enables effective long-horizon planning, few-shot adaptation, and robust failure recovery. Compact and expressive latent reasoning.",
+        "Limitations": "Verbalizer LLM inherits language model limitations like hallucination. Verbalizer is only for interpretability, not direct action execution, thus not affecting task performance during inference. Future work can improve verbalized reasoning faithfulness.",
+        "Datasets / Benchmarks": "Trained on MolmoAct, AIST, PixMo, RoboFAC, RoboVQA, ShareRobot, EgoPlan-Bench, Video-R1-CoT, OXE, ALOHA. Evaluated on EgoPlan-Bench2, RoboVQA, OpenEQA, RoboFAC (reasoning); SimplerEnv-Google, LIBERO, RoboTwin2.0 (manipulation).",
+        "Results Summary": "Achieves up to 89.3% inference latency reduction. Outperforms SOTA VLAs on LIBERO (89.7%) and SimplerEnv (68.7%). Higher success rates on RoboTwin2.0 long-horizon tasks. Surpasses GPT-4V/Gemini on embodied reasoning. Demonstrates long-horizon planning, few-shot adaptation, & failure recovery.",
+        "Why It Matters": "Addresses critical real-time inference latency for embodied AI. Enables more practical and deployable intelligent agents for robotics/autonomous driving. Provides efficient, robust high-level planning and low-level action execution in complex environments.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Overview), Figure 3 (Latency & Success), Table 5 (Detailed latency/performance).",
+        "arxiv_id": "http://arxiv.org/abs/2601.09708v1"
     }
 ]
