@@ -708,5 +708,46 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (Overview), Figure 3 (Latency & Success), Table 5 (Detailed latency/performance).",
         "arxiv_id": "http://arxiv.org/abs/2601.09708v1"
+    },
+    {
+        "Title": "Alterbute: Editing Intrinsic Attributes of Objects in Images",
+        "Field & Subfield": "Computer Vision & Image Generation/Editing",
+        "Key Contributions": "- Method for editing any intrinsic object attribute (color, texture, material, shape) using a single model, preserving identity.\n- Introduces Visual Named Entities (VNEs) for object identity, extracted automatically using a VLM.\n- Relaxed training objective from intrinsic+extrinsic changes, but restricts to intrinsic at inference.",
+        "Methodology": "Diffusion-based model fine-tuned for text-guided intrinsic attribute editing. Conditions on identity reference (VNE cluster), text prompt, background, & object mask. Relaxes training to allow intrinsic/extrinsic changes, but constrains to intrinsic-only at inference. VNEs and attribute descriptions are automatically extracted via a VLM (Gemini) from OpenImages.",
+        "Strengths": "Preserves object identity and scene context effectively. Supports editing all intrinsic attributes (color, texture, material, shape) with a single unified model. Automated data curation pipeline using VLM for VNEs enables scalable supervision. Outperforms existing general-purpose and attribute-specific editors.",
+        "Limitations": "May produce background artifacts with coarse bounding box masks. Reshaping rigid objects can be challenging, sometimes yielding unrealistic or unintended geometries. Intrinsic attributes can exhibit natural dependencies, limiting some combinations.",
+        "Datasets / Benchmarks": "OpenImages dataset for VNE extraction and training. Custom evaluation set of 30 distinct objects (100 samples) for qualitative and quantitative comparisons. User studies and VLM-based evaluations (Gemini, GPT-40, Claude 3.7 Sonnet).",
+        "Results Summary": "Alterbute significantly outperforms baselines in user studies and VLM-based evaluations, with users preferring its outputs across all comparisons. Achieves state-of-the-art results for identity-preserving intrinsic attribute editing, demonstrating high-quality, targeted edits.",
+        "Why It Matters": "Addresses the challenging problem of editing intrinsic object properties while preserving identity, a key limitation of prior image editing methods. Enables more realistic and controlled image manipulation, pushing capabilities of generative models in practical applications.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Intrinsic attribute edits overview), Figure 2 (Alterbute architecture), Table 1 (Preference rates (%) for Alterbute vs. baselines).",
+        "arxiv_id": "http://arxiv.org/abs/2601.10714v1"
+    },
+    {
+        "Title": "∂∞-GRID: A NEURAL DIFFERENTIAL EQUATION SOLVER WITH DIFFERENTIABLE FEATURE GRIDS",
+        "Field & Subfield": "Machine Learning & Scientific Computing; Neural PDE Solvers",
+        "Key Contributions": "- Novel differentiable grid-based representation for DEs.\n- Combines feature grid efficiency with infinitely differentiable Radial Basis Function (RBF) interpolation.\n- Introduces multi-resolution co-located grids for stable, faster global gradients.\n- Solves higher-order PDEs via implicit training with DEs as loss.",
+        "Methodology": "Proposed ∂∞-Grid uses a multi-resolution feature grid with learnable feature vectors at nodes. RBF interpolation, which is infinitely differentiable, extracts query-dependent features. A small decoder maps features to the target signal. Trained implicitly by minimizing DE residuals as loss, using automatic differentiation for derivatives.",
+        "Strengths": "5-20x speed-up over coordinate-based MLPs (e.g., Siren) with comparable/better accuracy. Supports higher-order derivatives essential for complex PDEs. Captures high-frequency details. Versatile across diverse physical problems. Efficient computation via localized learning.",
+        "Limitations": "RBF interpolation can be computationally intensive and sensitive to shape parameter choice. May introduce boundary errors (Runge's phenomenon). Suffers from curse of dimensionality in higher-dimensional inputs. Not as efficient as traditional numerical solvers.",
+        "Datasets / Benchmarks": "Poisson Equation (Image Reconstruction), Helmholtz Equation (Wave Fields), Kirchhoff-Love (Cloth Simulation), Eikonal Equation (SDFs), Heat Equation, Advection Equation. Compared against Siren, K-Planes, Instant-NGP, NeuRBF, PINNs, traditional numerical solvers.",
+        "Results Summary": "Achieves 5-20x faster training than MLP-based methods (Siren) for PDEs, while maintaining comparable accuracy. Outperforms linear-interpolation grid methods (K-Planes) for higher-order derivative tasks. Successfully reconstructs high-frequency fields and solves challenging non-linear PDEs.",
+        "Why It Matters": "Addresses key limitations of neural PDE solvers (slow training, inability to handle higher-order derivatives for grid methods). Offers a robust, efficient, and versatile framework for physics-informed machine learning and accurate physical field modeling.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Helmholtz/Cloth Sim results & training time), Figure 4 (Image reconstruction comparison & PSNR/training time plots), Table 1 (Quantitative comparison for image reconstruction)."
+    },
+    {
+        "Title": "WildRayZer: Self-supervised Large View Synthesis in Dynamic Environments",
+        "Field & Subfield": "Computer Vision & Novel View Synthesis",
+        "Key Contributions": "- Self-supervised NVS framework for dynamic scenes w/o camera pose or dynamic mask supervision.\n- Curated Dynamic RealEstate10K (D-RE10K) dataset (15K sequences) & D-RE10K-iPhone benchmark.\n- Outperforms baselines in NVS quality & motion segmentation.",
+        "Methodology": "Analysis-by-synthesis approach. Static renderer explains rigid structure; residuals identify transient regions. Pseudo motion masks derived from DINOv3 features & SSIM. Distills motion estimator. Masked 3D scene encoder prevents dynamic content. Progressive training stages & copy-paste augmentation.",
+        "Strengths": "Self-supervised, handles dynamic environments (camera & object motion) without 3D or mask ground-truth. Achieves superior NVS quality & motion segmentation. Feed-forward inference. New large-scale dynamic datasets. Robust to open-set distractors.",
+        "Limitations": "Pseudo motion masks may not enforce instance-level segmentation, often capturing only moving parts. Can under-segment small objects. Mask quality degrades when moving objects are too large in input images.",
+        "Datasets / Benchmarks": "New: Dynamic RealEstate10K (15K dynamic indoor videos), D-RE10K-iPhone (50 real-world paired transient/clean sequences). Used for pretraining/augmentation: RealEstate10K, COCO.",
+        "Results Summary": "WildRayZer consistently outperforms optimization-based & feed-forward baselines in NVS (PSNR, SSIM, LPIPS) and motion mask accuracy (mIoU, Recall) on D-RE10K & D-RE10K-iPhone. Achieves sharper background reconstructions & reliable transient removal.",
+        "Why It Matters": "Enables scalable, robust novel view synthesis in complex, dynamic real-world environments without requiring extensive manual supervision, bridging a critical gap for \"in-the-wild\" applications in 3D vision.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (WildRayZer Architecture), Figure 4 (Qualitative Comparisons), Table 2 (Main NVS Results), Table 4 (Motion Mask Quality).",
+        "arxiv_id": "http://arxiv.org/abs/2601.10716v1"
     }
 ]
