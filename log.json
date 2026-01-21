@@ -749,5 +749,47 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (WildRayZer Architecture), Figure 4 (Qualitative Comparisons), Table 2 (Main NVS Results), Table 4 (Motion Mask Quality).",
         "arxiv_id": "http://arxiv.org/abs/2601.10716v1"
+    },
+    {
+        "Title": "Implicit Neural Representation Facilitates Unified Universal Vision Encoding",
+        "Field & Subfield": "Computer Vision & Representation Learning",
+        "Key Contributions": "- Designed and trained HUVR, an INR hyper-network, matching/outperforming DINOv3 for classification, segmentation, and reconstruction.\n- Introduced compressed Tiny Tokens (TinToks), offering +48% ImageNet classification over DINOv3 PCA baseline.\n- Developed improved hyper-network design for image INRs, yielding +2.34 PSNR with 10% training time.\n- Unified recognition and generative task families.",
+        "Methodology": "A Hyper-network for Unified Visual Representation (HUVR) predicts Implicit Neural Representation (INR) weights from image inputs for fast, accurate reconstruction. It integrates knowledge distillation from pre-trained vision encoders (like DINOv3) for generalization and semantics. Novel patch-wise processing, a global token for recognition, and learnable downsampling/upsampling layers create compressed \"Tiny Tokens\" for efficient representation.",
+        "Strengths": "Unified model for both recognition and generation tasks. Achieves state-of-the-art results in multiple recognition benchmarks (ImageNet, ADE20K) and reconstruction. Enables highly compressed (96x) representations (TinToks) with superior classification. Novel INR hyper-network design is more effective for image INRs.",
+        "Limitations": "Pre-training scale/scope not as extensive as SOTA methods (e.g., SigLIP 2, DINOv3). Does not use specialized curated data or engineer distillation from multiple models. Generative capabilities, while present, do not yet match state-of-the-art diffusion models.",
+        "Datasets / Benchmarks": "ImageNet, ImageNet22k, DataComp (pre-training). ImageNette, Celeb-A, LSUN Churches (INR comparison). ADE20K (semantic segmentation), NYUv2 (depth estimation). FGVC datasets (Caltech-UCSD Birds, Stanford Cars, DTD, Oxford 102 Flower, Food-101).",
+        "Results Summary": "HUVR achieved +0.4% ImageNet classification, +1.2 mIoU ADE20K, and +4.84 PSNR for reconstruction vs. DINOv3. Tiny Tokens (8-dim) show +48% ImageNet classification vs. DINOv3 PCA baseline and +1.26 PSNR vs. Stable Diffusion VAE. Superior dense recognition with TinToks. Achieves SOTA INR reconstruction on ImageNette/LSUN/CelebA.",
+        "Why It Matters": "This work unifies two major branches of vision representation learning (recognition and generation) into a single, efficient model. It enables highly compressed yet performant representations, crucial for scaling vision systems and resource-constrained applications, highlighting INR hyper-networks as a viable strategy for universal vision encoding.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Unified modeling & reconstruction), Table 1 (Tiny token results vs. PCA baselines), Table 3 (Standard classification results), Table 4 (Dense recognition results).",
+        "arxiv_id": "2601.14256v1"
+    },
+    {
+        "Title": "Motion 3-to-4: 3D Motion Reconstruction for 4D Synthesis",
+        "Field & Subfield": "Computer Vision, 4D Synthesis, 3D Motion Reconstruction",
+        "Key Contributions": "- Novel feed-forward 4D synthesis framework from monocular video.\n- Decomposes 4D synthesis into 3D shape generation and motion reconstruction.\n- Scalable frame-wise transformer architecture robust to varying sequence lengths and mesh resolutions.\n- Introduces new Motion-80 benchmark with ground-truth data.",
+        "Methodology": "Feed-forward framework. Decomposes 4D synthesis into static 3D shape generation and dynamic motion reconstruction. Uses a canonical reference mesh (generated/provided) and DINOv2 video features. Learns compact motion latent representation via alternating attention. Predicts per-frame vertex trajectories with a cross-attention decoder. Trained with MSE loss.",
+        "Strengths": "Achieves superior fidelity & spatial consistency over prior work. Strong generalization despite limited 4D training data. Robust to varying sequence lengths and mesh resolutions via scalable architecture. Efficient motion representation learning. Can animate artist-created static 3D meshes and handle in-the-wild videos.",
+        "Limitations": "Geometry encoder on dense point clouds without explicit mesh topology can cause vertex sticking. Relies on first-frame mesh as reference, struggling with topology changes in later frames.",
+        "Datasets / Benchmarks": "New Motion-80 dataset (80 subjects from Objaverse, ground-truth motion/geometry). Consistent4D benchmark (rendering-based metrics). Trained on filtered Objaverse-XL models.",
+        "Results Summary": "Outperforms SOTA (L4GM, GVFD, V2M4) in geometric accuracy (CD, F-Score) and appearance (CLIP, DreamSim, FVD) on Motion-80 and Consistent4D. Delivers superior temporal coherence and structural consistency, generating plausible 3D geometry and realistic motion.",
+        "Why It Matters": "Addresses the challenging 4D synthesis problem. Enables efficient generation of high-quality, temporally consistent 4D dynamic objects from a single video, crucial for VR, cinematography, robotics, and simulation. Allows motion transfer to static 3D assets.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Table 2 (Quantitative evaluation on Motion-80 set), Table 3 (Quantitative evaluation on Consistent4D), Figure 3 (Geometric comparison), Figure 4 (Qualitative Comparisons).",
+        "arxiv_id": "http://arxiv.org/abs/2601.14253v1"
+    },
+    {
+        "Title": "VideoMaMa: Mask-Guided Video Matting via Generative Prior",
+        "Field & Subfield": "Computer Vision - Video Matting & Generative Models",
+        "Key Contributions": "- VideoMaMa: Diffusion model for high-quality alpha mattes from binary masks, enabling scalable label creation.\n- MA-V Dataset: First large-scale (50K+ videos), high-quality video matting dataset built on real captured footage via pseudo-labeling.",
+        "Methodology": "Diffusion-based Video Mask-to-Matte Model (VideoMaMa) built on Stable Video Diffusion. Uses two-stage training (spatial then temporal layers) & semantic knowledge injection (DINOv3 features). Mask augmentation prevents 'copy-paste' behavior.",
+        "Strengths": "Strong zero-shot generalization to real-world footage despite synthetic training. Robust to diverse input mask qualities. Enables scalable, high-quality video matting annotation. Bridges synthetic-to-real domain gap.",
+        "Limitations": "Cannot generate mattes for regions where the input mask is fundamentally incorrect (e.g., wrong object instance). Relies on input mask to define the target foreground object.",
+        "Datasets / Benchmarks": "Introduced MA-V (Matting Anything in Videos) dataset with over 50K real videos. Evaluated on V-HIM60, YouTubeMatte. Used SA-V for MA-V construction. Fine-tuned SAM2 on MA-V.",
+        "Results Summary": "VideoMaMa consistently outperforms existing mask-guided matting models. SAM2-Matte, fine-tuned on MA-V, achieves SOTA robustness on in-the-wild videos, validating MA-V's quality. Two-stage training and DINO features are critical.",
+        "Why It Matters": "Addresses the severe data scarcity in video matting by providing a scalable pseudo-labeling pipeline and a large, diverse dataset (MA-V), bridging the synthetic-to-real domain gap for more robust, generalizable models.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (VideoMaMa examples), Figure 4 (MA-V examples), Figure 5 (Qualitative comparison), Table 1 (Dataset statistics), Table 2 (All-frame matting comparison), Table 3 (First-frame matting comparison).",
+        "arxiv_id": "2601.14255v1"
     }
 ]
