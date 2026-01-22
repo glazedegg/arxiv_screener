@@ -791,5 +791,46 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (VideoMaMa examples), Figure 4 (MA-V examples), Figure 5 (Qualitative comparison), Table 1 (Dataset statistics), Table 2 (All-frame matting comparison), Table 3 (First-frame matting comparison).",
         "arxiv_id": "2601.14255v1"
+    },
+    {
+        "Title": "Attribute-Preserving Pseudo-Labeling for Diffusion-Based Face Swapping",
+        "Field & Subfield": "Computer Vision; Image Synthesis & Face Generation",
+        "Key Contributions": "- Proposes APPLE: a diffusion-based teacher-student framework for attribute-preserving face swapping.\n- Reformulates face swapping as conditional deblurring instead of inpainting for better attribute preservation.\n- Introduces attribute-aware inversion for enhanced fine-grained attribute preservation.\n- Achieves SOTA attribute preservation & competitive identity transfer, practical for real-world use.",
+        "Methodology": "A teacher-student diffusion framework. Teacher uses conditional deblurring on blurred target images + multi-level structural cues (3DMM, gaze, masks) instead of inpainting. Attribute-aware inversion extracts attribute-rich pseudo-labels from the teacher. Student learns from these pseudo-triplets with direct supervision.",
+        "Strengths": "Achieves state-of-the-art attribute preservation (pose, expression, skin tone, lighting, makeup, accessories) while maintaining competitive identity transfer. Produces photorealistic, target-faithful results without external conditions at inference. Robust to occlusions when using augmented pseudo-triplets.",
+        "Limitations": "Relies on external modules (3DMM, gaze landmarks, segmentation maps) for pseudo-triplet generation; errors can propagate. Diffusion model inference efficiency needs improvement. Not yet extended to video face swapping.",
+        "Datasets / Benchmarks": "Trained on VGGFace2-HQ. Evaluated on FFHQ dataset (1,000 source/target pairs). Metrics: FID, ID Similarity, ID Retrieval (Top-1/Top-5), Pose L2 distance, Expression L2 distance.",
+        "Results Summary": "APPLE achieves the lowest FID (2.18), superior pose (1.85) and expression (0.64) consistency, and competitive ID similarity (0.54) among all baselines. Qualitatively, it produces more photorealistic images with subtle attribute preservation (e.g., makeup, glasses, gaze) compared to GAN and other diffusion methods.",
+        "Why It Matters": "Face swapping is crucial for digital content, privacy, and film. APPLE advances the field by overcoming the challenge of attribute preservation in diffusion models, producing highly realistic and faithful swapped faces without artifacts, which was a major limitation of prior GAN- and diffusion-based methods.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (APPLE outputs), Figure 2 (Deblurring vs. Inpainting), Table 4 (Quantitative SOTA comparison)."
+    },
+    {
+        "Title": "Iterative Refinement Improves Compositional Image Generation",
+        "Field & Subfield": "Computer Vision; Text-to-Image Generation",
+        "Key Contributions": "- Proposes an iterative test-time strategy for compositional T2I generation.\n- Leverages a VLM critic for feedback and an image editor for sequential refinement.\n- Achieves significant quantitative gains across multiple benchmarks.\n- Draws inspiration from Chain-of-Thought reasoning in LLMs for T2I.",
+        "Methodology": "An iterative inference-time scheme with T2I generator, VLM critic (proposes corrections/actions), image editor, and verifier. Operates across T refinement rounds & M parallel streams under a compute budget. Actions include STOP, BACKTRACK, RESTART, CONTINUE.",
+        "Strengths": "Simple and training-free, requires no external tools/priors, broadly applicable to diverse T2I models. Consistently outperforms parallel sampling, especially for complex compositional tasks. Offers state-of-the-art performance.",
+        "Limitations": "VLM critic/verifier can exhibit faulty reasoning, leading to incorrect corrections or unnecessary refinements. Image editor's inability to make desired changes for complex images can also limit effectiveness.",
+        "Datasets / Benchmarks": "ConceptMix (k=1-7), T2I-CompBench (3D-Spatial, numeracy), TIIF-Bench, Visual Jenga scene decomposition task. Evaluated on Qwen-Image, Nano-Banana, GPT-Image models.",
+        "Results Summary": "16.9% all-correct rate improvement on ConceptMix (k=7), 13.8% on T2I-CompBench (3D-Spatial), 12.5% on Visual Jenga. Human evaluators preferred our method 58.7% vs. 41.3% for parallel baseline. Full solve rate on Visual Jenga improved from 64.29% to 76.79%.",
+        "Why It Matters": "Enables T2I models to perform self-correction, a capability common in LLMs but lacking in T2I. Decomposes complex prompts into sequential, manageable steps, enhancing robustness for compositional generation. Points towards unified reasoning across modalities.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Visual comparison of standard vs. iterative refinement); Table 1 (Quantitative performance across benchmarks and models).",
+        "arxiv_id": "http://arxiv.org/abs/2601.15286v1"
+    },
+    {
+        "Title": "Towards Understanding Best Practices for Quantization of Vision-Language Models",
+        "Field & Subfield": "Artificial Intelligence & Multimodal Deep Learning, Model Compression",
+        "Key Contributions": "- Component sensitivity varies substantially across MLLM architectures (LLM often more critical).\n- SOTA methods (GPTQ, AWQ) preserve performance at 3.5-4.5 bpw, outperforming uniform quantization.\n- Task characteristics dictate optimal bit allocations.\n- Quantization method significantly alters component importance (AWQ favors LLM, GPTQ more balanced).\n- Architectural dependencies and component interplay shape quantization patterns.",
+        "Methodology": "Systematic investigation of k-bit uniform quantization and SOTA methods (GPTQ, AWQ) on BLIP-2 and LLaVA. Explored quantization across model components (ViT, Q-Former, LLM), block groups, and layer types. Employed Random Forest, Permutation Importance, and SHAP for component importance analysis with consensus ranking.",
+        "Strengths": "Comprehensive and systematic ablation studies on MLLM quantization. Compares multiple SOTA methods across diverse tasks & architectures. Provides practical insights into component sensitivities and optimal bit allocation. Uses robust feature importance techniques.",
+        "Limitations": "Study limited to simulated quantization; does not capture end-to-end latency or hardware-specific optimizations. Focuses on specific MLLM architectures and calibration-based PTQ methods.",
+        "Datasets / Benchmarks": "COCO Captions, Flickr (text-to-image retrieval), VQAv2, GQA (Visual Question Answering). Evaluated BLIP-2 ViT-g and LLaVA 1.5 7B.",
+        "Results Summary": "SOTA methods achieve high accuracy at 3.5-4.5 bpw. LLM is often most sensitive, especially for reasoning tasks. AWQ prioritizes LLM preservation, while GPTQ distributes importance more evenly. ViT and LLM show comparable performance impact despite size differences. Quantizing multiple components yields worse performance than single component.",
+        "Why It Matters": "Provides crucial guidance for efficient deployment of MLLMs on resource-constrained devices by optimizing quantization strategies. Highlights the need for holistic pipeline analysis and task-aware bit allocation to improve accessibility and reduce costs of advanced AI models.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 4 (SOTA Quantization Performance-Size Tradeoff), Figure 7 (BLIP-2 Component Performance), Table 1 (Consensus feature-importance (%) of model components).",
+        "arxiv_id": "http://arxiv.org/abs/2601.15287v1"
     }
 ]
