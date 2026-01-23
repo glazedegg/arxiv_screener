@@ -832,5 +832,47 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 4 (SOTA Quantization Performance-Size Tradeoff), Figure 7 (BLIP-2 Component Performance), Table 1 (Consensus feature-importance (%) of model components).",
         "arxiv_id": "http://arxiv.org/abs/2601.15287v1"
+    },
+    {
+        "Title": "CamPilot: Improving Camera Control in Video Diffusion Model with Efficient Camera Reward Feedback",
+        "Field & Subfield": "Computer Vision & Video Generation, 3D Reconstruction",
+        "Key Contributions": "- Efficient camera-aware 3D decoder mapping video latent + camera pose to 3D Gaussians for reward.\n- Camera reward optimization minimizing mask-aware pixel-level differences for video-camera alignment.\n- Extensive experiments demonstrating effectiveness & improved camera controllability.",
+        "Methodology": "CamPilot leverages an efficient camera-aware 3D decoder that maps video latents and camera poses to 3D Gaussians. It uses Reward Feedback Learning (ReFL) with a visibility-aware pixel-level consistency reward to optimize camera controllability in video diffusion models.",
+        "Strengths": "Significantly improves camera controllability & visual quality. Efficient 3D decoder for reward computation. Addresses 2D-to-3D gaps. Outperforms existing methods on various metrics. Visibility mask handles stochasticity.",
+        "Limitations": "Performance is bounded by the 3D decoder. Currently trained only on static scene datasets (RE10K). Not suitable for dynamic scene reconstruction due to 3DGS limitations. Higher computational overhead if Class-Free Guidance (CFG) is used.",
+        "Datasets / Benchmarks": "RealEstate10K (training & testing), WorldScore (static benchmark for out-of-domain evaluation).",
+        "Results Summary": "Outperforms baselines (MotionCtrl, CameraCtrl, ViewCrafter, FlexWorld) in video generation (lower FID, FVD, Rerr, Terr) and 3D scene generation (higher PSNR, SSIM, lower LPIPS), demonstrating improved camera controllability & visual quality.",
+        "Why It Matters": "Enables more precise & controllable video generation, crucial for virtual reality, robotics, and content creation. Bridges the gap between 2D generation and 3D/4D reconstruction, offering an efficient ReFL approach for camera control.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Table 1 (Quantitative comparison on video and 3D scene generation), Table 2 (Quantitative comparison across control and consistency metrics), Figure 4 (Qualitative comparison of video generation).",
+        "arxiv_id": "http://arxiv.org/abs/2601.16214v1"
+    },
+    {
+        "Title": "PyraTok: Language-Aligned Pyramidal Tokenizer for Video Understanding and Generation",
+        "Field & Subfield": "Computer Vision & Natural Language Processing, Multimodal AI",
+        "Key Contributions": "- Novel Language-aligned Pyramidal Quantization (LaPQ) for multi-scale video representation.\n- Dual semantic alignment strategy for local/global text-video coherence.\n- Hierarchical semantic codebook loss for stable, semantically consistent quantization.\n- Achieves SOTA in video reconstruction, T2V generation, and zero-shot understanding tasks.",
+        "Methodology": "PyraTok uses a pretrained video VAE with a Language-aligned Pyramidal Quantization (LaPQ) module to discretize encoder features at multiple depths. It employs dual semantic alignment via multi-scale text-guided quantization (local) and an autoregressive objective (global). A shared binary codebook and hierarchical semantic codebook loss ensure consistency.",
+        "Strengths": "SOTA performance across 10 diverse video benchmarks, scaling to 4K/8K resolutions. Improves text-to-video quality, zero-shot video segmentation, temporal action localization, and video understanding. Mitigates posterior collapse and semantic drift with high codebook utilization.",
+        "Limitations": "The paper does not explicitly state limitations of PyraTok itself, but rather addresses limitations of prior methods (single-scale semantics, small codebooks, shallow language supervision leading to semantic drift). Implicitly, the complexity of its multi-stage training could be a limitation.",
+        "Datasets / Benchmarks": "WebVid-10M, COCO-Val, Droplet-10M, OpenVid-1M, UltraVideo, YouTube-VIS 2021, OVIS, THUMOS14, ActivityNet v1.3, MVBench, Kinetics, UCF-101, MCL-JCV.",
+        "Results Summary": "PyraTok achieves SOTA in video reconstruction (e.g., +10.51% PSNR on WebVid-10M), T2V generation (9-22 pts FVD reduction), and zero-shot tasks: +68.8% mAP on YouTube-VIS and +217.9% mAP on OVIS for segmentation, +5.75 mAP for action localization, and 86.03% accuracy on MVBench.",
+        "Why It Matters": "PyraTok advances video understanding and generation by creating semantically rich, multi-scale discrete video tokens that align tightly with language. This enables more precise, coherent, and controllable video AI systems, crucial for high-fidelity content creation and complex multimodal reasoning.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Table 1 (Reconstruction Quality), Table 3 (Video Segmentation), Table 4 (Action Localization), Table 5 (Video Understanding), Figure 3 (Architecture Overview), Figure 5 (Reconstruction Comparison).",
+        "arxiv_id": "http://arxiv.org/abs/2601.16210v1"
+    },
+    {
+        "Title": "Why Can't I Open My Drawer? Mitigating Object-Driven Shortcuts in Zero-Shot Compositional Action Recognition",
+        "Field & Subfield": "Computer Vision, Action Recognition",
+        "Key Contributions": "• Identified object-driven verb shortcuts as core ZS-CAR failure.\n• Diagnosed ZS-CAR evaluation protocol limitations, proposing unbiased metrics.\n• Introduced RCORE, a framework to mitigate shortcut learning and improve generalization.",
+        "Methodology": "Proposed RCORE framework with: (i) VOCAMix (composition-aware augmentation) to diversify verb-object combinations; (ii) Temporal Order Regularization Loss (TORC) to enforce temporal-grounded verb learning; (iii) Margin loss to penalize frequent-but-incorrect predictions.",
+        "Strengths": "RCORE significantly improves unseen composition accuracy, reduces reliance on co-occurrence bias, achieves positive compositional gaps, and learns robust, temporally grounded verb representations across datasets.",
+        "Limitations": "The paper primarily diagnoses limitations of existing ZS-CAR models (data sparsity, asymmetric learning difficulty, flawed evaluation). It doesn't explicitly discuss new limitations introduced by RCORE.",
+        "Datasets / Benchmarks": "Sth-com (Something-Something V2, Something-Else), EK100-com (newly curated from EPIC-KITCHENS-100).",
+        "Results Summary": "RCORE outperforms SOTA (C2C) on Sth-com & EK100-com in unseen composition accuracy (e.g., +1.89% H.M. on Sth-com), achieves positive compositional gaps where baselines fail, and reduces False Co-occurrence Prediction.",
+        "Why It Matters": "Addresses a critical flaw in compositional video understanding, leading to AI models that genuinely reason compositionally instead of relying on shortcuts, crucial for robust and generalizable action recognition.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Shortcut illustration), Figure 2 (Object-driven shortcut diagnosis), Figure 5 (RCORE's impact on FCP & temporal sensitivity), Table 2 & 3 (Sth-com & EK100-com results).",
+        "arxiv_id": "http://arxiv.org/abs/2601.16211v1"
     }
 ]
