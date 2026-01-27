@@ -874,5 +874,47 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (Shortcut illustration), Figure 2 (Object-driven shortcut diagnosis), Figure 5 (RCORE's impact on FCP & temporal sensitivity), Table 2 & 3 (Sth-com & EK100-com results).",
         "arxiv_id": "http://arxiv.org/abs/2601.16211v1"
+    },
+    {
+        "Title": "MEGnifying Emotion: Sentiment Analysis from Annotated Brain Data",
+        "Field & Subfield": "Neuroscience & Machine Learning (MEG, NLP)",
+        "Key Contributions": "- Novel method to annotate existing MEG datasets with sentiment labels via pre-trained NLP models.\n- Proof-of-concept for directly decoding sentiment from MEG brain activity.\n- Demonstrated improved balanced accuracy over baseline using deep learning for Brain-to-Sentiment.",
+        "Methodology": "Pre-trained Text-to-Sentiment models (CardiffNLP selected) labeled text from audiobooks aligned with MEG data. Force-alignment linked sentiment labels to brain recordings. MLP and LSTM models were trained on MEG data to predict sentiment probabilities.",
+        "Strengths": "Addresses a critical gap in sentiment-labeled MEG datasets. Proposes an objective, reproducible labeling method using NLP. Validates direct sentiment decoding from brain activity, offering a new avenue for understanding emotion.",
+        "Limitations": "Small dataset (3 subjects, 30 hrs). Class imbalance biased accuracy. Vague sentiment labels. Limited model architectures explored (MLP, LSTM). No interpretability analysis. Doesn't account for individual differences.",
+        "Datasets / Benchmarks": "MEG dataset from *The Adventures of Sherlock Holmes* (Armeni et al., 2022). Pre-trained sentiment models: CardiffNLP, FiniteAutomata, LXYuan, NickWong. Baseline: 33.3% balanced accuracy.",
+        "Results Summary": "LSTM (35.745% balanced accuracy) and MLP (35.878%) outperformed baseline (33.333%). LSTM showed more consistent results (lower dispersion, higher t-statistic), indicating potential for sequential models in MEG data.",
+        "Why It Matters": "Enables new research into emotional processing in the brain by creating sentiment-labeled neuroimaging data. Opens pathways for brain-computer interfaces that decode emotional states, deepening understanding of the human experience.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Table 2 (Brain-to-Sentiment results), Figure 2 (Balanced accuracy distribution)",
+        "arxiv_id": "2601.18792v1"
+    },
+    {
+        "Title": "Reuse your FLOPs: Scaling RL on Hard Problems by Conditioning on Very Off-Policy Prefixes",
+        "Field & Subfield": "Reinforcement Learning; Large Language Models; Reasoning",
+        "Key Contributions": "- Introduces PrefixRL: conditions on successful off-policy prefixes for on-policy RL, avoiding instabilities.\n- Proves PrefixRL is objective-consistent & more sample-efficient than standard RL.\n- Discovers 'back-generalization': training on prefixed problems improves no-prefix performance.\n- Shows PrefixRL learns strategies beyond those in prefixes & maintains stable training.",
+        "Methodology": "PrefixRL extracts prefixes from correct off-policy traces (via rejection sampling) & appends them to original problems, creating 'prefixed problems.' On-policy RL is then run on both original & prefixed problems, masking gradients on the prefix. This guides exploration & boosts learning signal.",
+        "Strengths": "Theoretically consistent & more sample-efficient. Achieves faster learning & higher final rewards on hard problems. Transfers gains to held-out benchmarks. More stable training, preserves entropy, and effective even with off-policy prefixes from different model families.",
+        "Limitations": "Cross-family prefix sourcing is less effective if the source model is weak or prefixes don't align well with target model's internal representations. Back-generalization can be slower with very long prefixes or severe train/test mismatch.",
+        "Datasets / Benchmarks": "Hard training problems (1k from DAPO & OMNI-MATH levels 6-8). Held-out benchmarks: AIME '25, HMMT '25, IMO-AnswerBench. Llama3.1-8B-instruct & Qwen3-4B-instruct models.",
+        "Results Summary": "PrefixRL achieves same training reward 2x faster than strong baselines (SFT+RL) & increases final reward by 3x. Improves training accuracy >45% (Llama) & >30% (Qwen). Boosts pass@1 on AIME '25 by 12% absolute.",
+        "Why It Matters": "Addresses the challenge of RL stalling on hard LLM reasoning tasks by effectively reusing 'wasted' compute from prior sampling. Improves RL sample efficiency and stability, making LLM training more practical and scalable for complex problem-solving.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 2 (Compute-matched performance), Figure 5 (Back-generalization across prefix lengths), Figure 6 (Strategy discovery beyond prefix), Figure 10 (Held-out benchmark results).",
+        "arxiv_id": "2601.18795v1"
+    },
+    {
+        "Title": "ctELM: Decoding and Manipulating Embeddings of Clinical Trials with Embedding Language Models",
+        "Field & Subfield": "Biomedical NLP & Machine Learning, Interpretable AI",
+        "Key Contributions": "• First open-source ELM architecture/training framework.\n• Expert-validated dataset for clinical trials.\n• ctELM model for interpreting/generating clinical trial abstracts.\n• Ablation studies for optimal ELM training.",
+        "Methodology": "Aligns Llama 3.1-8B-Instruct LLM to clinical trial embeddings (bge-large-en-v1.5) via a 2-layer MLP adapter. Trained on 5 diverse tasks (abstract decode, section, summary, commonality, differences) using LoRA. Evaluated via Semantic Consistency (SC) and human experts. Uses Concept Activation Vectors (CAVs) for controlled generation.",
+        "Strengths": "ctELM consistently outperforms Vec2Text baselines in semantic consistency. Generates plausible clinical trial abstracts that can deceive human experts. Responsive to clinically meaningful embedding directions (age, sex). Provides an open-source framework, enhancing accessibility.",
+        "Limitations": "Domain-specific to clinical abstracts; generalizability to other biomedical data/domains is unclear. Vec2Text baseline used a smaller T5 model. Ethical concerns regarding synthetic data generation for real-world medical studies.",
+        "Datasets / Benchmarks": "PubMed 200K RCT dataset for training. Synthetic data for plain language summaries, commonality, and difference tasks generated by GPT-40-mini. Embedding models: BAAI/bge-large-en-v1.5, Alibaba-NLP/gte-large-en-v1.5, NeuML/pubmedbert-base-embeddings.",
+        "Results Summary": "ctELM achieved 0.87 SC for abstract reconstruction (vs. 0.82 for best Vec2Text). It fooled human experts 44% of the time on plausibility. Generated abstracts were responsive to age/sex CAV modifications while maintaining high SC. Performance improved with data scale.",
+        "Why It Matters": "Enhances transparency and interpretability of embedding spaces. Enables controlled, language-based generation of novel, plausible clinical trial hypotheses. Opens avenues for ideation and discovery in biomedical research and makes ELMs more accessible.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Table 2 (Semantic Consistency for 5 tasks), Table 3 (Human expert win rates), Figures 2 & 3 (CAV effects on subject age/sex).",
+        "arxiv_id": "http://arxiv.org/abs/2601.18796v1"
     }
 ]
