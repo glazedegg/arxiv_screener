@@ -916,5 +916,33 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Table 2 (Semantic Consistency for 5 tasks), Table 3 (Human expert win rates), Figures 2 & 3 (CAV effects on subject age/sex).",
         "arxiv_id": "http://arxiv.org/abs/2601.18796v1"
+    },
+    {
+        "Title": "DuwatBench: Bridging Language and Visual Heritage through an Arabic Calligraphy Benchmark for Multimodal Understanding",
+        "Field & Subfield": "Artificial Intelligence; Computer Vision & Natural Language Processing",
+        "Key Contributions": "- Introduces DuwatBench: 1.27K curated samples across 6 Arabic calligraphy styles & 1,475 unique words.\n- Provides detection-level annotations for word localization, complementing existing classification/OCR datasets.\n- Establishes systematic baselines on 13 state-of-the-art Arabic & multilingual LMMs, revealing failure cases.",
+        "Methodology": "Dataset collected from digital archives & community repositories, filtered for quality, then manually transcribed by 3 native Arabic speakers with bounding box annotations. A two-tier verification by calligraphy experts ensured accuracy. Models evaluated using CER, WER, chrF, ExactMatch, NLD metrics.",
+        "Strengths": "First benchmark integrating diverse calligraphy styles, semantic depth, real-world artistic backgrounds, and detection-level annotations. Enables evaluation of LMMs on visually complex Arabic script beyond plain text, fostering culturally-grounded AI.",
+        "Limitations": "Dataset size is smaller (1.27K samples) compared to general-purpose Arabic corpora, which might limit generalizability. Some styles are underrepresented, impacting model robustness.",
+        "Datasets / Benchmarks": "DuwatBench (new); compared against existing Calliar, HICMA, Allaf, Adam, Sal&King, Kaoudja, MOJ-DB. Evaluated: Llava-v1.6, EasyOCR, InternVL3, Qwen2.5-VL (7B/72B), Gemma-3-27B-IT, trocr-base-arabic, MBZUAI/AIN, Claude-sonnet-4.5, Gemini (1.5/2.5-flash), GPT-4o (mini/full).",
+        "Results Summary": "Gemini-2.5-Flash (closed-source) and Gemma-3-27B-IT (open-source) perform best. Traditional OCR and general LMMs struggle with stylized calligraphy, highlighting a gap. Performance drops significantly with increasing calligraphic complexity (e.g., Kufic, Diwani styles are harder than Naskh, Ruq'ah). Bounding box guidance improves recognition.",
+        "Why It Matters": "Addresses a critical gap in multimodal understanding of Arabic calligraphy, a rich cultural heritage. Promotes responsible AI that is inclusive of non-Latin scripts and artistic forms. Supports applications in cultural preservation, education, and digital humanities.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (DuwatBench Taxonomy), Table 1 (Dataset Comparison), Table 2 (Overall Model Performance), Table 3 (WER per Style), Figure 5 (Qualitative Comparison).",
+        "arxiv_id": "http://arxiv.org/abs/2601.19898v1"
+    },
+    {
+        "Title": "SELF-DISTILLATION ENABLES CONTINUAL LEARNING",
+        "Field & Subfield": "Artificial Intelligence & Machine Learning / Continual Learning",
+        "Key Contributions": "- Introduces Self-Distillation Fine-Tuning (SDFT) for on-policy learning from demonstrations.\n- Achieves higher new-task accuracy and substantially reduces catastrophic forgetting.\n- Enables stable accumulation of multiple skills over time without performance regression.\n- Allows models to acquire reasoning skills without explicit reasoning traces.",
+        "Methodology": "SDFT uses an in-context learning model as its own teacher. The student model (conditioned only on task input) is distilled from the teacher (same model, conditioned on task + expert demonstration) via on-policy updates minimizing reverse KL divergence. This generates on-policy training signals.",
+        "Strengths": "Significantly reduces catastrophic forgetting compared to SFT. Improves generalization both in- and out-of-distribution. Enables models to acquire new skills & knowledge without explicit reward functions or reasoning traces. Scales well with model size due to stronger ICL abilities.",
+        "Limitations": "Higher computational cost (2.5x FLOPs, 4x wall-clock time vs. SFT). Student can inherit spurious linguistic patterns from teacher. Relies critically on base model's in-context learning capabilities. Struggles with fundamental shifts in model's generation patterns.",
+        "Datasets / Benchmarks": "Skill Learning: SciKnowEval (Science Q&A), ToolAlpaca (Tool Use), HuatuoGPT-01 (Medical). Knowledge Acquisition: Custom Wikipedia corpus (2025 events). Prior Capabilities: HellaSwag, TruthfulQA, MMLU, IFEval, Winogrande, HumanEval.",
+        "Results Summary": "SDFT consistently outperforms SFT, achieving higher new-task accuracy while reducing catastrophic forgetting. It enables stable multi-task skill accumulation, unlike SFT's oscillatory behavior. SDFT effectively integrates new factual knowledge and retains reasoning depth without explicit reasoning data.",
+        "Why It Matters": "SDFT provides a practical path for foundation models to continually learn new skills and knowledge from demonstrations post-deployment, addressing a fundamental challenge in AI development by mitigating catastrophic forgetting and enabling more adaptable, general-purpose models.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (SDFT vs SFT performance), Figure 3 (Sequential learning comparison), Figure 4 (Pareto efficiency across tasks), Table 1 (Knowledge acquisition results), Table 5 (Skill Learning task results).",
+        "arxiv_id": "http://arxiv.org/abs/2601.19897v1"
     }
 ]
