@@ -944,5 +944,47 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (SDFT vs SFT performance), Figure 3 (Sequential learning comparison), Figure 4 (Pareto efficiency across tasks), Table 1 (Knowledge acquisition results), Table 5 (Skill Learning task results).",
         "arxiv_id": "http://arxiv.org/abs/2601.19897v1"
+    },
+    {
+        "Title": "Evolutionary Strategies lead to Catastrophic Forgetting in LLMs",
+        "Field & Subfield": "Artificial Intelligence & Large Language Models",
+        "Key Contributions": "• ES achieves comparable performance to GRPO on math/reasoning tasks.\n• ES training causes significant catastrophic forgetting of prior abilities.\n• ES updates are less sparse with orders of magnitude larger L2 norms than GRPO.",
+        "Methodology": "Empirical comparison of Evolutionary Strategies (ES) and Group Relative Policy Optimization (GRPO) for LLM fine-tuning. Analyzed forgetting curves, parameter update sparsity, and Frobenius norms over iterations on multiple math & reasoning benchmarks.",
+        "Strengths": "Comprehensive empirical analysis of ES for LLM fine-tuning. Highlights critical issues (catastrophic forgetting) overlooked in prior ES works. Provides insights into update characteristics (norm, sparsity) causing forgetting. Open-sourced code & models.",
+        "Limitations": "ES has inherent randomness, leading to high variance; larger population size could reduce this. Forgetting analysis focused on one prior task, not fully capturing multi-faceted performance loss.",
+        "Datasets / Benchmarks": "Countdown, GSM8K, MATH, Olympiad-Bench (new tasks). HellaSwag (prior task). Models: Qwen2.5-1.5B-Instruct, Llama-3.2-1B-Instruct.",
+        "Results Summary": "ES reaches comparable performance to GRPO (within 3-4% accuracy) on new tasks. However, ES causes significant catastrophic forgetting of prior abilities, unlike GRPO. ES updates have orders of magnitude larger L2 norms and are much less sparse than GRPO updates.",
+        "Why It Matters": "Identifies a critical flaw in current Evolutionary Strategies for continual learning in LLMs: catastrophic forgetting. Despite memory efficiency, ES leads to severe model degradation, hindering its adoption for online adaptation and task generalization. Informs future research on robust gradient-free methods.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Table 1 (Peak performance of ES vs. GRPO), Figure 1 (ES catastrophic forgetting on HellaSwag), Figure 3 (ES updates have higher Frobenius norm), Figure 4 (ES updates are less sparse).",
+        "arxiv_id": "2601.20861v1"
+    },
+    {
+        "Title": "FreeFix: Boosting 3D Gaussian Splatting via Fine-Tuning-Free Diffusion Models",
+        "Field & Subfield": "Computer Vision & Novel View Synthesis, 3D Reconstruction",
+        "Key Contributions": "- Fine-tuning-free approach using pretrained image DMs for 3DGS extrapolation.\n- Interleaved 2D-3D refinement for multi-frame consistency.\n- Per-pixel confidence mask via Fisher information for targeted artifact removal.\n- Multi-level confidence maps for denoising guidance.",
+        "Methodology": "Interleaved 2D-3D refinement strategy, applying pretrained Image Diffusion Models (IDMs) without fine-tuning. Utilizes Fisher information-derived per-pixel confidence masks and multi-level confidence maps for denoising guidance, combined with an affine transform to mitigate color bias.",
+        "Strengths": "Achieves SOTA/comparable performance without fine-tuning DMs, strong generalization across diverse datasets, ensures multi-frame consistency, computationally efficient compared to Video DMs.",
+        "Limitations": "May fail with excessive artifacts lacking credible guidance. 3DGS updating process is relatively slow and convergence can be challenging across many refining steps.",
+        "Datasets / Benchmarks": "LLFF [18], Mip-NeRF 360 [1], Waymo [29] for evaluation. Uses SDXL [22] and Flux [12] as IDM backbones.",
+        "Results Summary": "Outperforms/matches fine-tuned methods (Difix3D+) on LLFF/MipNeRF 360, comparable on Waymo, with strong generalization. Confidence guidance significantly improves over opacity masks, demonstrating higher fidelity.",
+        "Why It Matters": "Addresses artifact generation in extrapolated views for 3DGS, enabling practical NVS from sparse inputs. Leverages powerful DMs without costly fine-tuning, enhancing realism for AR/VR, robotics, and autonomous driving applications.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Overview), Figure 5 (Qualitative Comparisons), Table 1 (Quantitative Comparison with Baselines).",
+        "arxiv_id": "2601.20857v1"
+    },
+    {
+        "Title": "SokoBench: Evaluating Long-Horizon Planning and Reasoning in Large Language Models",
+        "Field & Subfield": "Artificial Intelligence & Automated Planning, Large Language Models",
+        "Key Contributions": "• Proposes SokoBench, a simplified Sokoban benchmark for long-horizon planning.\n• Systematically assesses planning abilities of SOTA LRMs (DeepSeek R1, GPT-5 models).\n• Reveals consistent planning degradation in LRMs for tasks >25 moves.\n• Shows modest improvements with PDDL parsing/solving tools, highlighting architectural limits.",
+        "Methodology": "Two setups: 1) 1-shot inference for LRMs to solve simplified Sokoban puzzles (linear corridor, 1 box, 1 goal) based on ASCII maps. 2) LLM-Modulo, where LRMs generate PDDL problems solved by external PDDL tools (parsers, solvers). Evaluated with Accuracy, Prefix Accuracy, and Manhattan Distance.",
+        "Strengths": "Systematic assessment in a controlled environment isolating long-horizon planning; novel simplified Sokoban benchmark (SokoBench) publicly released; rigorous evaluation with multiple metrics and models; highlights fundamental architectural limitations.",
+        "Limitations": "Narrow scope (1-box linear corridors); doesn't cover full multi-box Sokoban complexity/deadlocks; sensitivity to prompt formatting; inherent instability in API-based evaluations; potential pretraining contamination.",
+        "Datasets / Benchmarks": "SokoBench (new, publicly released on HuggingFace); PlanBench (referenced for related work).",
+        "Results Summary": "LRMs show consistent planning degradation for tasks requiring >25 moves, attributed to internal counting issues & state tracking failures. LLM-Modulo with PDDL tools offers only modest improvements, confirming LLMs' inherent spatial grounding and constraint representation limitations.",
+        "Why It Matters": "Provides critical insights into fundamental long-horizon planning and reasoning limitations of LRMs, even in simplified settings. Suggests architectural innovations beyond test-time scaling are needed for robust planning capabilities, particularly in state tracking and constraint adherence.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 3 (Accuracy & Reasoning Tokens for LRM experiment), Figure 5 (Prefix Accuracy & Manhattan Distance), Figure 6 (LLM-Modulo results for GPT-5-mini)",
+        "arxiv_id": "http://arxiv.org/abs/2601.20856v1"
     }
 ]
