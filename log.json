@@ -986,5 +986,32 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 3 (Accuracy & Reasoning Tokens for LRM experiment), Figure 5 (Prefix Accuracy & Manhattan Distance), Figure 6 (LLM-Modulo results for GPT-5-mini)",
         "arxiv_id": "http://arxiv.org/abs/2601.20856v1"
+    },
+    {
+        "Title": "Discovering Hidden Gems in Model Repositories",
+        "Field & Subfield": "Machine Learning, Model Discovery & Evaluation",
+        "Key Contributions": "• Identified \"hidden gems\": unpopular fine-tuned models outperforming popular ones across tasks.\n• Formulated model discovery as a Multi-Armed Bandit problem.\n• Introduced an accelerated Sequential Halving algorithm (50x faster).\n• Showed model documentation is often missing/irrelevant.",
+        "Methodology": "Formulated model discovery as a Fixed-Budget Best-Arm Identification problem. Adapted Sequential Halving with 1) Correlated Sampling for variance reduction and 2) Aggressive Elimination Schedule for faster pruning of low-quality models.",
+        "Strengths": "• Significantly accelerates model discovery (>50x speedup).\n• Consistently identifies superior, overlooked models (\"hidden gems\").\n• Improves average model performance (>4.5%).\n• Robust across various model families & tasks.",
+        "Limitations": "Still requires evaluating models (not zero-cost). Focused on predefined tasks; new tasks require re-evaluation. Alternative weight-space learning is currently limited to small-scale networks/benchmarks.",
+        "Datasets / Benchmarks": "RouterBench (aggregates ARC-C, Winogrande, MMLU, MBPP, GSM8K). Evaluated >2,000 models from Qwen2.5 (3B, 7B), Mistral-7B, Llama3.1-8B model trees.",
+        "Results Summary": "Discovered hidden gems achieving up to +40.1% performance gain (e.g., Llama 8B math +12.8%). Our method achieved >50x speedup, finding top-3 models with 50 queries/model and >4.5% avg. performance improvement.",
+        "Why It Matters": "Addresses the critical problem of model selection in vast repositories. Enables users to find truly best-performing models instead of defaulting to popular, often suboptimal, choices, unlocking the potential of overlooked models.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Table 1 (Model Discovery Results), Table 5 (Ablation Studies), Figure 1 (Hidden Gems & Repository Inefficiency)",
+        "arxiv_id": "2601.22157v1"
+    },
+    {
+        "Title": "RedSage: A Cybersecurity Generalist LLM",
+        "Field & Subfield": "Artificial Intelligence & Cybersecurity",
+        "Key Contributions": "- Curated 11.8B-token cybersecurity pretraining data (CyberFineWeb, RedSage-Seed).\n- Designed agentic augmentation for 266K multi-turn SFT dialogues (RedSage-Conv).\n- Introduced RedSage-Bench: 30K MCQs & 240 open-ended Q&A for knowledge, skills, tools.\n- Developed RedSage, an open-source 8B LLM, achieving SOTA on cybersecurity & general benchmarks.",
+        "Methodology": "Multi-stage training: (1) Continual pretraining on filtered web data (CyberFineWeb) & curated resources (RedSage-Seed). (2) Supervised fine-tuning via agentic augmentation (RedSage-Conv) & general instruction data. (3) Direct Preference Optimization (DPO). Evaluated on custom and established benchmarks.",
+        "Strengths": "Open-source, locally deployable 8B model. Comprehensive evaluation across knowledge, skills, and tools. Agentic augmentation creates high-quality, diverse dialogues. Achieves SOTA on cybersecurity tasks while improving general reasoning, avoiding post-tuning degradation.",
+        "Limitations": "LLM-generated content in pipeline may propagate biases/inaccuracies. Inherent risk of misuse due to offensive security knowledge. Data transparency limited for some copyrighted materials used in curation.",
+        "Datasets / Benchmarks": "Custom: CyberFineWeb (11.7B tokens), RedSage-Seed (28.6K docs, 0.15B tokens), RedSage-Conv (266K multi-turn dialogues, 352M tokens), RedSage-Bench (30K MCQs, 240 Open-ended Q&A). External: CTI-Bench, CyberMetric, SECURE, MMLU, ARC-C, HellaSwag, TruthfulQA, GSM8K, IFEval.",
+        "Results Summary": "RedSage-8B-DPO achieved SOTA, surpassing baselines by +5.59 points on cybersecurity benchmarks and +5.05 points on Open LLM Leaderboard tasks, demonstrating enhanced domain expertise and general reasoning. Outperformed Qwen3-32B on general tasks despite smaller size.",
+        "Why It Matters": "Addresses the need for privacy-preserving, locally deployable, domain-adapted LLM assistants for cybersecurity operations. Provides comprehensive open-source resources (models, data, code) to accelerate research and fill skill gaps in a critical field.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (RedSage pipeline overview), Table 1 (Benchmark comparison), Table 3 (RedSage-Seed vs. RedSage-Conv stats), Table 4 (RedSage-MCQ results), Table 5 (Cybersecurity Benchmark results)."
     }
 ]
