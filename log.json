@@ -1013,5 +1013,33 @@
         "Why It Matters": "Addresses the need for privacy-preserving, locally deployable, domain-adapted LLM assistants for cybersecurity operations. Provides comprehensive open-source resources (models, data, code) to accelerate research and fill skill gaps in a critical field.",
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (RedSage pipeline overview), Table 1 (Benchmark comparison), Table 3 (RedSage-Seed vs. RedSage-Conv stats), Table 4 (RedSage-MCQ results), Table 5 (Cybersecurity Benchmark results)."
+    },
+    {
+        "Title": "MEG-XL: Data-Efficient Brain-to-Text via Long-Context Pre-Training",
+        "Field & Subfield": "Machine Learning, Neuroscience; Brain-Computer Interfaces, Neural Decoding, Self-supervised Learning",
+        "Key Contributions": "- Scaled neural pre-training to 2.5-minute MEG contexts (5-300x longer).\n- Achieved data-efficient transfer for cross-subject generalization with less data.\n- Demonstrated improved brain-to-text & zero-shot prediction via learned hierarchical attention patterns.",
+        "Methodology": "MEG-XL uses masked token prediction for self-supervised pre-training on 2.5 min MEG samples. It employs a BioCodec tokenizer and a criss-cross transformer for efficient long-context modeling. Fine-tuned for word decoding by predicting T5-large word embeddings.",
+        "Strengths": "Achieves SOTA data efficiency in low-data regimes, outperforming supervised & brain FMs. Leverages 5-300x longer neural contexts. Improves cross-subject transfer. Reveals learned hierarchical attention. Uses non-invasive MEG for scalability & safety in BCI.",
+        "Limitations": "Primarily focuses on perceived speech, not imagined. Evaluated on a limited 50-word vocabulary. GPU VRAM constrains context length scaling. Understanding of learned neural structure is unresolved. Potential aliasing artifacts from preprocessing.",
+        "Datasets / Benchmarks": "Pre-training: CamCAN, MOUS, SMN4Lang (~300 hrs, ~800 subjects). Evaluation: MEG-MASC, Armeni, LibriBrain. Benchmarks: SOTA supervised method (d'Ascoli et al., 2025) & brain FMs (BioCodec, EEGPT, BIOT, BBL, BrainOmni, LaBraM).",
+        "Results Summary": "MEG-XL, pre-trained on 2.5 min MEG contexts, achieves SOTA performance in brain-to-text decoding, especially with limited data. Outperforms brain FMs & matches supervised methods. Longer pre-training context improves representations for word decoding via learned hierarchical attention.",
+        "Why It Matters": "Enables data-efficient brain-to-text interfaces for paralyzed patients with minimal training data. Advances non-invasive BCI by showing long-context pre-training can substitute for deep individual subject data, accelerating clinical deployment. Offers insights into brain encoding.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (MEG-XL overview, context length, data-efficiency), Figure 3 (Pre-training enables generalization), Table 1 (Foundation Model comparison), Figure 4 (Longer context improves representations), Figure 5 (Zero-shot prediction & attention patterns).",
+        "arxiv_id": "http://arxiv.org/abs/2602.02494v1"
+    },
+    {
+        "Title": "PixelGen: Pixel Diffusion Beats Latent Diffusion with Perceptual Loss",
+        "Field & Subfield": "Computer Vision; Generative Models, Diffusion Models, Image Synthesis",
+        "Key Contributions": "Proposes PixelGen, an end-to-end pixel diffusion with LPIPS for local & P-DINO for global semantics. Achieves SOTA FID 5.11 on ImageNet-256 (no CFG, 80 epochs), outperforming latent diffusion. Simplifies generation by removing VAEs & latent representations.",
+        "Methodology": "End-to-end pixel diffusion predicting clean image. Incorporates LPIPS loss for local textures and P-DINO (DINOv2-based) for global semantics. Uses a flow-matching objective and a noise-gating strategy to apply perceptual losses only at low-noise steps.",
+        "Strengths": "Simpler pipeline (no VAEs/latent representations, no artifacts), achieves superior image quality (FID, IS), faster training convergence. Enhances local texture fidelity & global semantic consistency. Provides a powerful, end-to-end generative paradigm.",
+        "Limitations": "Has a performance gap with *leading* latent models *with* CFG. Perceptual losses can reduce sample diversity if applied at high-noise steps. Future work on pixel-based samplers, CFG methods, and incorporating richer perceptual objectives (e.g., adversarial).",
+        "Datasets / Benchmarks": "ImageNet-256 (class-to-image), GenEval (object-focused text-to-image), pretraining on 36M images + 60k instruction-tuning data for text-to-image.",
+        "Results Summary": "Achieved FID 5.11 on ImageNet-256 (no CFG, 80 epochs), surpassing REPA-XL/2 (FID 5.90, 800 epochs). Achieved GenEval 0.79 for text-to-image, matching/surpassing large-scale models. Outperforms other pixel diffusion methods.",
+        "Why It Matters": "PixelGen redefines the generative AI pipeline by proving pixel diffusion can outperform VAE-based latent models without their limitations. It offers a simpler, more powerful, and artifact-free approach to high-fidelity image synthesis.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig 1 (PixelGen overview vs latent diffusion), Fig 4 (Perceptual supervision effect), Table 1 (ImageNet w/o CFG comparison), Table 4 (Text-to-Image GenEval results).",
+        "arxiv_id": "http://arxiv.org/abs/2602.02493v1"
     }
 ]
