@@ -1041,5 +1041,33 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Fig 1 (PixelGen overview vs latent diffusion), Fig 4 (Perceptual supervision effect), Table 1 (ImageNet w/o CFG comparison), Table 4 (Text-to-Image GenEval results).",
         "arxiv_id": "http://arxiv.org/abs/2602.02493v1"
+    },
+    {
+        "Title": "Contrastive Continual Learning for Model Adaptability in Internet of Things",
+        "Field & Subfield": "Machine Learning; Continual Learning for IoT",
+        "Key Contributions": "- IoT-oriented architecture for on-device, edge, and cloud CCL. - Formalized IoT CCL objectives & training methodologies. - Summarized core method families: replay, distillation, theory. - Recommended evaluation protocols & metrics for IoT. - Identified open problems (tabular/time-series, federated drift, privacy, energy-aware learning).",
+        "Methodology": "Comprehensive review analyzing existing Contrastive Continual Learning (CCL) methods. Proposes an IoT-specific three-tier architecture & formalizes objectives. Recommends evaluation protocols, adapting ML concepts to IoT constraints & modalities.",
+        "Strengths": "Addresses IoT challenges: non-stationary data, resource constraints (TinyML), privacy, heterogeneous data. Leverages CCL for robustness & sample efficiency. Offers structured overview of methods, architecture, & evaluation for practical IoT CCL deployment.",
+        "Limitations": "Vision-centric benchmarks; difficulties defining augmentations for tabular/time-series. Federated learning challenges (client drift, communication). Prototype staleness & abrupt drift handling are limitations. Lack of standardized IoT CCL benchmarks.",
+        "Datasets / Benchmarks": "No new datasets. Paper highlights current vision-centric benchmarks' inadequacy for IoT. Emphasizes need for realistic IoT drift benchmarks, particularly for tabular/time-series data, to advance research.",
+        "Results Summary": "Synthesizes current CCL knowledge for IoT, proposing a three-tier architecture (device, edge, cloud) with suitable methods (replay, distillation, regularization) for each tier. Defines IoT-specific evaluation metrics, emphasizing resource awareness & drift detection.",
+        "Why It Matters": "Crucial for enabling robust, adaptive, & resource-efficient ML in dynamic IoT. Addresses critical challenges like concept drift, TinyML constraints, & privacy. Provides a blueprint for practical, continually learning IoT systems across various applications.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig. 1: Three-tier IoT CCL Architecture. Table I: Taxonomy of CCL Methods for IoT Streams. Table IV: Deployment Trade-Offs for IoT CCL (resources, training, memory, recommended choices).",
+        "arxiv_id": "http://arxiv.org/abs/2602.04881v1"
+    },
+    {
+        "Title": "Reinforced Attention Learning",
+        "Field & Subfield": "Artificial Intelligence / Multimodal Large Language Models (MLLMs)",
+        "Key Contributions": "- Proposes Reinforced Attention Learning (RAL) for optimizing internal attention distributions via policy gradients.\n- Introduces On-Policy Attention Distillation for transferring latent attention behaviors.\n- Demonstrates consistent performance gains over GRPO and other baselines on diverse image/video VQA.",
+        "Methodology": "RAL is a policy-gradient framework optimizing internal attention distributions (where to attend) instead of output tokens (what to generate). It uses Advantage-Weighted Attention Divergence and Jensen-Shannon Divergence. On-Policy Attention Distillation combines this with standard KD for student models.",
+        "Strengths": "Promotes effective information allocation & grounding in complex multimodal inputs. Provides more stable & generalizable training signals than token-level RL. Mitigates performance degradation seen in some token-level RL methods. Scalable for high-fidelity multimodal understanding.",
+        "Limitations": "The paper doesn't explicitly state limitations; however, the computational cost of RL training (120 hours on 8x H100s for RL stage) could be a practical limitation. The focus is on attention weights, without exploring other internal structures.",
+        "Datasets / Benchmarks": "VIDEO-R1 (for SFT/RL training). Evaluation on: LongVideoBench, NExTQA, VideoMME, VideoMMMU, LVBench, MVBench, TempCompass (Video QA); V* Bench, MMMU Pro, MME, MuirBench, ChartQA, VizWiz, Blink, CVBench (Image QA).",
+        "Results Summary": "RAL consistently outperforms GRPO and base MLLMs across most image and video VQA benchmarks, showing significant gains on V* (+5.8), MME (+94.1), ChartQA (+2.8). Attention distillation further improves performance over standard KD.",
+        "Why It Matters": "Shifts MLLM post-training from outcome-based to process-aware optimization, directly improving visual grounding and reasoning. Offers a principled, general alternative to conventional RLHF, enabling more robust and grounded multimodal intelligence.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (RAL policy concept), Table 2 (Video VQA results), Table 3 (Image VQA results), Figure 3 (RAL scaling with resolution/frames).",
+        "arxiv_id": "http://arxiv.org/abs/2602.04884v1"
     }
 ]
