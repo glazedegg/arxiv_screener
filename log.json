@@ -1069,5 +1069,47 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (RAL policy concept), Table 2 (Video VQA results), Table 3 (Image VQA results), Figure 3 (RAL scaling with resolution/frames).",
         "arxiv_id": "http://arxiv.org/abs/2602.04884v1"
+    },
+    {
+        "Title": "Predicting Camera Pose from Perspective Descriptions for Spatial Reasoning",
+        "Field & Subfield": "Computer Vision & Natural Language Processing, Multimodal AI, Spatial Reasoning",
+        "Key Contributions": "- Pose-aware multi-image MLLM framework (CAMCUE) for geometry-aware fusion.\n- Maps natural language viewpoint descriptions to explicit target camera poses.\n- Synthesizes pose-conditioned target-view images as evidence for reasoning.\n- Curates CAMCUE-DATA for perspective-shift reasoning.",
+        "Methodology": "CAMCUE framework: encodes multi-view images with camera poses (Plücker encoder for pixel-aligned camera tokens), fuses pose into visual features, predicts target camera pose from language using a Pose Adapter, and synthesizes a target-view image via an image decoder for enhanced spatial reasoning.",
+        "Strengths": "Substantial accuracy gains (9.06% overall) on perspective-shift reasoning. High target pose prediction accuracy (>90% rotation, >90% translation within thresholds). Significantly reduces inference time (256.6s to 1.45s per example). Transfers well to general multi-image benchmarks.",
+        "Limitations": "Focuses on QA, not embodied planning/action. Synthesized imagination can be noisy or ambiguous, potentially hurting reasoning for small objects or fine-grained relations. Future work needed on reliability-aware strategies for imagination use.",
+        "Datasets / Benchmarks": "CAMCUE-DATA (27,668 training, 508 test instances, multi-view images, poses, lang descriptions, QA). Evaluated on MindCube Tiny, MMSI. Derived from ScanNet splits.",
+        "Results Summary": "CAMCUE improves overall accuracy by 9.06% on CAMCUE-DATA. Achieves >90% rotation accuracy (within 20°) and >90% translation accuracy (within 0.5) from language. Reduces inference time from 256.6s to 1.45s. Outperforms MindJourney baseline.",
+        "Why It Matters": "Enables MLLMs to perform robust perspective-shift spatial reasoning by explicitly grounding language-specified viewpoints to camera poses and synthesizing consistent imagined views. This is crucial for interactive AI in 3D environments.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (CAMCUE pipeline), Figure 2 (Architecture), Table 2 (Main Results), Table 4 (Pose Accuracy), Table 7 (Inference Time).",
+        "arxiv_id": "http://arxiv.org/abs/2602.06041v1"
+    },
+    {
+        "Title": "Pseudo-Invertible Neural Networks",
+        "Field & Subfield": "Artificial Intelligence & Inverse Problems; Neural Networks",
+        "Key Contributions": "• Defines Natural Non-Linear PInv via Bijective Completion. • Introduces SPNN, deep architecture for tractable non-linear PInv. • Generalizes Iterative Back-Projection to Non-Linear Back-Projection (NLBP) for zero-shot inverse problems. • Enables precise semantic control in generation.",
+        "Methodology": "Proposes Natural Non-Linear PInv via Bijective Completion. Introduces SPNN: a surjective NN with coupling blocks & auxiliary net to explicitly model PInv. Uses two-phase training (task then inverse learning) & integrates Non-Linear Back-Projection (NLBP) into diffusion for zero-shot inverse problem solving.",
+        "Strengths": "Provides a rigorous mathematical foundation for non-linear pseudo-inversion. SPNN architecture guarantees Penrose identities. Enables stable zero-shot inversion for complex non-linear degradations (e.g., classification). Allows precise semantic control over generative outputs without retraining.",
+        "Limitations": "PInv validity relies on auxiliary network expressivity. Assumes surjective forward operator (non-surjective is open). Solutions may inherit biases from training data. Acknowledges risks related to synthetic media/deepfakes due to image manipulation capabilities.",
+        "Datasets / Benchmarks": "CelebA-HQ dataset (256x256 resolution) for facial image semantic restoration and attribute-controlled generation experiments.",
+        "Results Summary": "Achieved 92.3% mean binary agreement for semantic reconstruction across 40 attributes on CelebA-HQ. Successfully hallucinates pre-images matching semantic constraints. Demonstrates diverse single & multi-attribute conditional generation. Ablation confirms NLBP necessity.",
+        "Why It Matters": "Generalizes Moore-Penrose PInv to non-linear deep NNs, establishing a rigorous algebraic framework for inversion. Provides principled tools for solving ill-posed non-linear inverse problems (e.g., semantic abstraction) in AI & scientific computing, bridging linear/non-linear theories.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "• Figure 1: SPNN Block Architecture (Forward/Inverse). • Figure 2: Reconstruction from Semantics. • Figure 3: Quantitative Attribute Reconstruction. • Figures 4 & 5: Single & Multi-Attribute Conditional Generation.",
+        "arxiv_id": "http://arxiv.org/abs/2602.06042v1"
+    },
+    {
+        "Title": "Shared LoRA Subspaces for almost Strict Continual Learning",
+        "Field & Subfield": "Artificial Intelligence; Parameter-Efficient Continual Learning",
+        "Key Contributions": "• Replay-free, (almost strict) continual learning via a shared, low-rank foundational subspace.\n• Enables continual learning from hybrid streams of data and LoRA adapters.\n• Achieves 100x parameter reduction & 281x memory savings.\n• Single Share model replaces hundreds of task-specific LoRA adapters.\n• Validated across diverse models/modalities (image, NLP, 3D pose, text-to-image).",
+        "Methodology": "Share learns & dynamically updates a single, shared low-rank subspace from LoRA adapters/data. It has three phases: Initialization (forms subspace via SVD), Continual Adaptation (refines subspace & learns temp basis vectors/coefficients), and Merging & Finetuning (integrates new knowledge analytically, minimizes forgetting).",
+        "Strengths": "Achieves up to 100x parameter & 281x memory reduction, maintaining performance comparable to jointly trained models. Replay-free, supports asynchronous learning. Versatile across modalities & models, enabling scalable lifelong learning.",
+        "Limitations": "Relies on a single backbone model type; cannot integrate multiple architectures in one task. Performance depends on initial adapter quality in adapter-only scenarios. Not yet capable of cross-task continual learning.",
+        "Datasets / Benchmarks": "Continual GLUE (MRPC, SST-2, CoLA, QNLI, RTE, STS-B), CIFAR-100, Food-101, Caltech-101, Flowers-102, Pascal3D+, Occluded Pascal3D+, HuggingFace LoRAs, Flux model for T2I.",
+        "Results Summary": "Share achieves 100x param reduction & 281x memory savings, outperforming other methods while matching non-CL LoRA. Shows low forgetting rates & evidence of backward knowledge transfer. Robust across NLU, image classification, 3D pose, and T2I generation tasks.",
+        "Why It Matters": "Offers a scalable, practical solution for lifelong learning in large-scale AI by dramatically reducing computational/memory resources. Promotes accessible, sustainable AI and enables federated/distributed learning paradigms for large pretrained models.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (CKA Similarity convergence), Figure 2 (Share method overview), Table 1 (Continual GLUE results), Table 2 (Image Classification comparison), Table 5 (LoRA-at-scale CL results).",
+        "arxiv_id": "2602.06043v1"
     }
 ]
