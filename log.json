@@ -1111,5 +1111,33 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (CKA Similarity convergence), Figure 2 (Share method overview), Table 1 (Continual GLUE results), Table 2 (Image Classification comparison), Table 5 (LoRA-at-scale CL results).",
         "arxiv_id": "2602.06043v1"
+    },
+    {
+        "Title": "Xo: Resource-Aware Robust Manipulation via Taming Distributional Inconsistencies",
+        "Field & Subfield": "Robotics, Machine Learning, Robust Manipulation, Imitation Learning",
+        "Key Contributions": "• Proposes Xo, a resource-efficient framework for robust long-horizon robotic manipulation.\n• Introduces Model Arithmetic for efficient merging of diverse policy distributions.\n• Develops Stage Advantage for stable, dense progress signals in multi-stage tasks.\n• Presents Train-Deploy Alignment (DAgger, augmentation, smoothing) to bridge train-test gaps.\n• Achieves ~250% higher success rate vs SOTA.",
+        "Methodology": "Xo integrates Model Arithmetic (weight-space merging of subset-trained policies), Stage Advantage (stage-aware advantage estimator for dense progress signals), and Train-Deploy Alignment (spatio-temporal augmentation, heuristic DAgger, temporal chunk-wise smoothing).",
+        "Strengths": "Resource-efficient (20 hrs data, 8 A100s), achieves production-level robustness, enables 24-hour non-stop real-robot operation, highly reliable in complex garment manipulation. Systematically addresses core distributional shifts (Ptrain, Qmodel, Ptest).",
+        "Limitations": "Scalability to broad generalization, lack of intrinsic capabilities for spatial grounding/sequential logic, need for better data valuation metrics, retention of pre-trained priors not evaluated, and extensibility to rigid-body tasks not shown.",
+        "Datasets / Benchmarks": "Curated ~20 hours of human expert demonstrations for collaborative long-horizon garment manipulation tasks (flattening, folding, hanging). Evaluated against open-source π0.5 and π0 baselines.",
+        "Results Summary": "Xo surpasses SOTA (π0.5) by ~250% in success rate. MA outperforms baselines with OOD validation robustness. SA shows superior numerical stability & performance. TDA (Heuristic DAgger, chunk-wise smoothing) boosts failure recovery & control stability.",
+        "Why It Matters": "Addresses a key bottleneck in robotics: achieving production-ready robustness in unstructured real-world settings with resource efficiency. Offers a systematic framework to mitigate critical distributional inconsistencies for reliable long-horizon manipulation tasks.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig 1 (System Overview), Fig 7 (System Efficacy Breakdown), Fig 8 (Model Arithmetic Ablations), Fig 9 (Stage Advantage Ablations), Fig 12 (Train-Deploy Alignment Control Strategies).",
+        "arxiv_id": "http://arxiv.org/abs/2602.09021v1"
+    },
+    {
+        "Title": "WorldCompass: Reinforcement Learning for Long-Horizon World Models",
+        "Field & Subfield": "Reinforcement Learning, Computer Vision, Generative Models",
+        "Key Contributions": "- Novel RL framework for post-training long-horizon interactive video-based world models.\n- Clip-level rollout strategy boosts efficiency & provides fine-grained rewards, mitigating exposure bias.\n- Complementary reward functions (action-following & visual quality) suppress reward hacking.\n- Efficient negative-aware fine-tuning with optimizations for robust learning.",
+        "Methodology": "WorldCompass uses RL for post-training autoregressive video models. It employs clip-level rollouts for granular rewards, two complementary rewards (interaction following & visual quality), and a negative-aware fine-tuning strategy with efficiency optimizations.",
+        "Strengths": "Significantly improves interaction accuracy (e.g., 20% to 55% for complex actions, 10% for basic) and visual quality. Achieves high generalizability across durations & action complexities. Boosts rollout efficiency and provides fine-grained reward signals.",
+        "Limitations": "Lack of reliable metrics for visual quality drift and spatial memory retention in long-form video generation. Reward signal lacks direct constraints to penalize such cumulative degradation, requiring conservative training.",
+        "Datasets / Benchmarks": "Evaluated on WorldPlay, a state-of-the-art open-source world model, specifically its HunyuanVideo-1.5-8B and Wan2.2-5B variants. Training data consists of 4,000 diverse images/captions with complex action sequences.",
+        "Results Summary": "WorldCompass substantially improves interaction accuracy and visual quality across various scenarios (short, medium, long durations; basic & composite actions) on WorldPlay. E.g., action accuracy on complex actions improved from ~20% to ~55%. Training efficiency is also enhanced.",
+        "Why It Matters": "This work advances interactive video-based world models by enabling more accurate and consistent exploration via RL post-training. It's crucial for embodied AI, content creation, and addressing long-horizon interactive generation challenges.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Overview), Figure 2 (Reward evolution), Table 1 (Quantitative results), Table 2 (Ablation study of components)",
+        "arxiv_id": "http://arxiv.org/abs/2602.09022v1"
     }
 ]
