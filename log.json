@@ -1139,5 +1139,19 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (Overview), Figure 2 (Reward evolution), Table 1 (Quantitative results), Table 2 (Ablation study of components)",
         "arxiv_id": "http://arxiv.org/abs/2602.09022v1"
+    },
+    {
+        "Title": "SAGE: Scalable Agentic 3D Scene Generation for Embodied AI",
+        "Field & Subfield": "Robotics & Embodied AI; 3D Scene Generation",
+        "Key Contributions": "- Agentic framework for scalable, simulation-ready 3D scene generation.\n- Unifies multiple generators with visual and physics critics for stability and realism.\n- Automatic data pipeline for embodied AI policy learning, boosting generalization.\n- Release of SAGE-10k dataset.",
+        "Methodology": "Agent-driven framework using Model Context Protocol (MCP) orchestrates scene generators (initializer, placer, mover, remover) and critics (visual, physics via Isaac Sim) with iterative self-refinement. Multi-level augmentation (object/layout) and auto-generated actions (grasping, IK, navigation) for policy training.",
+        "Strengths": "Generates realistic, diverse, physically stable, simulation-ready 3D environments at scale. Supports open-vocabulary prompts & fine-grained control. Achieves strong generalization to unseen objects/layouts for robot policies.",
+        "Limitations": "Primarily focuses on indoor, rigid-body scenes. Future work: outdoor, articulated/deformable objects, additional task types, online RL, and real-robot validation.",
+        "Datasets / Benchmarks": "SAGE-10k Dataset (10k scenes, 50 room types, 565K objects). Physics validation via Isaac Sim. Policies trained using Robomimic with Diffusion Policy.",
+        "Results Summary": "Outperforms baselines in visual quality and physical stability (99.9%). Policies trained on SAGE data show robust scaling and generalization, achieving success rates close to privileged agents for Pick-and-Place & Mobile Manipulation tasks. Critics crucial for performance.",
+        "Why It Matters": "Addresses a critical bottleneck in embodied AI data collection by enabling scalable, high-quality, physically-valid 3D environment generation for robust robot policy training and generalization.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figures 1, 2, 3, 5, 6, 10, 11; Tables 1, 2, 3, 4, 5.",
+        "arxiv_id": "http://arxiv.org/abs/2602.10116v1"
     }
 ]
