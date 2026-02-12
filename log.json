@@ -1153,5 +1153,38 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figures 1, 2, 3, 5, 6, 10, 11; Tables 1, 2, 3, 4, 5.",
         "arxiv_id": "http://arxiv.org/abs/2602.10116v1"
+    },
+    {
+        "Title": "SurfPhase: 3D Interfacial Dynamics in Two-Phase Flows from Sparse Videos",
+        "Field & Subfield": "Computer Vision & Fluid Dynamics; Neural Rendering, 3D Reconstruction",
+        "Key Contributions": "- Introduces 3D interfacial dynamics reconstruction from sparse-view videos (2 views) as a new task.\n- Proposes SurfPhase, integrating dynamic Gaussian surfels, SDF, & diffusion-based novel-view video synthesis.\n- Collects a high-speed pool boiling video dataset for training & evaluation.",
+        "Methodology": "Two-stage pipeline: Initial 3D reconstruction using dynamic Gaussian surfels with SDF constraints, then refinement via a video diffusion model for novel-view synthesis. Bubble-guided velocity estimation ensures temporal consistency and metric 3D velocity.",
+        "Strengths": "Achieves high-quality 3D reconstruction, novel-view synthesis, and accurate velocity estimation from sparse camera views. Handles sharp, deformable interfaces with topological changes and specular reflections, outperforming prior methods.",
+        "Limitations": "Relies on a fine-tuned video diffusion model trained on specific boiling footage; may not generalize directly to all two-phase flow types without retraining. Generated novel views can have uncertainty, requiring adaptive loss weights.",
+        "Datasets / Benchmarks": "New high-speed pool boiling dataset: 200 monocular videos (training diffusion model), and a synchronized dual-view pair (evaluation). Synthetic two-phase flow scene (Houdini) for ground truth.",
+        "Results Summary": "SurfPhase significantly outperforms baselines (FluidNexus, 4DGS, 2DGS) in novel view synthesis (lowest L1, highest PSNR/SSIM), geometry reconstruction (lowest Chamfer distance), and 3D velocity estimation (lowest L1 error) on both real and synthetic data.",
+        "Why It Matters": "Enables non-intrusive 3D measurement of complex interfacial dynamics in two-phase flows, critical for fundamental research in heat transfer, energy systems, and process engineering, bridging computer vision and fluid mechanics.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": [
+            "Figure 1 (Overview of task)",
+            "Figure 2 (SurfPhase pipeline)",
+            "Table 1 (Quantitative evaluation)",
+            "Figure 4 (Novel view synthesis)",
+            "Figure 8 (Velocity estimation)"
+        ],
+        "arxiv_id": "http://arxiv.org/abs/2602.11154v1"
+    },
+    {
+        "Title": "YOR: Your Own Mobile Manipulator for Generalizable Robotics",
+        "Field & Subfield": "Robotics; Mobile Manipulation & Robot Learning",
+        "Key Contributions": "Identifies optimal form factor for low-cost mobile manipulation. Presents YOR: an open-source, <$10K BOM, hardware/software platform. Validates whole-body control, bimanual manipulation, & autonomous navigation for research.",
+        "Methodology": "Integrates omnidirectional swerve drive, telescopic lift, dual compliant 6-DoF arms, ZED 2i camera, Jetson/RPi 5. Features whole-body teleoperation (Meta Quest 3/3S), VQ-BeT for policy learning from demos, and visual-inertial SLAM with A* planning & Pure Pursuit tracking.",
+        "Strengths": "Low-cost (<$10K BOM) & fully open-source. Modular design allows upgrades. Bimanual manipulation & wide vertical reach. Omnidirectional mobility for precise positioning in cluttered spaces. Compliant arms ensure safe interaction. Robust SLAM for autonomous navigation.",
+        "Limitations": "6-DoF arms may face singularities; 7-DoF arms suggested. Current SLAM lacks advanced semantic navigation. Policy learning experienced odometry drift from head camera occlusion. Payload (1.5kg/arm) is modest compared to high-cost platforms.",
+        "Datasets / Benchmarks": "Generated 100 teleoperated \"recycling\" task trajectories for policy learning. Evaluated via integration tests: whole-body coordination, bimanual manipulation, autonomous navigation. Tally-mark demo for odometry/loop closure accuracy.",
+        "Results Summary": "Successfully completed daily teleoperated tasks (e.g., dish loading, plant watering). Achieved 9/10 success for autonomous 'recycling' task with learned policy. SLAM showed 12mm loop closure accuracy. Whole-body control kept 16mm end-effector deviation. Demonstrated real-time dynamic obstacle avoidance.",
+        "Why It Matters": "Democratizes advanced mobile manipulation research by providing an affordable, open-source, and capable platform. Lowers barriers to entry, enabling broader data collection and development of generalizable robot learning policies for real-world, human-centered tasks.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (YOR platform), Figure 2 (comparison with other robots), Figure 3 (BOM cost breakdown), Figure 5 (teleoperated daily tasks), Figure 6 (autonomous 'recycling' task), Figure 10 (SLAM accuracy)."
     }
 ]
