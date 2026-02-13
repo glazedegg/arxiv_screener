@@ -1186,5 +1186,46 @@
         "Why It Matters": "Democratizes advanced mobile manipulation research by providing an affordable, open-source, and capable platform. Lowers barriers to entry, enabling broader data collection and development of generalizable robot learning policies for real-world, human-centered tasks.",
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (YOR platform), Figure 2 (comparison with other robots), Figure 3 (BOM cost breakdown), Figure 5 (teleoperated daily tasks), Figure 6 (autonomous 'recycling' task), Figure 10 (SLAM accuracy)."
+    },
+    {
+        "Title": "Scaling Verification Can Be More Effective than Scaling Policy Learning for Vision-Language-Action Alignment",
+        "Field & Subfield": "Robotics & Vision-Language-Action Models",
+        "Key Contributions": "- Characterized test-time scaling law & proposed compute-efficient action sampling. - Presented CoVer, a scalable contrastive VLA verifier. - Introduced boot-time compute & hierarchical test-time verification. - Achieved significant performance gains in sim/real-world.",
+        "Methodology": "CoVer-VLA is a contrastive verifier trained offline on large robotics datasets. It uses a text-aware visual encoder and action encoder for cross-modal alignment. A hierarchical pipeline leverages VLM for boot-time instruction rephrasing and CoVer for test-time instruction/action chunk selection.",
+        "Strengths": "Enhanced robustness to linguistic variation; superior generalization in OOD/real-world. Compute-efficient compared to scaling policy pre-training. Achieves real-time inference latency for quasi-static robot manipulation.",
+        "Limitations": "Introduces additional computational overhead (though mitigated by boot-time caching and parallel processing). Relies on VLM for rephrasing, which needs careful prompting to avoid semantic drift.",
+        "Datasets / Benchmarks": "Training: Bridge V2 (augmented). Evaluation: SIMPLER benchmark (ID/OOD), PolaRiS benchmark, Real-world tasks (WidowX robot).",
+        "Results Summary": "CoVer-VLA improves performance by 22% ID, 13% OOD on SIMPLER, 45% on real-world tasks, and 14% task progress/9% success on PolaRiS. Achieves 7x faster scaling performance than policy pre-training.",
+        "Why It Matters": "Addresses the 'intention-action gap' in VLA models, making robots more reliable and generalizable in real-world settings. Proposes an alternative to solely scaling policy training by leveraging test-time verification efficiently.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (CoVer-VLA framework), Figure 3 (Test-Time Scaling Law), Figure 7 (SIMPLER Evaluation Results), Table 7 (Computational Costs).",
+        "arxiv_id": "http://arxiv.org/abs/2602.12281v1"
+    },
+    {
+        "Title": "Stroke of Surprise: Progressive Semantic Illusions in Vector Sketching",
+        "Field & Subfield": "Computer Graphics & Vision, Generative AI",
+        "Key Contributions": "* Introduces Progressive Semantic Illusion task: vector sketches transform semantically with sequential stroke addition.\n* Proposes sequence-aware joint optimization framework with dual-branch SDS.\n* Introduces novel Overlay Loss for spatial complementarity.\n* Discovers \"Common Subspace\" for dual semantics; scales to multi-phase illusions.",
+        "Methodology": "Optimizes learnable Bézier strokes using a dual-branch Score Distillation Sampling (SDS) to satisfy prefix & full sketch semantics simultaneously. Novel Overlay Loss prevents occlusion & enforces spatial complementarity. Sequence-aware joint optimization finds a common structural subspace.",
+        "Strengths": "Generates clean, structurally consistent illusions; significantly outperforms baselines in recognizability & illusion strength; identifies \"Common Subspace\"; scales to multi-phase illusions; highly robust with strong user satisfaction. Expands visual anagrams to temporal dimension.",
+        "Limitations": "Inherits limitations from pre-trained diffusion priors; weak SDS guidance causes optimization failure for highly complex structures (e.g., \"scissors\").",
+        "Datasets / Benchmarks": "Evaluation on 64 common object pairs (p1, p2). Metrics: CLIP score, ImageReward, HPS (illusion-specific). Validated by user studies (143 participants).",
+        "Results Summary": "Outperforms baselines in CLIP/concealment scores (100% coverage vs. 34.9%). Joint optimization is critical for seamless integration. User studies show strong preference (67.7-87.1%) & high reliability (>98%). Overlay Loss is vital for clean illusions.",
+        "Why It Matters": "Introduces a novel paradigm for visual illusions by shifting from spatial to temporal transformation in vector sketches. Enables dynamic semantic re-contextualization, advancing generative AI in creative tasks and fostering new artistic expressions.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Progressive Illusions), Figure 3 (Pipeline), Figure 4 (Overlay Loss Motivation), Table 1 (Quantitative Comparison), Figure 9 (User Study), Figure 10 (Optimization Strategy Ablation), Figure 12 (Overlay Loss Ablation)."
+    },
+    {
+        "Title": "UniT: Unified Multimodal Chain-of-Thought Test-time Scaling",
+        "Field & Subfield": "Artificial Intelligence & Multimodal Learning, Computer Vision, Natural Language Processing",
+        "Key Contributions": "- Proposed UniT: unified framework for multimodal chain-of-thought test-time scaling.\n- Demonstrated emergent extrapolation to longer reasoning chains beyond training data.\n- Achieved broad performance improvements across diverse multimodal tasks.\n- Showed sequential CoT scaling is more compute-efficient than parallel sampling.",
+        "Methodology": "UniT combines agentic data synthesis (VLM critiques image gen/edit models iteratively), unified model training (700 H100 hrs on Bagel), and flexible test-time inference. It uses sequential Chain-of-Thought with budget forcing to induce verification, subgoal decomposition, and content memory.",
+        "Strengths": "Significant performance gains across generation (compositional, multi-turn editing) and understanding (visual reasoning) tasks. Generalizes to longer inference chains. Sequential CoT is 2.5x more compute-efficient than parallel sampling. Induces key cognitive behaviors.",
+        "Limitations": "Struggles with precise physical reasoning, fine-grained spatial relationships, and attribute binding. Occasional degradation loops. Performance limited by base model capabilities. Inherently requires additional inference compute.",
+        "Datasets / Benchmarks": "Training data: 12K multi-round trajectories (synthesized). Evaluation: OneIG-Bench-EN (compositional generation), CompBench (multi-object editing), ImgEdit (multi-turn editing), MIRA (visual reasoning).",
+        "Results Summary": "UniT improved performance by 10.34% on OneIG-Bench, 5.56% on CompBench, 225.19% on ImgEdit, and 53.33% on MIRA. Sequential CoT outperformed parallel sampling, achieving comparable performance with 2.5x less compute. Generalizes from 3.6 to 4.7 avg inference rounds.",
+        "Why It Matters": "Establishes multimodal chain-of-thought test-time scaling as an effective paradigm for unified models, benefiting both generation and understanding. Enables iterative refinement and self-correction, crucial for advancing complex AI reasoning in multimodal contexts.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Performance vs. Scaling), Figure 2 (Agentic Data Synthesis), Figure 3 (Iterative Refinement Examples), Table 1 (OneIG-Bench Results), Table 2 (ImgEdit Results), Table 3 (CompBench Results)",
+        "arxiv_id": "http://arxiv.org/abs/2602.12279v1"
     }
 ]
