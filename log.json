@@ -1227,5 +1227,33 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (Performance vs. Scaling), Figure 2 (Agentic Data Synthesis), Figure 3 (Iterative Refinement Examples), Table 1 (OneIG-Bench Results), Table 2 (ImgEdit Results), Table 3 (CompBench Results)",
         "arxiv_id": "http://arxiv.org/abs/2602.12279v1"
+    },
+    {
+        "Title": "EditCtrl: Disentangled Local and Global Control for Real-Time Generative Video Editing",
+        "Field & Subfield": "Computer Vision & Generative AI",
+        "Key Contributions": "• Novel local video context module operating only on masked tokens.\n• Lightweight temporal global context embedder for video-wide consistency.\n• 10x compute efficiency over SOTA with improved editing quality.\n• Enables multi-region editing with text prompts & autoregressive content propagation.",
+        "Methodology": "EditCtrl disentangles local sparse inpainting from global video context. It uses a fine-tuned local context adapter on masked tokens and a lightweight global context embedder to guide a frozen text-to-video diffusion model, achieving efficiency proportional to edit size.",
+        "Strengths": "10x more compute efficient than SOTA; improved editing quality; computational cost scales with edit size, not video resolution; natively compatible with autoregressive models for propagation; supports multi-region & real-time AR editing.",
+        "Limitations": "Video VAE causes degradation to background context. Local encoder struggles with very fast motion. VAE encode/decode overhead for 4K videos due to VRAM constraints. Future work: integrate motion info.",
+        "Datasets / Benchmarks": "Internal dataset of stock footage videos (segmentation/captions) for training. Evaluated on VPBench-Edit, DAVIS, and VPBench-Inp test sets.",
+        "Results Summary": "EditCtrl achieves 10x speedup over SOTA generative methods, matching or exceeding their quality on VPBench-Edit/Inp and DAVIS. It shows better text alignment, masked region preservation, and temporal coherence, validating its efficiency and quality.",
+        "Why It Matters": "EditCtrl democratizes high-fidelity generative video editing by making it real-time and computationally efficient. It unlocks practical applications like AR content editing, high-resolution video editing, and complex multi-region edits, addressing a major bottleneck.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (EditCtrl Pipeline/Applications), Figure 4 (Video Editing Comparison), Table 1 (VPBench-Edit Metrics)",
+        "arxiv_id": "http://arxiv.org/abs/2602.15031v1"
+    },
+    {
+        "Title": "Image Generation with a Sphere Encoder",
+        "Field & Subfield": "Computer Vision, Generative Models",
+        "Key Contributions": "• Novel sphere encoder for efficient image generation. • Produces high-fidelity images in a single forward pass or few steps. • Maps natural images uniformly onto a spherical latent space. • Achieves performance competitive with diffusion models at fraction of inference cost. • Supports conditional generation and image editing.",
+        "Methodology": "A Transformer-based encoder maps images to a spherically normalized latent space, and a decoder reconstructs. Training uses pixel reconstruction, pixel consistency, and latent consistency losses with noise injection to ensure uniform spherical distribution. Iterative encoding/decoding enhances quality.",
+        "Strengths": "Fast inference (1-step/few-step) with high-fidelity outputs. Avoids VAE 'posterior hole' by ensuring uniform spherical latent distribution. Naturally supports conditional generation and robust image editing/crossover.",
+        "Limitations": "FID scores slightly trail some SOTA diffusion models, possibly due to pixel-space losses. May exhibit subtle edge blurring. Potential memorization risk on small datasets with excessive training.",
+        "Datasets / Benchmarks": "CIFAR-10 (32x32), ImageNet (256x256), Animal-Faces (256x256), Oxford-Flowers (256x256). Evaluated using gFID, IS, and rFID.",
+        "Results Summary": "Achieves competitive FID scores against diffusion models, outperforming many baselines in few-step generation (<5 steps). For CIFAR-10, gFID below 2.0. ImageNet results competitive with GANs/diffusion, especially for few steps. Demonstrates strong qualitative results across various image sizes.",
+        "Why It Matters": "Introduces an efficient, direct alternative to slow, iterative diffusion models for high-fidelity image generation. Proposes a new paradigm for generative modeling using spherical latent spaces, opening new research avenues for faster, more controllable synthesis.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Generated images), Figure 2 (Sphere encoder diagram), Table 1 (CIFAR-10 few-step results), Table 3 (ImageNet few-step results), Figure 6 (Latent interpolation), Figure 8 (Conditional manipulation)",
+        "arxiv_id": "http://arxiv.org/abs/2602.15030v1"
     }
 ]
