@@ -1255,5 +1255,33 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (Generated images), Figure 2 (Sphere encoder diagram), Table 1 (CIFAR-10 few-step results), Table 3 (ImageNet few-step results), Figure 6 (Latent interpolation), Figure 8 (Conditional manipulation)",
         "arxiv_id": "http://arxiv.org/abs/2602.15030v1"
+    },
+    {
+        "Title": "Dex4D: Task-Agnostic Point Track Policy for Sim-to-Real Dexterous Manipulation",
+        "Field & Subfield": "Robotics & Dexterous Manipulation / Sim-to-Real Transfer",
+        "Key Contributions": "- Proposed Anypose-to-Anypose (AP2AP) task-agnostic sim-to-real learning.\n- Leveraged point tracks from generated videos & 4D reconstruction for goal specification.\n- Introduced Paired Point Encoding for goal representation & transformer-based action world model.\n- Demonstrated superior performance & strong zero-shot generalization to unseen tasks/objects in real-world.",
+        "Methodology": "Sim-to-real learning via teacher-student distillation. Teacher uses PPO with privileged states & full point clouds. Student uses DAgger with partial observation & masked paired points. AP2AP policy learns object transformation, conditioned by 'Paired Point Encoding' of current/target object points. Policy trained in simulation & deployed zero-shot using point tracks from generated videos and online tracking for closed-loop control.",
+        "Strengths": "Zero-shot sim-to-real transfer without finetuning. Strong generalization to novel objects, scenes, layouts, backgrounds, & task trajectories. Robust to noisy sensor inputs & partial occlusions via domain randomization & masking. Closed-loop perception and control for high-dynamics tasks.",
+        "Limitations": "Current online point trackers can lose track with significant object movement. Does not incorporate human grasp priors. AP2AP limited to single-object manipulation. Lacks tactile sensing integration. Real-time point tracking can be inaccurate with noisy depth sensing/occlusions.",
+        "Datasets / Benchmarks": "3,200 objects from UniDexGrasp, YCB dataset (for simulation). Simulation tasks: Apple2Plate, Pour, Hammer, StackCup, RotateBox, Sponge2Bowl. Real-world tasks: LiftToy, Broccoli2Plate, Meat2Bowl, Pour.",
+        "Results Summary": "Outperforms state-of-the-art baselines (NovaFlow/CL) significantly. Achieves +16.3% SR & +10.4% TP in simulation. Demonstrates +22.5% SR gain over baseline in real-world zero-shot tasks. Strong generalization shown across diverse objects, scenes, and task trajectories.",
+        "Why It Matters": "Addresses the fundamental bottleneck of data collection for dexterous manipulation. Enables learning generalist, task-agnostic skills transferable from sim to real without finetuning. Offers a robust framework for autonomous dexterous manipulation in diverse, open-world scenarios.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig. 1 (Overview), Fig. 3 (Paired Point Encoding comparison), Table I (Simulation Results), Table II (Ablation Studies), Table III (Real-world Results).",
+        "arxiv_id": "http://arxiv.org/abs/2602.15828v1"
+    },
+    {
+        "Title": "Ensemble-Size-Dependence of Deep-Learning Post-Processing Methods That Minimize an (Un)Fair Score: Motivating Examples and a Proof-of-Concept Solution",
+        "Field & Subfield": "Atmospheric Science & AI; Ensemble Forecasting Post-processing",
+        "Key Contributions": "- Demonstrated how distribution-aware DL methods introduce structural dependency, making aCRPS unfair and leading to unreliable forecasts.\n- Introduced 'trajectory transformer' for ensemble-size independence, applying self-attention over lead time per member.\n- Showed trajectory transformer maintains reliability & reduces biases independently of ensemble size.",
+        "Methodology": "Theoretical analysis of CRPS/aCRPS with idealized Gaussian data & linear calibration. Deep learning models: Hierarchical Ensemble Transformer (PoET) and proposed Trajectory Transformer. Trained with aCRPS loss on ECMWF subseasonal T2m forecasts, evaluated for ensemble size sensitivity.",
+        "Strengths": "Trajectory Transformer achieves true ensemble-size independence during training & inference. Maintains/improves forecast reliability and bias correction compared to raw forecasts. Addresses a critical issue of fair scores and structural dependency in DL post-processing, providing a robust solution.",
+        "Limitations": "Ensemble Transformer (PoET) is sensitive to ensemble size and produces unreliable, over-dispersive forecasts when optimizing aCRPS. aCRPS can be an overoptimistic metric for methods introducing structural dependency. Trajectory Transformer sacrifices direct access to full ensemble distribution info.",
+        "Datasets / Benchmarks": "ECMWF IFS subseasonal prediction system (cycle 47R3) weekly mean T2m forecasts (1959-2023 reforecasts, 9 & 100 members). ERA5 analysis for verification. Metrics: aCRPS, RMSE, ensemble spread, spread-error ratios, anomaly activity ratios.",
+        "Results Summary": "Ensemble Transformer (PoET) with aCRPS yielded unreliable, over-dispersive forecasts, sensitive to ensemble size. The proposed Trajectory Transformer achieved robust, ensemble-size-independent reliability, maintaining optimal spread-error/activity ratios for both 9- and 100-member forecasts, effectively correcting biases.",
+        "Why It Matters": "Highlights a fundamental flaw in using 'fair' scores like aCRPS with DL methods that induce structural dependencies in ensemble members. Provides a novel DL architecture (trajectory transformer) that ensures ensemble-size independence and reliable forecasts, crucial for robust weather/climate forecasting.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Architecture diagrams), Figure 3 (aCRPS, spread, RMSE vs. epoch), Figure 7 (Anomaly spread-error and activity ratios), Table 1 (Calibration parameters/scores for idealized Gaussian forecasts).",
+        "arxiv_id": "2602.15830v1"
     }
 ]
