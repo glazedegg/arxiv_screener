@@ -1283,5 +1283,33 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (Architecture diagrams), Figure 3 (aCRPS, spread, RMSE vs. epoch), Figure 7 (Anomaly spread-error and activity ratios), Table 1 (Calibration parameters/scores for idealized Gaussian forecasts).",
         "arxiv_id": "2602.15830v1"
+    },
+    {
+        "Title": "Policy Compiler for Secure Agentic Systems",
+        "Field & Subfield": "AI, LLM Agents, Security, Policy Enforcement",
+        "Key Contributions": "PCAS: policy compiler for LLM agents. Key contributions:\n* Models agent interactions as fine-grained dependency graphs.\n* Datalog-derived language for declarative policies and causal provenance.\n* Deterministic enforcement via a reference monitor.\n* Evaluated on prompt injection, customer service, and multi-agent systems.",
+        "Methodology": "PCAS instruments existing LLM agent systems. It models system state as a dependency graph (causal relationships). Policies are Datalog-derived rules over this graph. A reference monitor intercepts actions, evaluates policies against the graph (causal context), and deterministically blocks violations.",
+        "Strengths": "Deterministic policy enforcement independent of LLM reasoning. Tracks transitive information flow & cross-agent provenance via dependency graphs. Formal policy specification enables analysis, systematic testing, & auditable enforcement. Significantly improves compliance while preserving task success.",
+        "Limitations": "Dependency tracking assumes all info flows via instrumentation; vulnerable to side channels. Policy specification requires manual translation from natural language to Datalog (effort-intensive). Current policy language lacks native support for temporal constraints (e.g., rate limits).",
+        "Datasets / Benchmarks": "Evaluated on three case studies: prompt injection defense (custom filesystem/email), t²-bench (customer service tasks in airline/retail), and MALADE (multi-agent pharmacovigilance system for FDA data access).",
+        "Results Summary": "Improved compliance: 48% to 93% (t²-bench), 0% to 100% (prompt injection), 0% to 100% (MALADE). Achieved zero policy violations in instrumented runs across frontier LLMs. Preserved task success, with modest latency (~20% average) and cost overhead (<$0.02 per trial).",
+        "Why It Matters": "Addresses a critical gap in LLM agent security by offering deterministic, robust policy enforcement that's auditable & non-bypassable, unlike prompt-based methods. Essential for deploying LLM agents securely and compliantly in sensitive, real-world, multi-agent scenarios.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Table 1 (Runtime policy enforcement approaches comparison); Figure 1 (PCAS system architecture & authorization flow); Tables 4a, 5, 7a (Compliance/ASR & Utility results for case studies).",
+        "arxiv_id": "http://arxiv.org/abs/2602.16708v1"
+    },
+    {
+        "Title": "TeCoNeRV: Leveraging Temporal Coherence for Compressible Neural Representations for Videos",
+        "Field & Subfield": "Computer Vision & Graphics; Video Compression",
+        "Key Contributions": "- Patch-tubelet decomposition for spatial/temporal weight prediction, reducing memory overhead (20x) and enabling resolution-independent training.\n- Residual-based storage scheme capturing only differences between segments, significantly cutting bitstream size.\n- Temporal coherence regularization for smooth weight transitions aligned with video content.",
+        "Methodology": "Hypernetwork-based approach predicting Implicit Neural Representation (INR) weights. Decomposes video into patch tubelets. Employs residual encoding for weight differences. Applies temporal coherence regularization via L1 norm loss on modulated parameters during finetuning.",
+        "Strengths": "Scales efficiently to higher resolutions (480p-1080p), first hypernetwork to do so. Resolution-independent training. Substantial PSNR gains (up to 5.35dB) and bitrate reduction (36%). Faster encoding (1.5-3x) with lower memory footprint.",
+        "Limitations": "Decoding speeds at higher resolutions (1080p) can be further optimized. Still lags behind established traditional and autoencoder-based codecs in overall quality/bitrate for production-level output.",
+        "Datasets / Benchmarks": "UVG, Kinetics-400 (training), HEVC Classes B, C, E, MCL-JCV. Compared against NeRV-Enc*, NeRV, HiNeRV baselines.",
+        "Results Summary": "Achieved 2.47dB PSNR gain at 480p and 5.35dB at 720p on UVG over baseline (NeRV-Enc*), with 36% lower bitrates and 1.5-3x faster encoding. Demonstrated resolution-independent training and consistent gains across diverse datasets.",
+        "Why It Matters": "Addresses fundamental limitations of INR-based video compression (memory/encoding efficiency at high resolutions), making these compact neural representations more practical and scalable for real-world high-resolution video applications.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Table 1 (main results), Figure 3 (Rate-distortion curves), Table 2 (Parameters, wall time, memory comparison).",
+        "arxiv_id": "2602.16711v1"
     }
 ]
