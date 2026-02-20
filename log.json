@@ -1311,5 +1311,19 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Table 1 (main results), Figure 3 (Rate-distortion curves), Table 2 (Parameters, wall time, memory comparison).",
         "arxiv_id": "2602.16711v1"
+    },
+    {
+        "Title": "OpenEarthAgent: A Unified Framework for Tool-Augmented Geospatial Agents",
+        "Field & Subfield": "Earth Observation & AI Agents: Multimodal Reasoning for Geospatial Data",
+        "Key Contributions": "- Unified framework for tool-augmented geospatial agents. - Supervised fine-tuning on reasoning trajectories. - Comprehensive corpus (>100K reasoning steps). - Novel EO-native agentic stack for grounded reasoning.",
+        "Methodology": "Unified agentic learning framework decomposing geospatial reasoning into perception-action steps via callable tools. Employs supervised fine-tuning on validated reasoning trajectories (Qwen3-4B-Instruct-2507) with a unified tool registry for diverse geospatial operations.",
+        "Strengths": "Structured, interpretable, verifiable multi-step reasoning across diverse EO data. Robust spatial grounding & coordinate consistency. Achieves superior tool-use accuracy and trajectory planning, outperforming larger models in geospatial tasks with a smaller parameter count.",
+        "Limitations": "While achieving state-of-the-art in tool-use metrics, OpenEarthAgent (4B) is slightly outperformed by frontier LLMs (GPT-4o) in summary accuracy and some operational F1 scores.",
+        "Datasets / Benchmarks": "OpenEarthAgent Dataset (14,538 train, 1,169 eval instances) integrating optical, SAR, GIS, multispectral data. Benchmarked against GPT-4o, Qwen2.5, Llama3.1, Internlm3, Mistral, and Qwen3-Instruct.",
+        "Results Summary": "Achieves SOTA in step-by-step tool-use metrics (Inst. 99.51, Tool 97.18) and dominates end-to-end tool-order accuracy (~70%). Leads in index/GIS-based scores, showing robust multi-step planning and lowest error rate among all models.",
+        "Why It Matters": "Bridges the gap from perception-only to structured, verifiable geospatial reasoning in EO. Enables advanced AI agent systems for environmental monitoring, disaster response, infrastructure analysis, and geospatial decision-making.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig 1 (Agent comparison), Fig 2 (Data pipeline), Fig 5 (Framework overview), Table 3 (Step-by-step eval), Table 4 (End-to-end eval), Fig A4 (Error distribution).",
+        "arxiv_id": "http://arxiv.org/abs/2602.17665v1"
     }
 ]
