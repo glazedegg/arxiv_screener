@@ -1325,5 +1325,47 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Fig 1 (Agent comparison), Fig 2 (Data pipeline), Fig 5 (Framework overview), Table 3 (Step-by-step eval), Table 4 (End-to-end eval), Fig A4 (Error distribution).",
         "arxiv_id": "http://arxiv.org/abs/2602.17665v1"
+    },
+    {
+        "Title": "A Very Big Video Reasoning Suite",
+        "Field & Subfield": "Artificial Intelligence & Computer Vision; Video Reasoning",
+        "Key Contributions": "- Introduced VBVR Dataset: 2M samples, 200 tasks across 5 cognitive faculties, 1000x larger than prior.\n- Developed VBVR-Bench: verifiable, human-aligned, rule-based evaluation framework.\n- First large-scale scaling study for video reasoning: shows emergent generalization and identifies limitations.\n- Open-sourced data, toolkit, and models at video-reason.com.",
+        "Methodology": "Generated VBVR-Dataset via a principled, human cognitive architecture-guided taxonomy (5 faculties). Tasks are parameterized generators. Evaluated models using VBVR-Bench (rule-based scores, human alignment). Conducted scaling studies on a fine-tuned video generation model.",
+        "Strengths": "Unprecedented scale and diversity of dataset (2M+ samples, 200 tasks). Verifiable, rule-based evaluation aligns with human judgments. Cognitive science-grounded task taxonomy. Supports systematic scaling studies and emergent generalization.",
+        "Limitations": "Performance plateaus beyond data scaling, suggesting architectural bottlenecks. Persistent gap between in-domain and out-of-domain performance. Models show process unfaithfulness and struggle with long-horizon control, identity, and stable dynamics.",
+        "Datasets / Benchmarks": "- Introduced: Very Big Video Reasoning (VBVR) Dataset, VBVR-Bench.\n- Used for evaluation: Leading proprietary models (Sora 2, Veo 3.1) and open-source models (Wan-2.2). Also VBench-I2V for general video generation.",
+        "Results Summary": "VBVR-Wan2.2 (trained on VBVR) achieves SOTA (0.685 overall score), an 84.6% improvement over its base model. Scaling data shows concurrent ID & OOD improvements but plateaus, with a 15% generalization gap remaining. Strongest models still fall short of human performance.",
+        "Why It Matters": "Provides essential infrastructure (data, benchmark) for advancing generalizable video reasoning beyond visual realism. Enables systematic study of scaling laws, emergent capabilities, and architectural needs for verifiable, controllable AI.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1: Overview of VBVR (dataset scale, cognitive architecture, scaling).\nTable 1: VBVR-Dataset comparison with existing benchmarks (scale).\nTable 3: Benchmarking results of models on VBVR-Bench.\nFigure 4: Human alignment analysis.\nFigure 5: Capability correlation.",
+        "arxiv_id": "2602.20159v1"
+    },
+    {
+        "Title": "Mobile-O: Unified Multimodal Understanding and Generation on Mobile Device",
+        "Field & Subfield": "Computer Vision & Multimodal AI, Edge AI",
+        "Key Contributions": "• Introduces Mobile-O, an efficient unified vision-language-diffusion model for real-time mobile inference.\n• Proposes Mobile Conditioning Projector (MCP) for lightweight cross-modal fusion.\n• Develops a unified multimodal post-training scheme using quadruplet data for joint optimization.\n• Achieves SOTA multimodal understanding/generation performance on edge devices with minimal resources.",
+        "Methodology": "Unified architecture with FastVLM backbone and DiT-style decoder. Core is Mobile Conditioning Projector (MCP) for cross-modal fusion via depthwise-separable convolutions and layerwise alignment. Employs a three-stage training: cross-modal alignment, supervised fine-tuning, and unified multimodal post-training with quadruplet data.",
+        "Strengths": "Achieves real-time multimodal understanding (~0.4s) and generation (~3.0s for 512x512 images) on iPhone with <2GB memory. Outperforms larger models in speed and accuracy on edge devices. Data-efficient training with curated datasets. Architecture-agnostic design.",
+        "Limitations": "Reuses a lightweight LLM as text encoder, which may limit the expressiveness and depth of text representations compared to dedicated, larger text-only language models.",
+        "Datasets / Benchmarks": "Training: JourneyDB (4M), BLIP30-Short (5M), BLIP30-60K, ShareGPT-40-Image (45K). Eval: GenEval (T2I), MMMU, MM-Vet, SEED, TextVQA, ChartQA, POPE, GQA (Understanding), ImageEdit (Editing).",
+        "Results Summary": "Mobile-O outperforms Show-O/JanusFlow on GenEval by 5-11% (T2I) and 15.3-5.1% (understanding), running 6-11x faster. Achieves 74% on GenEval and 62.1% average accuracy on 7 VLM benchmarks. Generates 512x512 images in ~3s on iPhone.",
+        "Why It Matters": "Establishes the first practical framework for real-time unified multimodal AI on edge devices, enabling privacy-preserving, offline functionality. Low memory and high speed set a new benchmark for on-device multimodal intelligence.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Qualitative and Quantitative Comparisons), Table 1 (Multimodal Understanding Comparison), Table 2 (T2I Generation Performance), Table 6 (Edge Deployment Latency).",
+        "arxiv_id": "http://arxiv.org/abs/2602.20161v1"
+    },
+    {
+        "Title": "tttLRM: Test-Time Training for Long Context and Autoregressive 3D Reconstruction",
+        "Field & Subfield": "Computer Vision & 3D Reconstruction, Neural Rendering",
+        "Key Contributions": "- First large reconstruction model leveraging Test-Time Training (TTT) for long-context, autoregressive 3D modeling with linear complexity.\n- Unified 3D framework interpreting TTT fast weights into explicit 3D representations (Gaussian Splats, NeRFs).\n- Achieves SOTA quality & efficiency on object/scene datasets for 3D reconstruction & novel view synthesis.",
+        "Methodology": "Leverages Test-Time Training (TTT) with linear-complexity LaCT blocks. Input views are tokenized, updating TTT's fast weights, which are then queried by virtual tokens and decoded into explicit 3D representations (e.g., Gaussian Splats, triplanes). Supports autoregressive streaming & distributed training via sequence parallelism.",
+        "Strengths": "SOTA reconstruction quality with high efficiency (linear complexity for long sequences). Supports both autoregressive and feedforward modes. Flexible explicit 3D outputs (GS, NeRFs). Strong generalization ability across view counts. Handles high-resolution (1024px) inputs and scales to hundreds of views via distributed training.",
+        "Limitations": "Fast-weight memory has a fixed size, potentially limiting its ability to handle extremely complex scenarios with very large numbers of input views. Quality can be slightly degraded compared to implicit pretrained LVSM models, reflecting a trade-off between implicit and explicit representations.",
+        "Datasets / Benchmarks": "Object-level: Objaverse (training, 730K objects), Google Scanned Objects (GSO) (evaluation). Scene-level: DL3DV-10K (training, 10,510 videos), Tanks&Temples (evaluation). Compared against GS-LRM, Long-LRM, 3DGS, Mip-Splatting, Scaffold-GS.",
+        "Results Summary": "Outperforms prior feedforward methods (e.g., 1dB PSNR improvement, 2x faster than attention models at 512x512). Competitive with optimization-based methods while being hundreds of times faster. Scales seamlessly to 1024px resolution and up to 64 input views (hundreds with distributed training).",
+        "Why It Matters": "This work bridges the gap between neural network rendering and real-time explicit 3D systems. It enables efficient, high-quality, long-context, and autoregressive 3D reconstruction from streaming visual input, a critical step towards more human-like perception and modeling of the physical world.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 2 (Model Architecture), Figure 4 (Qualitative Comparison to Baselines), Table 2 (Quantitative Comparison on Scene-level Datasets), Figure 8 (Time Comparison: LaCT vs. Attention Layers).",
+        "arxiv_id": "http://arxiv.org/abs/2602.20160v1"
     }
 ]
