@@ -1367,5 +1367,47 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 2 (Model Architecture), Figure 4 (Qualitative Comparison to Baselines), Table 2 (Quantitative Comparison on Scene-level Datasets), Figure 8 (Time Comparison: LaCT vs. Attention Layers).",
         "arxiv_id": "http://arxiv.org/abs/2602.20160v1"
+    },
+    {
+        "Title": "Multi-Vector Index Compression in Any Modality",
+        "Field & Subfield": "Information Systems: Search Index Compression",
+        "Key Contributions": "Introduces four multi-vector index compression methods (SeqResize, MemTok, H-Pool, novel AGC). AGC uses attention-guided clustering for salient regions & weighted aggregation. Consistently outperforms other methods across modalities, matching/improving full index performance.",
+        "Methodology": "Compares SeqResize, MemTok, H-Pool, & novel AGC. AGC uses attention-guided centroid selection (universal query tokens), hard clustering, & saliency-weighted aggregation to compress multi-vector document representations query-agnostically.",
+        "Strengths": "AGC consistently outperforms other methods & often matches/exceeds full uncompressed index performance. Robust, flexible, and transferable across budgets, modalities, & model sizes. Training with compression can reduce redundancy & improve performance.",
+        "Limitations": "Prior compression methods suffer from token underutilization, information collapse, & vulnerability to noise in multimodal data. Current approach uses fixed budget; dynamic budget allocation based on informational content is a future extension.",
+        "Datasets / Benchmarks": "Text (BEIR), Visual Document (ViDoRe V2), Vision-only Video (MSR-VTT), & Audiovisual Video (MultiVENT 2.0). Evaluation metrics include R@k and nDCG@k.",
+        "Results Summary": "AGC consistently outperformed other methods across modalities, retaining ~97% nDCG@10 of full index. It achieved SOTA on MSR-VTT, sometimes outperforming uncompressed baseline. H-POOL also performed well on non-text tasks.",
+        "Why It Matters": "Enables scalable multi-vector retrieval for large multimodal corpora by drastically reducing storage/compute costs. Crucial for real-world information retrieval systems, allowing high-performance search across diverse content at scale.",
+        "Should Read Fully?": "Yes. Essential for researchers and engineers in multi-vector retrieval, index compression, and multimodal IR, especially those dealing with large-scale, cost-sensitive applications. Introduces novel SOTA compression.",
+        "Key Figures or Tables": "Figure 1 (nDCG@10 comparison), Figure 2 (Compression techniques overview), Table 1 (Retrieval performance summary), Figure 3 (Index utilization & similarity).",
+        "arxiv_id": "2602.21202v1"
+    },
+    {
+        "Title": "Squint: Fast Visual Reinforcement Learning for Sim-to-Real Robotics",
+        "Field & Subfield": "Robotics, Reinforcement Learning (RL), Computer Vision",
+        "Key Contributions": "- Introduces Squint, a visual SAC method for faster wall-clock training than prior methods.\n- Proposes SO-101 Task Set: 8 manipulation tasks in ManiSkill3 with heavy domain randomization.\n- Demonstrates zero-shot sim-to-real transfer on a real SO-101 robot within 15 mins of training.",
+        "Methodology": "Visual SAC method optimized for wall-clock time. Uses parallel simulation, distributional critic, resolution squinting (rendering at low res), layer normalization, tuned update-to-data ratio, and PyTorch optimizations (compile, cudagraphs, AMP bfloat16). Trains on ManiSkill3 with domain randomization.",
+        "Strengths": "Achieves superior wall-clock training speed and success rates. Enables fast sim-to-real transfer for robotics in minutes. Outperforms strong baselines (SAC, PPO, DrQ-v2, BC, DAgger). Leverages low-cost hardware.",
+        "Limitations": "Visual robustness: brittle to visual changes. Opportunities for further sample efficiency improvements. Gripper design issues for challenging grasps (e.g., can tipping/friction). Limited to single-task RL.",
+        "Datasets / Benchmarks": "SO-101 Task Set (8 manipulation tasks on ManiSkill3: Reach/Lift/Place/Stack Cube/Can) for sim & real-world evaluation.",
+        "Results Summary": "Squint achieves 96.1% sim success and 91.3% real-world success, outperforming all baselines in training wall-time and final success rate. Most tasks converged under 6 minutes on a single RTX 3090 GPU. Significantly faster than DrQ-v2, SAC, PPO, BC, and DAgger.",
+        "Why It Matters": "Accelerates iteration cycles in robot learning by enabling fast training of visual RL policies. Makes visual RL more accessible for researchers by reducing computational demands and training time for sim-to-real robotics.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig. 1 (Fast Sim-to-Real Robotics visual examples), Fig. 4 (Design Choices ablation study), Fig. 5 (Overall Results comparison), Table II (Real-World Success Rates).",
+        "arxiv_id": "http://arxiv.org/abs/2602.21203v1"
+    },
+    {
+        "Title": "Test-Time Training with KV Binding Is Secretly Linear Attention",
+        "Field & Subfield": "Machine Learning & Sequence Modeling, Attention Mechanisms",
+        "Key Contributions": "- TTT's 'memorization' view is empirically contradicted. \n- TTT with KV binding is analytically rewritten as linear attention. \n- Resolves empirical paradoxes of TTT behavior. \n- Enables principled architectural simplifications. \n- Allows fully parallel TTT formulations for efficiency.",
+        "Methodology": "Empirical analysis identified contradictions to the 'memorization' view (e.g., gradient ascent, Q/K asymmetry). Analytical unrolling of TTT inner-loop updates (including MLPs and momentum) mathematically derived its equivalence to linear attention. Ablation studies validated practical benefits.",
+        "Strengths": "Provides a unified theoretical framework for TTT variants, simplifies complex architectures, enables significant inference throughput gains (up to 4x) through parallelization, and resolves puzzling empirical observations about TTT.",
+        "Limitations": "Analysis is limited to TTT formulations with a linear, bias-free final layer in the inner loop. Extending insights to nonlinear final layers and deeper connections to other linear attention mechanisms remains future work.",
+        "Datasets / Benchmarks": "Language Modeling (LaCT-LLM, FineWeb-Edu, Book-3), Novel View Synthesis (LaCT-NVS, RealEstate10K), Image Classification (ViTTT-B, ImageNet-1K).",
+        "Results Summary": "Inner-loop loss inversely correlates with task performance. Gradient ascent preserves/improves performance. Q/K distributions are asymmetric, and replacing Q with K has negligible effect. Ablations show complex TTT components are redundant. Parallel TTT achieves 4x speedup with minor performance degradation.",
+        "Why It Matters": "This work fundamentally redefines Test-Time Training, shifting its interpretation from 'memorization' to 'learned linear attention.' This new understanding simplifies TTT design, boosts efficiency via parallelization, and opens up new architectural design spaces for sequence models.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Inner-Loop Optimization vs. Performance), Table 1 (Contradictions to Memorization), Figure 2 (Distributional Asymmetry), Table 2 (Ablation Trajectory), Figure 4 (Parallel Training Loss).",
+        "arxiv_id": "2602.21204v1"
     }
 ]
