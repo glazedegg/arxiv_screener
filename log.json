@@ -1409,5 +1409,33 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (Inner-Loop Optimization vs. Performance), Table 1 (Contradictions to Memorization), Figure 2 (Distributional Asymmetry), Table 2 (Ablation Trajectory), Figure 4 (Parallel Training Loss).",
         "arxiv_id": "2602.21204v1"
+    },
+    {
+        "Title": "MediX-R1: Open Ended Medical Reinforcement Learning",
+        "Field & Subfield": "AI/Machine Learning - Medical Multimodal LLMs (MLLMs)",
+        "Key Contributions": "- Introduces open-ended medical RL framework with tailored composite rewards. - Designs a composite reward for stable training (LLM-accuracy, medical semantic, format, modality recognition). - Proposes a 3-stage Reference-based LLM-as-judge evaluation framework. - Achieves SOTA results across medical LLM/VLM benchmarks with ~51K instructions. - Demonstrates effectiveness of composite reward & RL algorithms across backbones.",
+        "Methodology": "Fine-tunes a baseline multimodal backbone using Group Based RL (GRPO/GSPO/DAPO). Employs a composite reward with LLM-based accuracy, medical embedding, format, and modality recognition signals. Evaluates with a unified 3-stage Reference-based LLM-as-judge framework for text/image+text tasks.",
+        "Strengths": "Generates clinically grounded, free-form answers with interpretable reasoning traces. Supports diverse medical modalities. Robust to paraphrasing and terminology variants. Achieves SOTA performance with less training data. Validated by human experts.",
+        "Limitations": "Research prototype, not for clinical deployment. Risks of hallucination, omitted differentials, overstating certainty, and subtle biases. Residual privacy risks. Computationally constrained hyperparameter search for reward coefficients.",
+        "Datasets / Benchmarks": "LLM: MMLU-Clinical/Bio/Med/Genetics/ProfMed/Anat, MedMCQA, MedQA, USMLE-SA, PubMedQA, MIMIC-CXR-Summarization. VLM: SLAKE-VQA, RadVQA, PathVQA, PMC-VQA, MIMIC-CXR-Gen. Also MMMU Medical Val, MedPix 2.0.",
+        "Results Summary": "MediX-R1 30B achieves 73.6% average accuracy, outperforming MedGemma 27B (68.4%) with significantly less data. Attains the highest average score across all medical benchmarks (Table 2). Human experts preferred MediX-R1's reasoning in 72.7% of cases.",
+        "Why It Matters": "Addresses limitations of MCQ-only medical AI by enabling open-ended, clinically grounded responses with interpretable reasoning. Provides a stable, robust RL framework and evaluation methodology for complex medical tasks, advancing trustworthy medical AI.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Accuracy vs. Training Dataset Size), Table 1 (Differences with Existing VLMs), Figure 2 (Overall Architecture), Table 2 (Evaluation Benchmark), Table 4 (Reward Ablation), Figure 5 (Reward vs. Training Step).",
+        "arxiv_id": "http://arxiv.org/abs/2602.23363v1"
+    },
+    {
+        "Title": "VGG-T³: Offline Feed-Forward 3D Reconstruction at Scale",
+        "Field & Subfield": "Computer Vision; 3D Reconstruction & Visual Localization",
+        "Key Contributions": "- Proposes VGG-T³ for linear-scaling 3D reconstruction.\n- Converts variable-length KV space to fixed-size MLP via TTT.\n- Enables single-GPU & distributed inference for large image sets.\n- Unifies feed-forward visual localization and mapping.",
+        "Methodology": "Replaces quadratic global attention in VGGT with linear TTT on an MLP. Compresses variable-length Key-Value (KV) scene representation into a fixed-size MLP. Uses test-time training (TTT) to optimize the MLP, ensuring linear scaling w.r.t. input views. Integrates ShortConv2D for non-linear spatial mixing.",
+        "Strengths": "Scales linearly with input views, enabling large-scale reconstruction (1k images in 54s, 11.6x faster than baselines). Achieves higher accuracy for depth/point maps than other linear-time methods. Supports unified mapping and feed-forward visual localization from unposed images.",
+        "Limitations": "Still a performance gap compared to quadratic softmax attention, especially in wide-baseline settings. Camera pose estimation sometimes struggles, possibly due to VGGT's special handling of camera tokens.",
+        "Datasets / Benchmarks": "7scenes, DTU, ETH3D, NRGBD (pointmap); Bonn, KITTI, Sintel (video depth); TUM-RGBD, ScanNet, Sintel, 7scenes, Wayspots (camera pose/localization).",
+        "Results Summary": "Reconstructs 1k images in 54s (11.6x speed-up over VGGT). Outperforms linear-time TTT3R significantly in pointmap/video depth estimation. Remains competitive with quadratic O(n²) baselines, often surpassing them. Shows strong feed-forward visual localization.",
+        "Why It Matters": "Addresses the scalability bottleneck in feed-forward 3D reconstruction, making high-quality, large-scale 3D mapping from unordered image collections practical and efficient, democratizing access to complex 3D modeling.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1b (Num. images vs. inference time), Table 1 (Pointmap estimation), Table 4 (Reconstruction latency), Figure 4 (Runtime vs. Chamfer distance).",
+        "arxiv_id": "2602.23361v1"
     }
 ]
