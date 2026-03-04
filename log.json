@@ -1437,5 +1437,52 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1b (Num. images vs. inference time), Table 1 (Pointmap estimation), Table 4 (Reconstruction latency), Figure 4 (Runtime vs. Chamfer distance).",
         "arxiv_id": "2602.23361v1"
+    },
+    {
+        "Title": "CFG-Ctrl: Control-Based Classifier-Free Diffusion Guidance",
+        "Field & Subfield": "Computer Vision & Generative AI, Control Theory",
+        "Key Contributions": "- Unified CFG-Ctrl framework reinterpreting CFG as a feedback control system. \n- Proposed Sliding Mode Control CFG (SMC-CFG) for nonlinear feedback-guided correction. \n- Provided Lyapunov stability analysis for finite-time convergence. \n- Demonstrated superior semantic fidelity & robustness across guidance scales.",
+        "Methodology": "Reinterprets Classifier-Free Guidance (CFG) as a control system. Models vanilla CFG as a proportional controller. Introduces Sliding Mode Control CFG (SMC-CFG) defining an exponential sliding mode surface over semantic prediction error, with a switching control term for nonlinear feedback. Proves finite-time convergence via Lyapunov stability analysis.",
+        "Strengths": "Significantly improves semantic fidelity, visual coherence, and robustness. Maintains stability and performance even at high guidance scales, where standard CFG struggles. Model-agnostic and applicable to text-to-image and text-to-video generation.",
+        "Limitations": "Introduces two additional hyperparameters (λ, k) that require manual tuning, increasing deployment complexity. Future work aims for adaptive control mechanisms to dynamically adjust parameters.",
+        "Datasets / Benchmarks": "MS-COCO (5,000 image-text pairs), T2I-CompBench, VQAScore (GenAI-Bench). Evaluated on SD3.5, Flux-dev, Qwen-Image (8B, 12B, 20B params), and Wan2.2-TI2V-5B models.",
+        "Results Summary": "SMC-CFG consistently achieves lower FID and higher CLIP, ImageReward, HPSv2, HPSv2.1, MPS, and VQAScore. Shows superior semantic alignment, visual realism, and robustness across varied guidance scales and diverse T2I models (image & video) compared to CFG variants.",
+        "Why It Matters": "Provides a novel control-theoretic perspective for understanding and improving diffusion model guidance. This leads to more stable and robust generative models, crucial for complex compositional tasks and high guidance scales in large-scale AI.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (CFG vs. SMC-CFG phase diagrams), Table 2 (Quantitative evaluation of CFG methods), Figure 4 (Visual comparison across CFG scales).",
+        "arxiv_id": "http://arxiv.org/abs/2603.03281v1"
+    },
+    {
+        "Title": "MIBURI: Towards Expressive Interactive Gesture Synthesis",
+        "Field & Subfield": "Computer Vision & NLP; Embodied Conversational Agents, Gesture Synthesis",
+        "Key Contributions": "- First online, causal framework for real-time expressive full-body gesture generation.\n- Novel network architecture & tokenization for causal gesture synthesis without sacrificing expressiveness.\n- Comprehensive analysis advancing state-of-the-art ECAs.",
+        "Methodology": "Online, causal framework using Moshi's internal speech-text tokens. Employs body-part aware gesture codecs (Residual VQ-VAE) & a two-dimensional causal framework (temporal & kinematic transformers). Auxiliary InfoNCE & Voice Activation losses enhance expressiveness.",
+        "Strengths": "Generates expressive, natural, & contextually aligned full-body gestures & facial expressions in real-time (36ms/frame). Causal approach means no reliance on future context or seed gestures. Outperforms recent baselines in perceptual & quantitative metrics.",
+        "Limitations": "Current framework models only the agent's motion, lacking user body dynamics or full dyadic context. Cannot perceive or respond to a partner's gestures, limiting multi-party interactions.",
+        "Datasets / Benchmarks": "BEAT2 dataset for training/evaluation; Embody3D dataset for additional evaluation; Compared against EMAGE, GestureLSM, MambaTalk, RAG-Gesture, CaMN.",
+        "Results Summary": "Perceptual evaluations show significant preference for MIBURI over baselines in naturalness & appropriateness. Achieves state-of-the-art FGD & BeatAlign. Maintains low latency (36ms/frame) in real-time online demo.",
+        "Why It Matters": "Enables truly interactive, human-like Embodied Conversational Agents by generating synchronized expressive full-body gestures and facial expressions in real-time, bridging a key gap in human-computer interaction.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (System overview), Figure 3 (MIBURI Architecture), Table 1 (Approach comparison), Figure 4 (Perceptual evaluation), Table 4 (Latency comparison)",
+        "arxiv_id": "http://arxiv.org/abs/2603.03282v1"
+    },
+    {
+        "Title": "Utonia: Toward One Encoder for All Point Clouds",
+        "Field & Subfield": "Computer Vision & 3D Deep Learning",
+        "Key Contributions": "• A unified point transformer encoder (Utonia) for diverse point clouds.\n• Addresses domain mismatches: inconsistent input channels, varying sparsity/density, granularity shifts.\n• Introduces Causal Modality Blinding, Perceptual Granularity Rescale, RoPE-enhanced positional hints.\n• Achieves cross-domain transferability & emergent behaviors.",
+        "Methodology": "A self-supervised point transformer encoder (PTv3) trained jointly on diverse point cloud domains. Employs Causal Modality Blinding, Perceptual Granularity Rescale, and RoPE on granularity-aligned coordinates for robustness & transfer.",
+        "Strengths": "Learns a consistent representation across diverse point clouds (LiDAR, RGB-D, CAD). Improves perception, spatial reasoning, & robotic manipulation. Robust to missing modalities and varying scales/densities. Outperforms SOTA across multiple benchmarks.",
+        "Limitations": "Current model is a 'first step'; future work includes query-based task interfaces, 4D spatial cognition, and a scalable next-generation backbone. Potential for over-reliance on local geometry vs. global positioning.",
+        "Datasets / Benchmarks": "Pretrained on ~250k real + 1M synthetic point clouds. Evaluated on ScanNet, NuScenes, Waymo, S3DIS, ModelNet40, ScanObjectNN, ShapeNetPart, PartNetE, PartObjaverse-Tiny, GraspVLA, Video-3D LLM benchmarks.",
+        "Results Summary": "Utonia achieves SOTA on indoor/outdoor semantic segmentation, object classification, & part segmentation. Shows superior robustness to missing modalities. Outperforms Concerto on robotics manipulation & spatial reasoning tasks, demonstrating strong cross-domain transfer.",
+        "Why It Matters": "Utonia takes a significant step towards a 'one encoder for all point clouds,' unifying fragmented 3D observations into a shared, robust representation. This is crucial for building foundation models for sparse 3D data, benefiting AR/VR, robotics, & autonomous driving.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": [
+            "Figure 1: Visualizes Utonia features across diverse point clouds.",
+            "Table 1: Desirable properties of point cloud models comparison.",
+            "Table 3 & 4: Indoor/Outdoor semantic segmentation results.",
+            "Table 6: Robustness to missing colors/normals."
+        ],
+        "arxiv_id": "2603.03283v1"
     }
 ]
