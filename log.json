@@ -1484,5 +1484,47 @@
             "Table 6: Robustness to missing colors/normals."
         ],
         "arxiv_id": "2603.03283v1"
+    },
+    {
+        "Title": "Accurate and Efficient Hybrid-Ensemble Atmospheric Data Assimilation in Latent Space with Uncertainty Quantification",
+        "Field & Subfield": "Atmospheric Science; Data Assimilation; Machine Learning",
+        "Key Contributions": "Introduced HLOBA, a 3D hybrid-ensemble DA in latent space using AE/O2Lnet. Achieved 4D-DA comparable accuracy with 20x faster/5x less memory. Enabled element-wise uncertainty quantification via latent space error decorrelation. Flexible to any forecast model.",
+        "Methodology": "HLOBA maps model forecasts (via AE encoder) & observations (via O2Lnet) into a shared latent space. These are fused via a Bayesian update using hybrid error covariances (climatological & time-lagged ensemble). Analysis uncertainty is propagated to model space via the decoder. Trained self-supervised on ERA5.",
+        "Strengths": "Superior efficiency (20x faster, 5x less memory than 4D-DA). High accuracy (e.g., 14.9% lower analysis error than 4DVar). Robust uncertainty quantification, capturing error patterns. Decoupled from forecast model, ensuring flexibility across various prediction systems.",
+        "Limitations": "Time-lagged ensembles can degrade quality with longer lead times. Background error uncertainty estimation requires improvement (ensemble-estimated correlation 0.1 vs 0.3 climatological). Requires substantial engineering for indirect observations like satellites.",
+        "Datasets / Benchmarks": "Datasets: ERA5 reanalysis (1979-2017) for training, 2017 GDAS surface & radiosonde observations for evaluation. Benchmarks: Hybrid 3D/4DVar (H3DVar, H4DVar) & their latent-space counterparts (HL3DVar, HL4DVar).",
+        "Results Summary": "HLOBA matches/surpasses traditional 4D-DA skill (14.9% lower analysis error, 0.5% lower 5-day forecast error than H4DVar with real obs) while being ~20x faster & using ~5x less memory. Uncertainty estimates accurately capture error patterns and seasonal variability in model space.",
+        "Why It Matters": "Addresses critical DA challenges: accuracy, efficiency, & robust uncertainty. Provides a flexible, performant framework for atmospheric modeling, improving weather prediction and climate research. Broadens ML-DA applicability beyond specific ML forecast systems.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1: HLOBA overview, efficiency comparison. Figure 2: Performance comparison (analysis/forecast errors). Figure 3: Uncertainty quantification. Figure 5: O2Lnet advantages.",
+        "arxiv_id": "http://arxiv.org/abs/2603.04395v1"
+    },
+    {
+        "Title": "SELDON: Supernova Explosions Learned by Deep ODE Networks",
+        "Field & Subfield": "Astrophysics & Machine Learning; Time-domain Astronomy",
+        "Key Contributions": "• New continuous-time VAE (SELDON) for sparse, irregular, heteroscedastic light curves. • Combines masked GRU-ODE encoder, latent neural ODE propagator, interpretable Gaussian-basis decoder. • Achieves millisecond-scale inference & extracts physically meaningful parameters.",
+        "Methodology": "SELDON is a VAE: a masked GRU-ODE encoder processes sparse/irregular data, propagating hidden states via neural ODEs. Deep Sets aggregate trajectories to a latent distribution. A Gaussian-basis decoder reconstructs flux, yielding interpretable physical parameters (rise time, peak flux).",
+        "Strengths": "Millisecond-scale inference; handles sparse, irregular, heteroscedastic, non-stationary data. Provides physically interpretable parameters. Superior early-stage forecasting & robust to data imbalance. Generic architecture for time-domain sequence modeling.",
+        "Limitations": "While generally superior, a masked-GRU encoder shows slightly better mean Z-score for very low (10%) observed data fractions before SELDON surpasses it. High GPU memory usage (45GB) during training could be a practical constraint.",
+        "Datasets / Benchmarks": "ELASTICC astronomical multivariate time-series dataset, hosted in Astro-ORACLE, focusing on Type Ia supernova light curves for evaluation.",
+        "Results Summary": "SELDON consistently outperforms masked-GRU and Deep Sets in out-of-sample forecasting across Mean|Z|, Max|Z|, and NRMSE metrics, especially for >20% observed light curves and at early stages. It minimizes catastrophic errors.",
+        "Why It Matters": "Crucial for handling the ~10M alerts/night from Rubin Observatory's LSST, enabling real-time transient classification & spectroscopic follow-up prioritization. Offers a general, interpretable approach for complex time-domain sequence modeling.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (SELDON Architecture), Figure 3 (Out-of-Sample Forecasting Performance), Table 2 (Out-of-Sample Performance per Fraction Observed)",
+        "arxiv_id": "2603.04392v1"
+    },
+    {
+        "Title": "SimpliHuMoN: Simplifying Human Motion Prediction",
+        "Field & Subfield": "Computer Vision & Machine Learning, Human Motion Prediction",
+        "Key Contributions": "- Introduces SimpliHuMoN, a simple, unified transformer architecture. - Achieves state-of-the-art performance across pose, trajectory, and holistic human motion prediction. - Challenges the need for specialized models for distinct motion tasks.",
+        "Methodology": "A transformer decoder-only model with a stack of self-attention modules processes concatenated historical pose/trajectory data and learnable future queries. It uses a 'winner-takes-all' loss for K distinct multi-modal predictions (pose/trajectory) in an end-to-end framework.",
+        "Strengths": "State-of-the-art performance across diverse tasks, high computational efficiency (faster inference/training than baselines), unified end-to-end framework, robust against error accumulation, effectively captures diverse plausible futures without mode collapse.",
+        "Limitations": "Struggles with complex multi-person scenes requiring strongly coupled interactions, lacks explicit interaction modules, shows performance trade-offs in universal joint training across heterogeneous datasets due to data imbalance.",
+        "Datasets / Benchmarks": "Human3.6M, AMASS (pose); ETH-UCY, SDD (trajectory); MOCAP-UMPM, 3DPW, WorldPose (combined pose+trajectory).",
+        "Results Summary": "Matches or outperforms current SOTA methods across all tasks (pose, trajectory, combined). Achieves up to 14.3% higher training throughput and 1.8x faster test processing. Demonstrates strong performance in long-term predictions and diverse outcome generation.",
+        "Why It Matters": "Simplifies human motion prediction by proving a single, unified transformer can surpass specialized models. Promotes architectural simplicity and generalizability, suggesting a path towards 'foundation models for motion' and reducing architectural complexity.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Model Architecture), Table 1 (Performance Comparison Across Tasks), Figure 2 (Qualitative Prediction Comparison), Table 2 (Throughput Comparison)",
+        "arxiv_id": "http://arxiv.org/abs/2603.04399v1"
     }
 ]
