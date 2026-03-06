@@ -1526,5 +1526,47 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (Model Architecture), Table 1 (Performance Comparison Across Tasks), Figure 2 (Qualitative Prediction Comparison), Table 2 (Throughput Comparison)",
         "arxiv_id": "http://arxiv.org/abs/2603.04399v1"
+    },
+    {
+        "Title": "FaceCam: Portrait Video Camera Control via Scale-Aware Conditioning",
+        "Field & Subfield": "Computer Vision & Video Generation / 3D Reconstruction",
+        "Key Contributions": "• Proposes FaceCam, a portrait video camera-control system with a face-tailored, scale-aware landmark representation to resolve scale ambiguity. • Introduces a novel data generation pipeline enabling continuous camera motion training from static multi-view and unlabeled in-the-wild videos. • Achieves precise camera control adherence and faithful preservation of subject dynamics for portrait videos.",
+        "Methodology": "Utilizes a video diffusion model (Wan) backbone. Employs a novel scale-aware camera representation based on facial landmark correspondences. Training pipeline includes synthetic camera motion (zoom/pan), multi-shot stitching, and in-the-wild data augmentation for robust generalization. Inference uses a proxy 3D head to render landmarks for target trajectory conditioning.",
+        "Strengths": "Achieves precise camera control adherence and high fidelity. Faithfully preserves facial expressions, identity, head/hair motion, & co-occurring objects. Robust performance across diverse camera trajectories and generalizes well to in-the-wild scenarios and even stylized inputs (cartoons).",
+        "Limitations": "Cannot handle views where facial features are not visible (e.g., back of head). Background generation is not a primary focus due to data limitations. Inference is relatively slow, not real-time. Does not generalize to general scenes without facial landmarks.",
+        "Datasets / Benchmarks": "Trained on NeRSemble (studio-captured multi-view human video dataset) and ~800 in-the-wild portrait videos. Evaluated on Ava-256 (static camera) and a custom set of 100 in-the-wild portrait videos (dynamic camera). Metrics: PSNR, SSIM, LPIPS, ArcFace, VBench scores.",
+        "Results Summary": "FaceCam outperforms baselines (ReCamMaster, TrajectoryCrafter) on Ava-256, showing superior camera pose control, identity/motion preservation, & video quality. In-the-wild experiments confirm high camera-motion correctness, strong identity preservation, and better visual quality. Ablations validate data generation strategies.",
+        "Why It Matters": "Addresses key challenges in portrait video camera control by resolving scale ambiguity and enabling intuitive, precise viewpoint control. Its robust performance and ability to preserve dynamic subject details make it highly relevant for applications in social media, post-production, telepresence, and AR/VR.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Overview), Figure 2 (Camera Representation Comparison), Table 1 (Ava-256 Results), Table 2 (In-the-wild Results), Figure 6 (In-the-wild Qualitative Results).",
+        "arxiv_id": "http://arxiv.org/abs/2603.05506v1"
+    },
+    {
+        "Title": "RoboPocket: Improve Robot Policies Instantly with Your Phone",
+        "Field & Subfield": "Robotics & AI; Human-Robot Interaction, Imitation Learning",
+        "Key Contributions": "• Robot-Free Instant Policy Iteration via AR Visual Foresight.\n• Proactive identification and correction of OOD states in minutes.\n• Asynchronous online finetuning for continuous policy updates.\n• 2x data efficiency in centralized & distributed settings.\n• Scalable data collection system with real-time feedback.",
+        "Methodology": "RoboPocket integrates a smartphone-based hardware (Isomorphic Adaptive Gripper, Fisheye lens) & software (real-time verification, multi-device sync) platform with a remote inference server. It uses AR Visual Foresight to project predicted trajectories, enabling proactive correction, & online finetuning for policy updates.",
+        "Strengths": "2x data efficiency, comparable to expert intervention, democratizes robot learning for non-experts, robust generalization across diverse environments, real-time feedback (SLAM/kinematic validity), scalable data collection.",
+        "Limitations": "Parallel-jaw gripper limits high-dexterity tasks. Bulky handheld rig can cause user fatigue, suggesting need for lighter interfaces like AR glasses.",
+        "Datasets / Benchmarks": "\"Mouse Arrangement\" (1600 demos, 64 env-object pairs); Block Sorting, Seasoning Pouring, Towel Folding, Snack Bagging (custom tasks for evaluation).",
+        "Results Summary": "RoboPocket achieves 2x data efficiency vs. offline methods, comparable to expert intervention without physical robots. Non-experts gather high-quality data. Distributed users boost performance by 2x with few corrections. Validated data scaling laws & robust generalization.",
+        "Why It Matters": "Bridges a critical gap in robot learning by making policy iteration accessible & efficient without physical robots, democratizing data collection, and enabling rapid adaptation & generalization in real-world settings.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig 1 (Workflow comparison), Fig 2 (System design), Fig 7 (Performance comparison), Fig 8 (Distributed Generalization), Fig 10 (User study feedback).",
+        "arxiv_id": "2603.05504v1"
+    },
+    {
+        "Title": "Transformer-Based Inpainting for Real-Time 3D Streaming in Sparse Multi-Camera Setups",
+        "Field & Subfield": "Computer Vision & 3D Streaming, Video Inpainting",
+        "Key Contributions": "- Novel multi-view aware transformer-based network for real-time video inpainting.\n- Spatio-temporal embedding leveraging geometry proxy for multi-view feature propagation.\n- Adaptive patch filtering for speed/accuracy trade-off.\n- Standalone, resolution-independent post-processing module.",
+        "Methodology": "Transformer-based network as a post-processing step for novel view rendering. It uses an image encoder, spatio-temporal embeddings (ROPE) for context patches from multiple views/frames, transformer groups with cross-attention and adaptive patch filtering, and a decoder to blend results.",
+        "Strengths": "Achieves best trade-off between quality and speed among online inpainting methods. Outperforms SOTA in image/video metrics. Multi-view aware with geometric consistency. Resolution-independent and real-time capable. Acts as a standalone post-processing module.",
+        "Limitations": "Output quality can degrade with fast-moving content due to reprojection assumption. Relies on accurate geometry proxy and foreground masks. May produce minor artifacts or struggle with complex occlusions, e.g., identifying correct colors in certain areas.",
+        "Datasets / Benchmarks": "Evaluated on DNARendering and RIFTCast datasets. Compared against online variants of DSTT, FuseFormer, and E2FGVI. Metrics: PSNR, SSIM, LPIPS, VFID, FPS.",
+        "Results Summary": "Significantly outperforms SOTA online inpainting methods across all metrics (PSNR, SSIM, LPIPS, VFID) and FPS, particularly in inpainted regions. Achieves superior visual quality and faster inference, demonstrating best quality-speed trade-off.",
+        "Why It Matters": "Addresses a critical challenge in high-quality real-time 3D streaming for AR/VR and telepresence applications by effectively completing missing information and improving perceptual quality in sparse multi-camera setups.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Method Overview), Figure 4 (Qualitative Comparison), Table 1 & 2 (Quantitative Results)",
+        "arxiv_id": "http://arxiv.org/abs/2603.05507v1"
     }
 ]
