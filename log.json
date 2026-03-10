@@ -1568,5 +1568,47 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (Method Overview), Figure 4 (Qualitative Comparison), Table 1 & 2 (Quantitative Results)",
         "arxiv_id": "http://arxiv.org/abs/2603.05507v1"
+    },
+    {
+        "Title": "FVG-PT: Adaptive Foreground View-Guided Prompt Tuning for Vision-Language Models",
+        "Field & Subfield": "Computer Vision & Natural Language Processing, Prompt Tuning",
+        "Key Contributions": "- Attributed prompt tuning failures to visual encoder foreground attention shifts.\n- Proposed FVG-PT to guide attention via Foreground Reliability Gate (FRG) & Foreground Distillation Compensation (FDC).\n- Introduced Prior Calibration (PC) to mitigate base-new trade-off (BNT).",
+        "Methodology": "FVG-PT is a plug-and-play framework. It uses a learnable FRG (MLP) for adaptive foreground view quality assessment, a FDC module (adapters with KL distillation) for foreground-oriented attention, and a PC module (decoupled branches with Backbone Reliability Gate) to balance base/CLIP prior for new classes.",
+        "Strengths": "Consistently improves base-to-new generalization & cross-dataset transfer. Plug-and-play with diverse prompt tuning backbones. Parameter-efficient (0.13M params). Achieves superior HM performance over other attention-guided methods. Robust across hyperparameters.",
+        "Limitations": "Not suitable for visual-only prompt tuning (lacks text branch). Can be costly for knowledge distillation methods utilizing all unlabeled images. Future work includes self-supervised variants and better adaptation to arbitrary backbones.",
+        "Datasets / Benchmarks": "11 datasets for base-to-new generalization (ImageNet, Caltech101, Food101, StanfordCars, etc.) and cross-dataset transfer (ImageNet as source). Evaluated on CoOp, PromptSRC, KgCoOp, MMRL backbones.",
+        "Results Summary": "FVG-PT consistently improves performance across all 4 backbones & 11 datasets for base-to-new and cross-dataset tasks. Achieves higher HM scores than baseline and attention-guided methods. Shows better data efficiency, matching CoOp's full-data performance with 50% data.",
+        "Why It Matters": "Addresses a key limitation in VLM prompt tuning (attention shifts) by adaptively guiding visual attention to the foreground, improving task performance and generalization, while being parameter-efficient and plug-and-play.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig. 1 (Attention map comparison), Table 1 (Base-to-new generalization performance), Table 3 (Ablation study of components).",
+        "arxiv_id": "http://arxiv.org/abs/2603.08708v1"
+    },
+    {
+        "Title": "IMPERMANENT: A LIVE BENCHMARK FOR TEMPORAL GENERALIZATION IN TIME SERIES FORECASTING",
+        "Field & Subfield": "Machine Learning, Time Series Forecasting",
+        "Key Contributions": "- Introduces Impermanent, a live benchmark for temporal generalization in time-series forecasting.\n- Proposes a leak-proof evaluation protocol for continuous scoring on evolving data streams.\n- Instantiates benchmark on GitHub activity data, reflecting real-world non-stationarity.\n- Enables study of robustness, distributional shift, and ranking stability.",
+        "Methodology": "A prequential, live evaluation protocol sequentially scores forecasts on continuously updated GitHub activity data (issues, PRs, pushes, stars) across 400 repositories at hourly, daily, weekly, monthly frequencies. Uses MASE and scaled CRPS metrics. Compares 12 models (baselines, statistical, foundation).",
+        "Strengths": "Addresses static benchmark limitations by evaluating models on live, evolving data, preventing data leakage. Measures sustained accuracy, robustness to shift, and stability of rankings. Provides a reproducible, automated, open-source platform for ongoing comparison.",
+        "Limitations": "Current iteration focuses on univariate series and GitHub activity; lacks cross-repository co-movement/covariates. Results are an early snapshot; long-term persistence of model advantages is still being tracked.",
+        "Datasets / Benchmarks": "GitHub Archive event streams (GH Archive), covering 4 event types across 400 repositories. Compared against existing benchmarks like GIFT-Eval, FEV, Monash Forecasting Repository.",
+        "Results Summary": "Early snapshot shows pre-trained foundation models (TimesFM, Moirai, TiRex, Chronos) leading in performance. However, some statistical models (SeasonalNaïve) achieve competitive MASE but poor CRPS, highlighting nuanced performance beyond one-off accuracy.",
+        "Why It Matters": "Crucial for accurately assessing the temporal generalization claims of time-series foundation models. Provides a more realistic and robust evaluation framework for real-world dynamic environments, promoting truly generalizable and reliable forecasting solutions.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Table 2 (Overall leaderboard results), Figure 1 (Weekly GitHub activity).",
+        "arxiv_id": "http://arxiv.org/abs/2603.08707v1"
+    },
+    {
+        "Title": "Scale Space Diffusion",
+        "Field & Subfield": "Computer Vision: Generative Models & Diffusion Processes. Integrates Scale Space Theory for multi-resolution image synthesis.",
+        "Key Contributions": "Analyzed relationship between diffusion states & scale space levels; Developed math for generalized linear diffusion processes & SSD; Introduced Flexi-UNet for resolution-changing/preserving reverse diffusion.",
+        "Methodology": "Formally connected diffusion timesteps & scale spaces. Proposed Generalized Linear Diffusion Process with resizing. Introduced Flexi-UNet for efficient multi-resolution denoising, supporting resolution changes & preserving steps. Handled non-isotropic posteriors via implicit sampling.",
+        "Strengths": "Significantly faster training/inference (up to 2x for 256x256 vs DDPM) with comparable FID scores. Efficiently handles multi-resolution generation via Flexi-UNet. Provides a unified mathematical framework for integrating scale spaces into diffusion.",
+        "Limitations": "Does not use advanced techniques for optimal performance (e.g., newer samplers). Isotropic covariance approximation for non-isotropic Gaussian noise can lead to artifacts if not handled.",
+        "Datasets / Benchmarks": "CelebA (64x64, 128x128, 256x256) & ImageNet-64. Benchmarked against DDPM, Blurring Diffusion (BD), UDPM, and Latent Diffusion Models (LDM).",
+        "Results Summary": "SSD with Flexi-UNet significantly reduces training time & GFLOPS (e.g., SSD 6L at 256x256 is <1/2 time of DDPM), while maintaining competitive FID scores on CelebA & ImageNet-64, especially at higher resolutions.",
+        "Why It Matters": "Unifies core computer vision concepts (diffusion & scale space), addressing computational inefficiency of high-resolution diffusion models. Enables faster, scalable, and high-quality image generation across multiple resolutions.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig 1 (SSD overview, performance trends), Fig 2 (Info degradation analysis), Table 1 (Formulation comparison), Table 2 (Main results on CelebA), Table 4 (Flexi-UNet ablation).",
+        "arxiv_id": "http://arxiv.org/abs/2603.08709v1"
     }
 ]
