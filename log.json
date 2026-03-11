@@ -1610,5 +1610,55 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Fig 1 (SSD overview, performance trends), Fig 2 (Info degradation analysis), Table 1 (Formulation comparison), Table 2 (Main results on CelebA), Table 4 (Flexi-UNet ablation).",
         "arxiv_id": "http://arxiv.org/abs/2603.08709v1"
+    },
+    {
+        "Title": "FROM DATA STATISTICS TO FEATURE GEOMETRY: HOW CORRELATIONS SHAPE SUPERPOSITION",
+        "Field & Subfield": "Artificial Intelligence, Mechanistic Interpretability",
+        "Key Contributions": "- Introduced Bag-of-Words Superposition (BOWS) for studying realistic feature correlations.\n- Showed correlated features enable constructive interference, leveraging low-rank structure.\n- Demonstrated how bottlenecks/weight decay drive semantic clusters and cyclical structures in AEs.\n- Distinguished between presence-coding and value-coding features.",
+        "Methodology": "Developed Bag-of-Words Superposition (BOWS) framework. Trained autoencoders (linear & ReLU AEs) on synthetic data with cyclic covariance and real internet text (WikiText-103, OpenWebText). Analyzed feature geometry using UMAP/PCA and linear probes.",
+        "Strengths": "Provides a controlled environment (BOWS) to study realistic feature correlations. Explains complex geometric structures in LMs through a simpler, data-driven mechanism. Offers a novel perspective on interference as constructive.",
+        "Limitations": "BOWS is simple and doesn't capture full LM representation richness. Lacks a complete mathematical characterization of when constructive interference or ReLU filtering dominates. Focuses on tied-weight AEs.",
+        "Datasets / Benchmarks": "WikiText-103 for real internet text, OpenWebText for replication. Custom synthetic 'Months' dataset with cyclic covariance. GeoNames Cities1000 for map positions.",
+        "Results Summary": "Correlated features enable constructive interference, leading to semantic clusters and cyclic structures in autoencoders under bottlenecks/weight decay. This contrasts with traditional views of interference as purely harmful and explains observed geometries in real language models.",
+        "Why It Matters": "Revolutionizes understanding of superposition in NNs by showing interference can be beneficial, not just noise. Explains common geometric feature structures in real LMs, enhancing mechanistic interpretability. Introduces BOWS as a benchmark for SAE evaluation.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (BOWS framework overview), Figure 3 (Semantic clusters in ReLU AEs), Figure 4 (Circular representation of months), Figure 5 (Constructive interference & filtering coexistence).",
+        "arxiv_id": "2603.09972v1"
+    },
+    {
+        "Title": "ReCoSplat: Autoregressive Feed-Forward Gaussian Splatting Using Render-and-Compare",
+        "Field & Subfield": "Computer Vision & 3D Reconstruction, Novel View Synthesis",
+        "Key Contributions": [
+            "Introduces ReCoSplat for autoregressive, feed-forward Gaussian Splatting.",
+            "Proposes Render-and-Compare module to bridge pose distribution mismatch.",
+            "Develops hybrid KV cache compression for long sequences (90%+ reduction).",
+            "Achieves SOTA in diverse input settings and benchmarks."
+        ],
+        "Methodology": "Autoregressive feed-forward Gaussian Splatting with a DINOv2 ViT encoder & transformer decoder. Render-and-Compare module for visual conditioning. Hybrid KV cache compression (truncation, selective retention). Multi-task loss & curriculum learning.",
+        "Strengths": "Robust to diverse input settings (posed/unposed, with/without intrinsics). Effectively handles pose distribution mismatch. Highly memory efficient for long sequences (90%+ KV cache reduction). SOTA against autoregressive baselines, competitive with offline methods.",
+        "Limitations": "Reconstruction quality in unposed settings still depends on accurate pose estimation. Large pose errors can propagate, affecting rendering fidelity. Further advancements in online pose estimation are needed for optimal performance.",
+        "Datasets / Benchmarks": {
+            "Training/Evaluation": "DL3DV, ScanNet++.",
+            "Generalization": "RealEstate10K, ACID, ScanNet.",
+            "Benchmarked against": "YoNoSplat, FreeSplat, S3PO-GS, CUT3R, TTT3R, StreamVGGT, WinT3R."
+        },
+        "Results Summary": "ReCoSplat consistently outperforms autoregressive baselines on NVS (PSNR, SSIM, LPIPS) across all input settings & datasets. Substantial gains in unposed settings. Achieves SOTA camera pose estimation (AUC). KV cache compression reduces memory by 93% with minimal quality loss.",
+        "Why It Matters": "Enables robust, real-time 3D scene reconstruction and novel view synthesis from sequential, unposed observations on consumer hardware. Crucial for applications like embodied AI, AR/VR, and real-time video generation.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig. 3 (NVS in unposed settings), Fig. 4 (NVS in fully posed), Fig. 5 (KV cache memory usage), Table 1 (NVS results on DL3DV), Table 4 (Pose estimation results).",
+        "arxiv_id": "http://arxiv.org/abs/2603.09968v1"
+    },
+    {
+        "Title": "Task Aware Modulation using Representation Learning for Upsaling of Terrestrial Carbon Fluxes",
+        "Field & Subfield": "Machine Learning & Environmental Science, Remote Sensing",
+        "Key Contributions": "- Extends TAM-RL for zero-shot global carbon flux upscaling.\n- Introduces knowledge-guided composite loss (carbon balance, quality, class balancing).\n- Achieves significant performance gains (RMSE 8-9.6% ↓, R² 19.4-43.8% ↑) over SOTA.",
+        "Methodology": "TAM-RL framework with BiLSTM-based modulation network and standard LSTM decoder using Feature-wise Linear Modulation (FiLM). Employs a knowledge-guided composite loss function for physical consistency. Two-stage training: pre-training decoder, then joint training for task-specific adaptation.",
+        "Strengths": "Effectively addresses domain generalization, significantly outperforms state-of-the-art models (FLUXCOM-X-BASE, XGBoost), improves robustness and transferability of carbon flux estimates, and integrates physically grounded constraints.",
+        "Limitations": "Underperforms on water bodies and certain forest types (e.g., mixed, deciduous, evergreen forests). Substantial error variability persists across climate and ecoregion classes, hindering global applicability. Current features may lack aquatic process variables.",
+        "Datasets / Benchmarks": "FLUXNET, AmeriFlux, ICOS, JapanFlux (579 EC sites, 2000-2023). MODIS satellite observations (MOD09GA, MCD12Q1). ERA5-Land reanalysis data. Benchmarks: FLUXCOM-X-BASE, XGBoost, CT-LSTM, TAMLSTM.",
+        "Results Summary": "TAM-RL reduced RMSE by 8-9.6% and increased explained variance (R²) by 19.4-43.8% for GPP/NEE compared to FLUXCOM-X-BASE. Consistently outperformed all baselines across diverse ecosystems and climates, achieving lowest RMSE and highest R² overall.",
+        "Why It Matters": "Accurate global carbon flux upscaling is critical for climate policy, carbon accounting, and Earth system modeling. TAM-RL improves the robustness and transferability of these estimates, crucial for understanding climate change and ecosystem dynamics.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig. 2 (TAM-RL Architecture), Fig. 3 (RMSE by IGBP & Köppen), Fig. 4 (Relative RMSE Heatmap), Fig. 5 (Site-level RMSE/R² Comparison), Table 1 (Avg. Performance Metrics)."
     }
 ]
