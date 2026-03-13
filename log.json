@@ -1660,5 +1660,47 @@
         "Why It Matters": "Accurate global carbon flux upscaling is critical for climate policy, carbon accounting, and Earth system modeling. TAM-RL improves the robustness and transferability of these estimates, crucial for understanding climate change and ecosystem dynamics.",
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Fig. 2 (TAM-RL Architecture), Fig. 3 (RMSE by IGBP & Köppen), Fig. 4 (Relative RMSE Heatmap), Fig. 5 (Site-level RMSE/R² Comparison), Table 1 (Avg. Performance Metrics)."
+    },
+    {
+        "Title": "EVATok: Adaptive Length Video Tokenization for Efficient Visual Autoregressive Generation",
+        "Field & Subfield": "Computer Vision; Generative Models & Video Processing",
+        "Key Contributions": "* Four-stage framework for adaptive video tokenization.\n* Novel \"proxy reward\" metric to identify optimal token assignments.\n* Lightweight router for fast optimal assignment prediction.\n* Superior reconstruction & AR generation with significant token savings.\n* Advanced training with semantic encoders.",
+        "Methodology": "A four-stage framework: 1) Proxy tokenizer learns video reconstruction for varied assignments. 2) Curate (video, optimal assignment) dataset via max-proxy-reward search. 3) Train lightweight router to predict assignments. 4) Train final adaptive tokenizer with router-predicted assignments and semantic encoders.",
+        "Strengths": "Significantly reduces token usage (24.4-27.7%) while improving or maintaining quality. Content-adaptive token assignment optimizes resource allocation. Addresses training-inference gap. Router generalizes well. Semantic encoders enhance perceptual quality and generation.",
+        "Limitations": "Limited to 16-frame videos; not evaluated on higher resolution or longer duration. Computational cost for optimal assignment grows exponentially with video length. Not validated on more complex downstream tasks like text-to-video generation.",
+        "Datasets / Benchmarks": "UCF-101, K600 (for reconstruction and generation), WebVid-10M (for reconstruction and router training). Evaluated using LPIPS, rFVD, PSNR for reconstruction, and gFVD for generation.",
+        "Results Summary": "Achieves SOTA/competitive results on UCF-101 & K600. Saves 24.4% tokens in reconstruction (rFVD 9.7 vs. LARP's 20) and 27.7% in generation (gFVD 48 vs. LARP's 57) on UCF-101. Router yields 56% token savings on WebVid, 42% on UCF for comparable quality.",
+        "Why It Matters": "Introduces an efficient and content-adaptive method for video tokenization, crucial for scalable autoregressive video generative models. By optimizing token allocation, EVATok reduces computational cost and improves generation efficiency without sacrificing visual quality.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (EVATok highlights & token assignment examples), Figure 4 (Quality-cost trade-off curves), Table 3 (System-level comparison).",
+        "arxiv_id": "http://arxiv.org/abs/2603.12267v1"
+    },
+    {
+        "Title": "MM-CondChain: A Programmatically Verified Benchmark for Visually Grounded Deep Compositional Reasoning",
+        "Field & Subfield": "Artificial Intelligence, Multimodal Large Language Models (MLLMs)",
+        "Key Contributions": "- First benchmark for visually grounded deep compositional reasoning with multi-layer control flow & chained hard negatives.\n- Proposes VPIR-based agentic pipeline for scalable, mechanically verifiable benchmark construction.\n- Evaluates MLLMs across 3 domains, revealing struggles with complex conditional reasoning.",
+        "Methodology": "VPIR-based agentic pipeline: Planner orchestrates layer-by-layer condition generation; VPIR (executable predicates) ensures mechanical verification against visual facts; Composer assembles instructions into true/false paths with hard negatives. Decouples logic from language rendering.",
+        "Strengths": "Mechanically verifiable data quality, deep compositional reasoning beyond prior benchmarks, robust hard negative generation, cross-domain applicability (natural images, charts, GUI), configurable difficulty axes (depth, complexity).",
+        "Limitations": "Even state-of-the-art MLLMs struggle significantly, particularly with hard negatives, increased chain depth, and predicate complexity, suggesting MLLMs still have fundamental reasoning bottlenecks.",
+        "Datasets / Benchmarks": "MM-CondChain instances generated using SAM/GQA (Natural), ChartQA (Charts), AITZ/AITW (GUI). Compared against existing benchmarks like MMComposition, VL-CheckList, IFEval, FollowBench.",
+        "Results Summary": "MLLMs struggle; strongest model (Gemini-3-Pro) achieves 53.33 Path F1. Performance drops sharply on hard negatives and degrades by ~30% as chain depth or predicate complexity increases. GUI domain is most challenging.",
+        "Why It Matters": "Highlights a fundamental bottleneck in MLLMs' visually grounded deep compositional reasoning. MM-CondChain serves as a diagnostic tool for identifying specific weaknesses and driving research towards more robust multimodal AI.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (MM-CondChain vs. prior benchmarks), Table 1 (Benchmark comparison), Table 3 (Main results), Table 4 (Effect of chain depth and predicate complexity)",
+        "arxiv_id": "http://arxiv.org/abs/2603.12266v1"
+    },
+    {
+        "Title": "OmniStream: Mastering Perception, Reconstruction and Action in Continuous Streams",
+        "Field & Subfield": "Computer Vision, Multimodal AI, Embodied AI",
+        "Key Contributions": "- Unified streaming visual backbone for general-purpose visual understanding.\n- Causal spatiotemporal attention & 3D-ROPE for efficient online inference.\n- Multi-task pre-training for semantic, geometric, and language alignment.\n- Achieves competitive performance across diverse vision & robotics tasks with frozen backbone.",
+        "Methodology": "Extends DINOv3 with causal spatiotemporal attention & 3D Rotary Positional Embeddings (3D-ROPE) for streaming processing. Pre-trained with a synergistic multi-task framework: static/temporal representation learning (SSL), streaming geometric reconstruction, and vision-language alignment.",
+        "Strengths": "Supports real-time, online inference with causal KV-cache, ensuring linear memory/latency. Achieves strong generalization across perception, geometry, VLM, and VLA tasks with a *frozen* backbone. Effectively bridges semantic, temporal, and geometric understanding for embodied agents.",
+        "Limitations": "Does not uniformly surpass specialized state-of-the-art methods on every benchmark. Potential for further performance gains through larger model scaling, an area left for future work. Explicit limitations not heavily discussed, but implied by 'does not uniformly surpass SOTA'.",
+        "Datasets / Benchmarks": "Pre-training: DataComp-100M, ImageNet-21K, Kinetics, SSv2, Co3Dv2, ScanNet, GRIT (29 datasets, ~200M frames). Evaluation: ImageNet, NYUv2, ADE20K, SSv2, K400, DAVIS'17, Sintel, TUM, ScanNet, VSI-Bench, CALVIN, Simpler-Bridge.",
+        "Results Summary": "OmniStream shows competitive/superior performance against specialized experts across image/video probing, geometric reconstruction, VLM (Video QA, spatial reasoning), and VLA (robotic manipulation) with a frozen backbone. Demonstrates impressive zero-shot length extrapolation.",
+        "Why It Matters": "Presents a meaningful step towards a single, versatile vision backbone for general-purpose visual understanding. Enables efficient, causal online processing crucial for interactive and embodied AI agents, addressing fragmentation in current foundation models.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Table 2 (Holistic Evaluation), Table 9 (Inference Efficiency), Figure 1 (Overall Framework).",
+        "arxiv_id": "http://arxiv.org/abs/2603.12265v1"
     }
 ]
