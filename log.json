@@ -1702,5 +1702,47 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Table 2 (Holistic Evaluation), Table 9 (Inference Efficiency), Figure 1 (Overall Framework).",
         "arxiv_id": "http://arxiv.org/abs/2603.12265v1"
+    },
+    {
+        "Title": "Demystifying Video Reasoning",
+        "Field & Subfield": "Artificial Intelligence & Computer Vision (Video Generation)",
+        "Key Contributions": "- Uncovered Chain-of-Steps (CoS): reasoning primarily unfolds along diffusion denoising steps, not across frames.\n- Identified emergent behaviors: working memory, self-correction, perception before action.\n- Revealed DiT layer specialization: early layers (perception), middle layers (reasoning), later layers (consolidation).\n- Proposed training-free ensemble strategy for improved reasoning.",
+        "Methodology": "Qualitative analysis of intermediate denoising steps; targeted noise perturbation experiments (Noise at Step vs. Noise at Frame); fine-grained Diffusion Transformer analysis (token activations, layer-wise latent swapping); training-free latent ensemble.",
+        "Strengths": "Challenges prevailing CoF hypothesis with strong empirical evidence; reveals internal reasoning dynamics of video diffusion models; identifies emergent behaviors similar to LLMs; provides a simple, effective training-free improvement method.",
+        "Limitations": "Does not fully explore the impact of drastically reduced denoising steps (distilled models show degraded reasoning); temporal continuity (number of frames) is still necessary for robust reasoning despite CoS.",
+        "Datasets / Benchmarks": "VBVR-Wan2.2 (video reasoning model), VBVR-Bench, VBench (general video generation benchmarks).",
+        "Results Summary": "Reasoning primarily via CoS, not CoF. Noise at Step disrupts reasoning more than Noise at Frame. Information propagation peaks at middle diffusion steps (20-30). Training-free ensemble improved VBVR-Bench score by 2% (from 0.685 to 0.716).",
+        "Why It Matters": "Provides a fundamental new understanding of how diffusion-based video models reason, shifting focus from temporal frames to denoising steps. This offers a foundation for developing more intelligent video generation and reasoning systems.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Chain-of-Steps visualization), Figure 3 (Noise perturbation & info flow), Figure 4 (Emergent behaviors), Figure 6 (Layer specialization), Table 1 (Benchmarking results).",
+        "arxiv_id": "2603.16870v1"
+    },
+    {
+        "Title": "SegviGen: Repurposing 3D Generative Model for Part Segmentation",
+        "Field & Subfield": "Computer Vision & Graphics, 3D Part Segmentation",
+        "Key Contributions": "- Unified multi-task framework for 3D part segmentation via pretrained 3D generative models.\n- Reformulates 3D segmentation as part-wise colorization in a single generative process.\n- Achieves SOTA performance with significantly less labeled data (0.32%).\n- Supports interactive, full, & 2D-guided full segmentation.",
+        "Methodology": "SegviGen repurposes pretrained 3D generative models (Trellis.2 backbone) by casting 3D part segmentation as a conditional part-wise colorization task. It encodes 3D assets into a latent space, conditions a flow-matching generator with task embeddings and point/2D guidance, then predicts part-indicative colors on active voxels.",
+        "Strengths": "Achieves SOTA results in interactive (40% gain IoU@1) and full (15% overall IoU) segmentation. Requires only 0.32% of labeled training data, showing high data efficiency. Produces high-fidelity segmentation with sharp boundaries and strong generalization. Offers controllable, fine-grained parsing with 2D guidance.",
+        "Limitations": "The paper does not explicitly state limitations. Potential limitations could include dependency on the quality/generalization of the pretrained 3D generative model, computational cost during inference, or specific handling of highly ambiguous or deformable objects.",
+        "Datasets / Benchmarks": "Trained on PartVerse (12k objects, 91k parts). Evaluated on PartObjaverse-Tiny (200 textured meshes) and PartNeXT (300 textured meshes). Compared against Point-SAM, P3-SAM, Find3D, SAMPart3D, PartField.",
+        "Results Summary": "SegviGen significantly outperforms SOTA: 42.49% IoU@1 on PartObjaverse-Tiny (vs. P3-SAM 33.04%) & 54.86% on PartNeXT (vs. P3-SAM 35.61%) for interactive tasks. For full segmentation, it achieves 50.64% (P.Objaverse-Tiny) & 55.40% (PartNeXT), further boosted to 62.98% & 71.53% with 2D guidance.",
+        "Why It Matters": "SegviGen offers an efficient and accurate approach to 3D part segmentation, addressing the high data demands of previous methods. By leveraging generative priors, it reduces reliance on large-scale annotations and improves segmentation quality, making 3D content creation and spatial intelligence more accessible.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Table 1 (Interactive part segmentation), Table 2 (Full segmentation), Figure 3 (Qualitative interactive results), Figure 4 (Qualitative full segmentation results).",
+        "arxiv_id": "http://arxiv.org/abs/2603.16869v1"
+    },
+    {
+        "Title": "WorldCam: Interactive Autoregressive 3D Gaming Worlds with Camera Pose as a Unifying Geometric Representation",
+        "Field & Subfield": "Computer Vision & Graphics, Generative AI / World Models",
+        "Key Contributions": "- Camera pose as unifying geometric representation for action control & 3D consistency.\n- Physics-based continuous action space (Lie algebra) for precise 6-DoF camera poses.\n- Pose-anchored long-term memory for consistent long-horizon navigation.\n- WorldCam-50h: large-scale, open-licensed dataset of human gameplay.",
+        "Methodology": "Builds on Video Diffusion Transformer (DiT). Maps user actions to 6-DoF camera poses via Lie algebra & matrix exponential. Injects Plücker embeddings into DiT via a camera embedder. Utilizes pose-anchored hierarchical long-term memory (position & orientation) for context retrieval. Employs progressive autoregressive inference with attention sinks.",
+        "Strengths": "Achieves precise action control, robust long-horizon 3D consistency, and high visual quality. Outperforms state-of-the-art interactive gaming world models & camera-controlled methods. Introduces a large, open-licensed dataset, fostering reproducible research.",
+        "Limitations": "Inference efficiency remains a limitation; future work could integrate acceleration/distillation techniques to enable real-time generation.",
+        "Datasets / Benchmarks": "WorldCam-50h (new, 3000 mins gameplay from Counter-Strike, Xonotic, Unvanquished), VBench++ (visual quality), ViPE (camera pose estimation), DINOv2 (3D consistency).",
+        "Results Summary": "WorldCam consistently outperforms baselines across all metrics: Action controllability (lowest RPE errors), visual quality (highest VBench++ Avg, 8.1% over GameCraft), and 3D consistency (highest PSNR, lowest LPIPS, MEt3R). Human evaluation also rates WorldCam best.",
+        "Why It Matters": "Enables creation of interactive 3D gaming world models with unprecedented action fidelity and geometric consistency over long horizons, crucial for functional gaming engines and advancing generative AI in virtual environments. The open dataset promotes research reproducibility.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Teaser), Figure 2 (Architecture), Table 1 (Model Comparison), Table 2 (Action Controllability & Visual Quality), Table 3 (3D Consistency), Table 5 (Human Evaluation).",
+        "arxiv_id": "http://arxiv.org/abs/2603.16871v1"
     }
 ]
