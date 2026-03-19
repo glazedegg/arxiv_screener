@@ -1744,5 +1744,47 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (Teaser), Figure 2 (Architecture), Table 1 (Model Comparison), Table 2 (Action Controllability & Visual Quality), Table 3 (3D Consistency), Table 5 (Human Evaluation).",
         "arxiv_id": "http://arxiv.org/abs/2603.16871v1"
+    },
+    {
+        "Title": "Loc3R-VLM: Language-based Localization and 3D Reasoning with Vision-Language Models",
+        "Field & Subfield": "Computer Vision & Natural Language Processing; 3D Scene Understanding, Spatial Reasoning, VLM",
+        "Key Contributions": "- Loc3R-VLM for 3D understanding from monocular video. - 3D-aware learning via global layout reconstruction & explicit situation modeling. - Integrates lightweight camera pose priors for geometric grounding. - Achieves SOTA in language-based localization & 3D QA.",
+        "Methodology": "Equips 2D VLMs (LLaVA-Video-7B) with 3D understanding from monocular video using Camera Pose Priors (from CUT3R), Global Layout Reconstruction (2D BEV map), and Situation Modeling (explicit localization tokens). Jointly trained end-to-end.",
+        "Strengths": "Achieves SOTA on language-based localization & 3D QA. Operates on monocular video, removing dense 3D input reliance at inference. Inspired by human cognition, robust across frame counts, and demonstrates strong generalization.",
+        "Limitations": "2D BEV projection discards vertical detail (hinders multi-floor/height reasoning). Fixed-length frame sampling limits scene coverage (potential \"blind spots\"). Focuses exclusively on static indoor scenes.",
+        "Datasets / Benchmarks": "Trained on ScanQA, SQA3D, MSQA (ScanNet), VSI-Bench (including VLM-3R custom data). Evaluated on language-based localization (SQA3D) and 3D QA (VSI-Bench, SQA3D, MSQA, Beacon3D).",
+        "Results Summary": "Significantly outperforms prior methods on language-based localization (e.g., +39.0% Acc@1.0m on SQA3D). Achieves SOTA on VSI-Bench, MSQA, & Beacon3D for 3D QA, excelling in viewpoint-dependent and spatial subcategories.",
+        "Why It Matters": "Bridges the gap between 2D VLMs and human-like 3D spatial understanding from video. Enables robust language-based localization and viewpoint-aware 3D reasoning, critical for embodied AI, robotics, and complex human-AI interaction.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig. 1 (Loc3R-VLM overview), Table 1 (Language-based Localization SOTA on SQA3D), Table 2 (3D QA SOTA on VSI-Bench), Fig. 4/J.1/J.2 (Qualitative results).",
+        "arxiv_id": "http://arxiv.org/abs/2603.18002v1"
+    },
+    {
+        "Title": "Unified Spatio-Temporal Token Scoring for Efficient Video VLMs",
+        "Field & Subfield": "Computer Vision, Vision-Language Models (VLMs)",
+        "Key Contributions": "• Unified, end-to-end trainable module for token pruning across ViT & LLM.\n• Dual-axis scoring (spatial saliency via LLM gradients, temporal redundancy via auxiliary loss).\n• 62% efficiency gains with only 0.7% perf. drop at 50% pruning.\n• Scalability demonstrated via test-time scaling for long videos.",
+        "Methodology": "Spatio-Temporal Token Scoring (STTS) is a lightweight plug-in module inserted after a ViT layer. It uses a token pooler & 3-layer MLP scorer. Scores are injected as attention bias for spatial pruning via LLM gradients. An auxiliary MSE loss guides temporal scoring. An efficient packing algorithm converts sparse tokens to dense tensors for compute savings.",
+        "Strengths": "End-to-end trainable, architecture-agnostic vision token pruning. Achieves significant computational savings (up to 2.25x speedup) with negligible performance loss (0.7% drop at 50% pruning). Robust at aggressive pruning rates. Generalizable via test-time scaling for long videos, improving QA performance.",
+        "Limitations": "Evaluated primarily on Molmo2 backbone. Packing algorithm has a theoretical O(T²) complexity, though claimed negligible for typical video lengths. Non-monotonic performance observed between 40% and 50% pruning, requiring careful hyperparameter tuning for optimal trade-offs.",
+        "Datasets / Benchmarks": "NextQA, Perception-test, MVBench, Tomato, MotionBench, Temp-Compass, VideoMME, LongVideo, MLVU, LVBench, VideoEvalPro (diverse video QA benchmarks). Molmo2 internal dataset mixture.",
+        "Results Summary": "STTS prunes 50% of vision tokens, yielding a 62% efficiency gain during training/inference with a minimal 0.7% performance drop across 13 video QA tasks. Efficiency gains scale with sampled frames (up to 2.25x speedup for 256 frames). Test-time scaling further improves long-video QA by 0.5-1% over baseline.",
+        "Why It Matters": "Addresses the high computational cost of video VLMs by efficiently pruning redundant spatio-temporal tokens. This makes state-of-the-art video understanding more accessible and scalable, enabling processing of longer video contexts in memory-constrained or latency-sensitive applications.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (STTS vs. heuristic pruning, performance vs. pruning), Figure 5 (Efficiency gains speedup), Table 1 (Pruning strength on video benchmarks), Table 3 (Test-Time Scaling impact).",
+        "arxiv_id": "http://arxiv.org/abs/2603.18004v1"
+    },
+    {
+        "Title": "Universal Skeleton Understanding via Differentiable Rendering and MLLMs",
+        "Field & Subfield": "Computer Vision & Multimodal AI. Subfield: Human Action Understanding, Skeleton-based Recognition.",
+        "Key Contributions": "New paradigm for universal skeleton understanding via visual translation to MLLMs. Introduced DrAction: differentiable, format-agnostic skeleton renderer for MLLMs. Cooperative training (CR-Distill + Disc-FT) for causal reasoning & fine-grained discrimination.",
+        "Methodology": "SkeletonLLM uses DrAction, a differentiable renderer (3D Gaussian Splatting + LBS), to convert diverse skeletons into image sequences. A NFM adjusts appearance. An MLLM (InternVL3-8B) is guided by a 4-stage cooperative training for multi-task understanding.",
+        "Strengths": "Achieves universal skeleton understanding across heterogeneous formats & diverse tasks (recognition, captioning, QA, cross-format transfer) via end-to-end differentiable visual translation. Strong generalization, causal reasoning, & fine-grained discrimination.",
+        "Limitations": "Focus on atomic actions, not long-horizon compositional actions. Rendered skeleton images are sparse, suggesting suboptimal visual token efficiency. Further optimization needed for real-time deployment on consumer GPUs due to current cost.",
+        "Datasets / Benchmarks": "NTU-60/120, PKU-MMD, NW-UCLA, HumanML3D, NTU-60 (2D). Introduced Skeleton-QA, a new benchmark for motion question answering.",
+        "Results Summary": "Significantly outperforms prior methods across tasks. Achieves +11.96% on NTU-60 (30/30 split) for recognition, +17.19% on cross-format transfer (NTU-60->NW-UCLA), and substantial gains in motion captioning/QA.",
+        "Why It Matters": "Bridges MLLMs to structured, non-visual data (skeletons), overcoming format silos & enabling semantic understanding. Crucial for privacy-preserving applications in healthcare & HRI, extending MLLM reasoning capabilities to novel modalities.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Conceptual Overview), Figure 2 (Method Pipeline), Table 1 (Main Recognition Results), Table 2 (Cross-Format Transfer Accuracies).",
+        "arxiv_id": "http://arxiv.org/abs/2603.18003v1"
     }
 ]
