@@ -1786,5 +1786,33 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (Conceptual Overview), Figure 2 (Method Pipeline), Table 1 (Main Recognition Results), Table 2 (Cross-Format Transfer Accuracies).",
         "arxiv_id": "http://arxiv.org/abs/2603.18003v1"
+    },
+    {
+        "Title": "Cubic Discrete Diffusion: Discrete Visual Generation on High-Dimensional Representation Tokens",
+        "Field & Subfield": "Computer Vision, Generative Models",
+        "Key Contributions": "- Proposes Cubic Discrete Diffusion (CubiD), first discrete generative model for high-dimensional representations.\n- Introduces fine-grained masking across h x w x d tensor, enabling tractable high-dimensional discrete generation.\n- Achieves SOTA discrete generation on ImageNet 256x256; shows strong scaling & generalization.\n- Validates high-dim discrete tokens preserve semantic capabilities for understanding & generation.",
+        "Methodology": "CubiD performs fine-grained masking across a 3D tensor (h x w x d) of high-dimensional discrete tokens (from frozen pretrained encoders). It predicts masked tokens via cross-entropy loss. Generation uses iterative unmasking, starting fully masked and refining in T fixed steps, enabling parallel generation.",
+        "Strengths": "First to directly model high-dimensional tokens (768d) for discrete generation, achieving SOTA results. Demonstrates strong scaling behavior & generalization across encoders. Preserves semantic quality for understanding tasks, enabling unified representations.",
+        "Limitations": "Dependence on frozen pretrained encoder limits reconstruction quality. Performance still has a gap compared to continuous diffusion models. Inference efficiency could be improved (requires hundreds of steps).",
+        "Datasets / Benchmarks": "ImageNet-1K (training), ImageNet 256x256 (evaluation). LLaVA framework benchmarks: GQA, TextVQA, POPE, MME for understanding tasks.",
+        "Results Summary": "CubiD-XXL achieves SOTA gFID 1.88 on ImageNet 256x256. Dimension-wise quantization preserves understanding capabilities, unlike VQ. Per-element fine-grained masking is crucial for performance. Shows strong scaling from 900M to 3.7B parameters.",
+        "Why It Matters": "Paves the way for unified multimodal architectures by enabling visual generation on semantically rich, high-dimensional representation tokens, bridging the gap between vision understanding and generation tasks using a shared token paradigm.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Comparison of discrete visual generation approaches), Figure 2 (Generated samples), Table 3 (Understanding performance on LLaVA benchmarks), Table 5 (Main results on ImageNet 256x256).",
+        "arxiv_id": "http://arxiv.org/abs/2603.19232v1"
+    },
+    {
+        "Title": "Generation Models Know Space: Unleashing Implicit 3D Priors for Scene Understanding",
+        "Field & Subfield": "Computer Vision & Multimodal AI / 3D Scene Understanding",
+        "Key Contributions": "- Generative priors encode geometry-consistent structure/motion, most informative in intermediate representations.\n- VEGA-3D: plug-and-play framework repurposing video generation models as Latent World Simulators for MLLMs.\n- Token-level adaptive gated fusion aligns heterogeneous generative and semantic token spaces.",
+        "Methodology": "VEGA-3D repurposes a frozen video diffusion model (e.g., Wan2.1-T2V) as a Latent World Simulator. It extracts implicit 3D priors from intermediate noise levels via noise injection and integrates them with MLLM semantic features using a token-level adaptive gated fusion mechanism.",
+        "Strengths": "Plug-and-play framework, does not require explicit 3D supervision or complex geometric scaffolding. Achieves superior performance across diverse 3D tasks. Scalable as advances in video generation directly transfer to stronger downstream 3D understanding.",
+        "Limitations": "Increased inference cost; not all generative backbones are equally suitable (DiT-based preferred); current extraction settings are manually chosen; experiments centered on indoor multi-view settings.",
+        "Datasets / Benchmarks": "ScanRefer, Multi3DRefer, Scan2Cap, ScanQA, SQA3D (3D Scene Understanding); VSI-Bench (Spatial Reasoning); LIBERO (Robotic Manipulation).",
+        "Results Summary": "VEGA-3D consistently outperforms baselines in 3D scene understanding, spatial reasoning, and robotic manipulation. Achieves significant gains in localization-centric tasks, confirming generative priors complement semantic features for dense geometric cues.",
+        "Why It Matters": "Proposes a paradigm shift for MLLMs to overcome 'spatial blindness' by leveraging implicit 3D priors from video generation models. Eliminates reliance on scarce explicit 3D data and complex supervision, offering a scalable solution for physical world understanding.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig. 1 (Paradigm Comparison), Fig. 3 (Feature Analysis), Table 1 (3D Scene Understanding Results), Table 2 (VSI-Bench Results), Table 3 (LIBERO Results).",
+        "arxiv_id": "http://arxiv.org/abs/2603.19235v1"
     }
 ]
