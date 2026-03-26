@@ -1814,5 +1814,47 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Fig. 1 (Paradigm Comparison), Fig. 3 (Feature Analysis), Table 1 (3D Scene Understanding Results), Table 2 (VSI-Bench Results), Table 3 (LIBERO Results).",
         "arxiv_id": "http://arxiv.org/abs/2603.19235v1"
+    },
+    {
+        "Title": "DreamerAD: Efficient Reinforcement Learning via Latent World Model for Autonomous Driving",
+        "Field & Subfield": "Reinforcement Learning, Autonomous Driving, World Models",
+        "Key Contributions": "- 80x speedup via Shortcut Forcing World Model (SF-WM) compressing diffusion sampling.\n- Autoregressive Dense Reward Model (AD-RM) for fine-grained latent-space credit assignment.\n- Gaussian Vocabulary Sampling for GRPO, ensuring physically plausible exploration.",
+        "Methodology": "Latent world model (SF-WM) based on fine-tuned diffusion (Epona) for single-step latent rollouts. Autoregressive Dense Reward Model (AD-RM) evaluates latent states. GRPO policy optimization with Gaussian vocabulary sampling.",
+        "Strengths": "Achieves 80x speedup (0.03s/frame) for RL training. Maintains visual interpretability. Enables safe, imagination-based learning. Ensures physically plausible trajectories. SOTA performance on NavSim v2.",
+        "Limitations": "Existing pixel-level diffusion models suffer from multi-step inference latency (2s/frame) and prioritize visual fidelity over safety. World models can be vulnerable to hallucinations on OOD trajectories.",
+        "Datasets / Benchmarks": "NavSim v2 closed-loop planning benchmark (built on nuPlan), NuPlan, NuScenes.",
+        "Results Summary": "Achieves 87.7 EPDMS on NavSim v2, establishing SOTA. Outperforms Epona baseline by 2.6 EPDMS, with significant gains in safety metrics (NC, TTC, DAC, LK, HC, EC). Single-step inference at 0.03s.",
+        "Why It Matters": "Enables efficient and safe reinforcement learning for autonomous driving directly in latent space, mitigating high real-world training costs and safety risks, and opening avenues for scalable policy optimization.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig. 1 (World model imagination training), Fig. 4 (SF-WM visual clarity), Table 1 (NavSim v2 SOTA results).",
+        "arxiv_id": "http://arxiv.org/abs/2603.24587v1"
+    },
+    {
+        "Title": "Polynomial Speedup in Diffusion Models with the Multilevel Euler-Maruyama Method",
+        "Field & Subfield": "Machine Learning, Generative Models, Stochastic Differential Equations",
+        "Key Contributions": "- Introduces Multilevel Euler-Maruyama (ML-EM) for SDEs/ODEs.\n- Achieves polynomial speedup in 'Harder than Monte Carlo' (HTMC) regime (γ>2).\n- Applies ML-EM to diffusion models using multiple UNets of varying sizes.\n- Demonstrates up to 4x speedup for image generation on CelebA.",
+        "Methodology": "ML-EM method uses a range of DNN approximators (UNets) with varying accuracy/cost. Less costly UNets are used frequently, highest accuracy rarely. Probabilities for using each UNet can be learned via SGD. Theory assumes 'Harder than Monte Carlo' (HTMC) scaling laws for DNNs (γ>2).",
+        "Strengths": "Offers significant computational speedups (polynomial) for diffusion model sampling. Addresses high NFE cost. Predicts even larger speedups (10x+) for bigger, more complex models. Avoids discoloration issues seen with standard EM at low steps.",
+        "Limitations": "Relies on the 'Harder than Monte Carlo' (HTMC) regime (γ > 2) assumption for scaling laws. Practical implementation requires training multiple UNets. Learning optimal probabilities via SGD can be complex.",
+        "Datasets / Benchmarks": "CelebA dataset (64x64 cropped/rescaled images) for numerical experiments. Benchmarks against traditional Euler-Maruyama (EM) for DDPM and DDIM.",
+        "Results Summary": "ML-EM with learned coefficients outperforms EM, achieving up to 4x speedup on CelebA (less compute for same MSE, or lower MSE for same compute). The empirical γ ≈ 2.5 confirms HTMC regime applicability. Visually, ML-EM samples show fewer discolorations.",
+        "Why It Matters": "Significantly reduces the computational cost of diffusion models, addressing their environmental impact and enabling real-time applications. Provides a theoretical framework for achieving polynomial speedups in generative AI.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1: Compares ML-EM and EM for DDPM/DDIM (MSE vs. Generation time) and shows sample images. Figure 2: Estimates the scaling law exponent (γ).",
+        "arxiv_id": "http://arxiv.org/abs/2603.24594v1"
+    },
+    {
+        "Title": "TAG: Target-Agnostic Guidance for Stable Object-Centric Inference in Vision-Language-Action Models",
+        "Field & Subfield": "Robotics & AI; Vision-Language-Action Models, Object-Centric Manipulation, Inference-Time Guidance",
+        "Key Contributions": "- Identifies instance-level grounding under visual distraction as a dominant VLA robustness bottleneck.\n- Proposes TAG, an inference-time visual guidance mechanism inspired by CFG, using residual contrast.\n- Validates TAG on LIBERO, LIBERO-Plus, VLABench, showing consistent improvements.",
+        "Methodology": "TAG uses Classifier-Free Guidance (CFG) to contrast policy predictions under original vs. target-erased observations. The difference forms a steering signal reducing distractor bias. It synthesizes counterfactual videos using Qwen3-VL, Grounding DINO, SAM2, and MiniMaxRemover.",
+        "Strengths": "Significantly improves robustness in cluttered scenes, reducing near-miss and wrong-object actions. Requires no VLA policy architectural changes. Easily integrated with existing VLA policies with minimal changes. Effective across diverse tasks & architectures.",
+        "Limitations": "Performance degrades with overly aggressive guidance scales. Real-time dynamic object erasure introduces temporal inconsistencies and artifacts, limiting its use compared to static background methods for inference. Future work needed for imperfect visual observations.",
+        "Datasets / Benchmarks": "LIBERO, LIBERO-Plus (enhanced visual/spatial perturbations), VLABench (complex manipulation, cluttered scenes).",
+        "Results Summary": "TAG consistently boosts success rates across all benchmarks, especially in long-horizon tasks (LIBERO-Long: +7.4% SR) and under visual perturbations (LIBERO-Plus: +5.8% avg SR). VLABench SR more than doubled (e.g., +26.01% avg SR).",
+        "Why It Matters": "Addresses a critical failure mode of VLA policies in cluttered environments: precise target grounding. TAG enables more reliable robotic manipulation by enhancing object-centric attention, crucial for deploying robots in real-world scenarios.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig. 3 (Attention Map Comparison), Table 1 (LIBERO SR), Table 2 (LIBERO-Plus Robustness), Table 3 (VLABench SR).",
+        "arxiv_id": "http://arxiv.org/abs/2603.24584v1"
     }
 ]
