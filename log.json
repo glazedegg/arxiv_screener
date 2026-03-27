@@ -1856,5 +1856,33 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Fig. 3 (Attention Map Comparison), Table 1 (LIBERO SR), Table 2 (LIBERO-Plus Robustness), Table 3 (VLABench SR).",
         "arxiv_id": "http://arxiv.org/abs/2603.24584v1"
+    },
+    {
+        "Title": "MuRF: Unlocking the Multi-Scale Potential of Vision Foundation Models",
+        "Field & Subfield": "Computer Vision; Vision Foundation Models, Multi-Scale Representation Learning",
+        "Key Contributions": "• MuRF: a training-free inference strategy for VFMs. • Fuses multi-resolution features for enhanced representation. • Achieves consistent SOTA/competitive gains in dense prediction, VQA, & anomaly detection. • Universally applicable to diverse VFM backbones (e.g., DINOv2, SigLIP2).",
+        "Methodology": "MuRF processes an input image at multiple resolutions via a *frozen* VFM encoder. The resulting patch-level feature maps are upsampled to a common resolution and concatenated channel-wise to form a unified, scale-robust representation. Task-specific lightweight heads are then trained on this fused representation. For anomaly detection, anomaly scores from individual scales are averaged.",
+        "Strengths": "Universally applicable, architecture-agnostic, and training-free for the VFM backbone. Consistently enhances VFM representations by synergizing global context (low-res) and fine-grained details (high-res), leading to significant performance gains across diverse tasks.",
+        "Limitations": "Increased computational cost (higher latency & VRAM) and more parameters for the task-specific heads compared to single-scale inference. E.g., ~1.3x training time for some tasks, as indicated by Table 2.",
+        "Datasets / Benchmarks": "ADE20k, PASCAL VOC (semantic seg); NYU Depth V2, SUN RGB-D (depth est); MME, VLMsAreBiased, V*, MMBench, POPE, GQA, RealWorldQA (VQA); MVTec AD 2 (anomaly detection).",
+        "Results Summary": "MuRF achieved SOTA/competitive results: up to +5.9% mIoU for segmentation, up to +6.6% RMSE reduction for depth est, significant gains on VQA benchmarks (e.g., MME), and SOTA pixel-level AU-PRO0.05 on MVTec AD 2 for anomaly detection.",
+        "Why It Matters": "MuRF unlocks the full potential of frozen VFMs by providing a general, training-free method to leverage multi-scale information during inference. It establishes multi-resolution aggregation as a fundamental principle, not a task-specific trick, for enhancing visual representation robustness & accuracy.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Table 1 (Combined downstream evaluation), Table 4 (Anomaly detection performance), Figure 2 (MuRF Overview), Figure 3 & 4 (Qualitative segmentation/depth results).",
+        "arxiv_id": "http://arxiv.org/abs/2603.25744v1"
+    },
+    {
+        "Title": "ShotStream: Streaming Multi-Shot Video Generation for Interactive Storytelling",
+        "Field & Subfield": "Computer Vision & Video Generation, Interactive AI",
+        "Key Contributions": "Novel causal architecture for interactive, real-time multi-shot video generation. Reformulates as next-shot generation via streaming prompts. Dual-cache memory w/ RoPE indicator for consistency. Two-stage distillation mitigates error accumulation.",
+        "Methodology": "Fine-tunes T2V model into bidirectional next-shot teacher, then distills into 4-step causal student via Distribution Matching Distillation. Uses dual-cache memory (global/local w/ RoPE offset) for consistency & two-stage self-forcing distillation to mitigate error.",
+        "Strengths": "Enables interactive, real-time, low-latency (16 FPS/GPU) multi-shot video generation. Achieves superior visual consistency, prompt adherence, & shot transition control, outperforming prior bidirectional models.",
+        "Limitations": "Visual artifacts/inconsistencies in highly complex scenes/prompts due to limited backbone capacity. Potential for further acceleration (e.g., sparse attention, attention sink) for better interactivity.",
+        "Datasets / Benchmarks": "Internal dataset (320K multi-shot videos). Evaluation on 100 diverse multi-shot prompts (Gemini 2.5 Pro). Metrics: Subject/Background/Semantic Consistency, SCA, Text Alignment, Aesthetic Quality, Dynamic Degrees. User study.",
+        "Results Summary": "Achieves SOTA on visual consistency, prompt adherence, & transition control. Generates at 16 FPS on H200 GPU, >25x throughput improvement. Decisive user preference in subjective evaluations.",
+        "Why It Matters": "Breakthrough for interactive, real-time, long narrative video generation. Overcomes key limitations of prior bidirectional models (latency, interactivity). Paves the way for complex, dynamic AI-driven storytelling.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig. 1 (Multi-Shot Video Results), Fig. 2 (Workflow Overview), Fig. 4 (Causal Arch. & Distillation), Table 1 (Quantitative Results), Table 2 (User Preference).",
+        "arxiv_id": "http://arxiv.org/abs/2603.25746v1"
     }
 ]
