@@ -1884,5 +1884,46 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Fig. 1 (Multi-Shot Video Results), Fig. 2 (Workflow Overview), Fig. 4 (Causal Arch. & Distillation), Table 1 (Quantitative Results), Table 2 (User Preference).",
         "arxiv_id": "http://arxiv.org/abs/2603.25746v1"
+    },
+    {
+        "Title": "Gen-Searcher: Reinforcing Agentic Search for Image Generation",
+        "Field & Subfield": "Computer Vision, Image Generation, AI Agents, Reinforcement Learning",
+        "Key Contributions": "- First multimodal deep search agent for image generation.\n- Dedicated data pipeline (Gen-Searcher-SFT-10k, Gen-Searcher-RL-6k).\n- Introduced KnowGen benchmark and K-Score for evaluation.\n- Achieves substantial performance gains & strong transferability.",
+        "Methodology": "Two-stage training (SFT + Agentic RL with GRPO) for a deep search agent. Uses Gemini 3 Pro for prompt/trajectory generation, Nano Banana Pro for ground-truth images. Employs a dual reward system (text-based + image-based K-Score) for stable optimization.",
+        "Strengths": "Significantly improves knowledge-intensive image generation. Strong transferability across different image generation backbones. Utilizes multi-hop web search and visual reference retrieval. Dual reward feedback ensures stable and informative learning.",
+        "Limitations": "Final image quality still depends on the downstream image generator's capabilities. Integrating multiple references can sometimes slightly decrease aesthetic quality. Proprietary models used for data generation.",
+        "Datasets / Benchmarks": "Gen-Searcher-SFT-10k (10k SFT samples), Gen-Searcher-RL-6k (6k RL samples) - new training datasets. KnowGen - new search-grounded image generation benchmark. WISE - existing knowledge-based image generation benchmark.",
+        "Results Summary": "Gen-Searcher improves Qwen-Image's K-Score by ~16 points on KnowGen and ~15 points on WISE. Achieves strong transferability, boosting Seedream 4.5 by ~16 pts and Nano Banana Pro by ~3 pts. Dual reward system is crucial for performance.",
+        "Why It Matters": "Addresses the limitation of frozen internal knowledge in image generation models by enabling real-time, search-grounded, knowledge-intensive image synthesis, expanding capabilities for real-world scenarios and opening new research in multimodal AI agents.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1: Generated images. Figure 2: Gen-Searcher workflow. Table 1: KnowGen results. Table 3: Ablation Study.",
+        "arxiv_id": "2603.28767v1"
+    },
+    {
+        "Title": "Geometry-aware similarity metrics for neural representations on Riemannian and statistical manifolds",
+        "Field & Subfield": "Machine Learning; Neural Network Interpretability; Riemannian Geometry",
+        "Key Contributions": "- Introduces Metric Similarity Analysis (MSA) to compare intrinsic geometry of neural representations.\n- Defines a Riemannian similarity measure using the pullback metric.\n- Proposes a novel spectral ratio distance for Symmetric Positive Definite (SPD) matrices.\n- Demonstrates MSA's ability to disentangle learning regimes, nonlinear dynamics, and diffusion model information geometries.",
+        "Methodology": "MSA leverages Riemannian geometry, specifically the pullback metric, to characterize the intrinsic geometry of neural representations. It compares these geometries using a novel 'spectral ratio' distance function on SPD matrices, integrated over the input manifold.",
+        "Strengths": "MSA captures intrinsic geometry, revealing subtle distinctions extrinsic methods miss. Invariant to state-space rotations & local coordinate changes. Applicable across static, dynamic, and generative models. Mathematically grounded.",
+        "Limitations": "Requires explicit characterization of input data manifold (challenging for some data). Does not capture how representations are used downstream (decoding). Offers correlational, not causal, insights into network computations.",
+        "Datasets / Benchmarks": "Evaluated on: rich vs. lazy deep networks (2D manifold), RNNs/SSMs (sequence working memory on 2D torus), StableDiffusionXL (text-to-image diffusion, text embeddings manifold). Compared against CKA, CCA, RSA, Procrustes.",
+        "Results Summary": "MSA robustly differentiates rich vs. lazy learning regimes and RNN vs. SSM internal computations, where extrinsic methods report high similarity. It uncovers hierarchical structure across models and reveals dynamic changes in diffusion model information geometry due to guidance.",
+        "Why It Matters": "Provides a principled, geometry-aware framework for understanding neural network computations, offering deeper insights into their mechanisms. This can aid in designing more performant or robust models and fine-tuning hyperparameters.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig. 1 (Intrinsic vs. extrinsic geometric similarity), Fig. 5 (Rich and lazy intrinsic geometries), Fig. 6 (MSA captures hierarchical structure), Fig. 7 (MSA for state-space models), Fig. 8 (Diffusion models)"
+    },
+    {
+        "Title": "HandX: Scaling Bimanual Motion and Interaction Generation",
+        "Field & Subfield": "Computer Vision, Human Motion Generation",
+        "Key Contributions": "- Introduces HandX: a large-scale, high-fidelity dataset for bimanual dexterous hand motions with fine-grained text descriptions.\n- Proposes a two-stage LLM-based annotation strategy for scalable, multi-level textual descriptions.\n- Establishes a comprehensive benchmark for text-conditioned bimanual motion using diffusion and autoregressive models.\n- Reveals clear empirical scaling trends: increasing data and model capacity consistently improves performance.\n- Demonstrates versatile generation tasks (e.g., motion in-betweening, hand-reaction synthesis) and transfer to humanoid robots.",
+        "Methodology": "HandX dataset created by consolidating existing data & collecting new marker-based MoCap. Scalable annotation achieved via kinematic feature extraction (finger flexion, inter-hand contact) + LLM reasoning for multi-level text. Benchmarked diffusion and FSQ-tokenized autoregressive models. Evaluated with standard metrics (FID, R-Precision) and new contact-focused metrics (Cprec, Crec, CF1), supplemented by user studies.",
+        "Strengths": "Addresses a critical gap in generating realistic, text-conditioned bimanual hand motion. Provides a large-scale, high-quality, contact-rich dataset. Features an innovative, scalable LLM-driven annotation. Offers a unified framework supporting diverse generation tasks. Demonstrates strong scaling trends, guiding future research.",
+        "Limitations": "Dataset is finite in volume and diversity, may not cover the full spectrum of human dexterity. Aggregated data, despite filtering, may contain inherent quality issues. Potential for misuse (deepfakes) mitigated by restrictive licenses and skeletal-only data release to preserve anonymity.",
+        "Datasets / Benchmarks": "HandX (new): 54.2 hours, 5.9M frames, 490K fine-grained text. Consolidates Motion-X, InterAct, GigaHands, etc. Benchmarks Diffusion-based and Autoregressive (FSQ) models.",
+        "Results Summary": "HandX dataset annotations rated higher than Gemini 3 Pro baseline; motion quality superior to existing datasets (GigaHands, HoloAssist). Both diffusion and autoregressive models show positive scaling: increased data and model capacity (up to optimal point) consistently improve text alignment and contact accuracy. A clear log-linear relationship between R-precision and FLOPS was observed. Joint scaling of codebook and model size is crucial for autoregressive models.",
+        "Why It Matters": "This work establishes a critical foundation for realistic, text-conditioned bimanual hand motion generation. It's vital for advancements in immersive media, telepresence, embodied AI, and HCI, enabling more believable and functional virtual human interactions and robot control. The identified scaling trends provide valuable insights for future model and dataset development.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (HandX overview), Figure 4 (Scaling trend), Table 1 (Dataset comparison), Table 2 (Diffusion model ablation).",
+        "arxiv_id": "2603.28766v1"
     }
 ]
