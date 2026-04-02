@@ -1925,5 +1925,33 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (HandX overview), Figure 4 (Scaling trend), Table 1 (Dataset comparison), Table 2 (Diffusion model ablation).",
         "arxiv_id": "2603.28766v1"
+    },
+    {
+        "Title": "HippoCamp: Benchmarking Contextual Agents on Personal Computers",
+        "Field & Subfield": "AI/Multimodal Agents & Benchmarking",
+        "Key Contributions": "- Introduces HippoCamp, a new benchmark for multimodal file management on personal computers. \n- Models realistic personal file systems with 3 archetypal profiles, 42.4 GB, >2K files. \n- Defines two tasks: factual retention & profiling, requiring search, perception, reasoning. \n- Provides 581 QA pairs & 46.1K structured annotations for failure diagnosis. \n- Exposes significant performance gap for SOTA models, revealing critical limitations.",
+        "Methodology": "Constructed 3 archetypal user profiles from 100+ interviews and real-world data, aggregating 42.4 GB of multimodal files. Generated 581 QA pairs (factual retention & profiling) with 46.1K fine-grained, structured annotations using a human-LLM hybrid pipeline. Evaluated SOTA MLLMs & agentic methods.",
+        "Strengths": "Offers realistic, device-scale, multimodal file systems; tasks demand deep contextual, cross-file, & long-horizon reasoning. Provides fine-grained diagnostic capabilities to pinpoint failures (search, perception, reasoning). Strict privacy protocol & anonymization for real-world data usage.",
+        "Limitations": "Current SOTA models (even commercial) show low accuracy (48.3% profiling) and struggle with long-horizon retrieval, cross-modal reasoning, evidence grounding, and entity disambiguation. Significant efficiency-capability trade-off noted, with high latency for best agents.",
+        "Datasets / Benchmarks": "HippoCamp: 42.4 GB data, >2K files, 581 QA tasks, 46.1K structured annotations. Augmented with FinanceBench and LegalBench-RAG. Compares against HotpotQA, BrowseComp, MetaTool, WebQA, GAIA, M3DocRAG, LoCoMo, EgoLifeQA.",
+        "Results Summary": "SOTA MLLMs & agents perform poorly; even the best commercial models achieve only 48.3% profiling accuracy and 56.8% factual retention. Multimodal perception and evidence grounding are primary bottlenecks. Profiling tasks are significantly harder, requiring more complex reasoning than factual retention.",
+        "Why It Matters": "HippoCamp provides a crucial benchmark for developing next-generation personal AI assistants capable of robustly understanding, recalling, and reasoning over users' diverse, long-term digital lives, moving beyond generic agent tasks to real-world contextual intelligence.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Table 2 (Main results on HippoCamp across user profiles), Figure 6 (Representative failure and success patterns on a cross-modal profiling query).",
+        "arxiv_id": "http://arxiv.org/abs/2604.01221v1"
+    },
+    {
+        "Title": "LAtent Phase Inference from Short time sequences using SHallow REcurrent Decoders (LAPIS-SHRED)",
+        "Field & Subfield": "Physics-informed AI; Spatiotemporal Reconstruction; Deep Learning for Scientific Computing",
+        "Key Contributions": "• Novel LAPIS-SHRED architecture for full spatiotemporal dynamics from sparse sensor data in short temporal windows. • Three-stage pipeline: SHRED pre-training, BiLSTM temporal model, and inference. • Supports bidirectional inference & multiscale reconstruction. • Achieves low NRMSE across diverse physics with extreme data scarcity.",
+        "Methodology": "A 3-stage pipeline: (i) SHRED maps sensor data to latent space (pre-trained on simulations). (ii) BiLSTM temporal model propagates latent states (trained on latent trajectories). (iii) At deployment, frozen models extract/infer latent trajectory & reconstruct full spatiotemporal evolution.",
+        "Strengths": "High data efficiency, low NRMSE even with <7% temporal data & few sensors. Modular, versatile across chaotic, periodic, transient, multiscale systems. Supports both forward (forecast) & backward (reconstruction) inference. Performance nears baselines using full sensor history.",
+        "Limitations": "Produces point estimates (lacks uncertainty quantification). Fixed observation window (no active sensing). Theoretical analysis primarily for dissipative systems. Requires simulation-derived priors. Auto-regressive mode has potential for error accumulation.",
+        "Datasets / Benchmarks": "2D Kuramoto-Sivashinsky, 2D Kolmogorov Flow, 2D von Karman Vortex Street, High-Fidelity RDE, 1D RDE Ignition Stage, 2D NDSI Snow Cover (MODIS).",
+        "Results Summary": "Achieves NRMSEs as low as 0.025 across 6 diverse experiments. Recovers full spatiotemporal dynamics from observation windows as short as 7% of total time & as few as 3 sensors, closely matching baselines with full data.",
+        "Why It Matters": "Enables critical mechanistic insight, model calibration, and operational decision-making in complex systems where dense spatiotemporal observations are physically or logistically constrained. Facilitates rapid post-event reconstruction and resource-constrained forecasting.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig. 1 (LAPIS-SHRED Architecture), Table 1 (Quantitative Results Summary)",
+        "arxiv_id": "http://arxiv.org/abs/2604.01216v1"
     }
 ]
