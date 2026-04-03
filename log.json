@@ -1953,5 +1953,47 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Fig. 1 (LAPIS-SHRED Architecture), Table 1 (Quantitative Results Summary)",
         "arxiv_id": "http://arxiv.org/abs/2604.01216v1"
+    },
+    {
+        "Title": "ActionParty: Multi-Subject Action Binding in Generative Video Games",
+        "Field & Subfield": "Artificial Intelligence & Generative Video Games, World Models",
+        "Key Contributions": "- Novel autoregressive video generator (ActionParty) for multi-subject game simulation.\n- Introduces subject state tokens & attention masking for action-subject correspondence.\n- Employs RoPE biasing for reliable subject localization.\n- First video world model controlling up to 7 subjects across 46 diverse environments.",
+        "Methodology": "ActionParty extends video diffusion models by jointly denoising video frames and latent subject state tokens (2D coordinates). It uses an update-and-render paradigm with masked attention for strict subject-action binding and 3D RoPE biasing for spatial anchoring, enabling autoregressive generation.",
+        "Strengths": "Significantly outperforms baselines in action-following accuracy (MA), subject preservation (SP), and detection rate (DR). Achieves superior visual fidelity & effect accuracy. Robust multi-subject control (up to 7 players) across 46 diverse environments. Stable autoregressive inference.",
+        "Limitations": "Not fully real-time yet. Primarily tested in 2D game setups, extension to 3D scenes with partial visibility is future work. Predicted subject positions can drift over long autoregressive horizons due to error accumulation.",
+        "Datasets / Benchmarks": "Melting Pot benchmark (46 different 2D multi-agent games). Training on 2,000 videos/game at 512x512 resolution. Fine-tuned from Wan2.1-1.3B.",
+        "Results Summary": "ActionParty achieves MA of 0.779, SP of 0.903, DR of 0.886, significantly outperforming baselines (e.g., Text-Action MA: 0.158). It doubles success rate for 'Interact' actions (0.774) and maintains stable accuracy over autoregressive steps and varied player counts.",
+        "Why It Matters": "Addresses a fundamental challenge in generative AI: reliably binding actions to specific subjects in multi-agent environments. This enables more sophisticated, controllable, and interactive 'world models' for video games and complex simulations beyond single-agent settings.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig. 1 (Action Binding Problem), Fig. 3 (Attention mechanisms), Table 1 (Action Binding & Visual Quality), Table 2 (Effect Accuracy), Fig. 5 (Autoregressive stability).",
+        "arxiv_id": "http://arxiv.org/abs/2604.02330v1"
+    },
+    {
+        "Title": "EventHub: Data Factory for Generalizable Event-Based Stereo Networks without Active Sensors",
+        "Field & Subfield": "Computer Vision & Robotics, Event-Based Vision, Stereo Matching",
+        "Key Contributions": "- EventHub: novel framework for training deep-event stereo networks without ground truth from active sensors.\n- Combines neural rendering data generation & cross-modal distillation.\n- Superior out-of-domain generalization (up to 50% error reduction vs. LiDAR-supervised).\n- Enables bi-directional knowledge transfer, improving RGB stereo at night.",
+        "Methodology": "EventHub generates training data via: 1) Novel View Synthesis (NVS) using SVRaster from sparse RGB images to create proxy events & depth. 2) Cross-modal distillation, transferring proxy depth labels from pre-trained RGB stereo models (SFMs) to paired event data. RGB SFMs are repurposed for event data by encoding events into 3-channel tensors.",
+        "Strengths": "Eliminates reliance on costly, noisy LiDAR for ground truth. Achieves superior generalization across diverse domains. Democratizes access to high-quality training data. Improves RGB stereo models in challenging conditions like nighttime.",
+        "Limitations": "NVS primarily for static scenes, though virtual motion simulates dynamic events. Rendered depth maps can still exhibit noise despite regularization. Initial NVS setup time per scene can be high.",
+        "Datasets / Benchmarks": "Training: NeRF-Stereo [61], ScanNet++ [75] (via NVS), DSEC [18] (via distillation). Evaluation: DSEC [18] (in-domain), M3ED [7], MVSEC [84] (out-of-domain). Event-based stereo networks: SE-CFF, EMatch, E-FoundationStereo (ours), E-StereoAnywhere (ours).",
+        "Results Summary": "EventHub-trained models achieve up to 50% error reduction on M3ED and MVSEC datasets compared to LiDAR-supervised models. MIX4 (EventHub data) consistently outperforms LiDAR-trained models in generalization. Fine-tuning RGB SFMs with EventHub proxy labels significantly improves nighttime performance.",
+        "Why It Matters": "Addresses the critical scarcity of labeled event-based stereo data, enabling more robust event cameras for applications like autonomous driving and robotics. Facilitates knowledge transfer between RGB and event modalities, enhancing both.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (EventHub overview), Figure 3 (Framework Overview), Table 2 (In-domain results), Table 3 & 4 (Generalization results on M3ED & MVSEC), Table 5 (RGB stereo improvement at night).",
+        "arxiv_id": "http://arxiv.org/abs/2604.02331v1"
+    },
+    {
+        "Title": "Generative World Renderer",
+        "Field & Subfield": "Computer Vision & Graphics, Generative Models",
+        "Key Contributions": "- Large-scale, continuous G-buffer & video dataset (4M frames from AAA games)\n- Novel API-level capture pipeline with dual-screen stitching for G-buffers\n- VLM-based evaluation protocol for real-world inverse rendering\n- Enhanced SOTA inverse rendering and G-buffer-conditioned video synthesis",
+        "Methodology": "Curated 4M continuous 720p/30FPS frames from AAA games (Cyberpunk 2077, Black Myth: Wukong) via API-level G-buffer interception & dual-screen stitching. Synthesized motion-blur variants. Evaluated inverse rendering using a novel VLM-based protocol (Gemini 3 Pro) and fine-tuned SOTA DiffusionRenderer.",
+        "Strengths": "Provides high-fidelity, temporally coherent G-buffer & RGB data from complex game scenes. Bridges the sim-to-real gap for generative rendering. VLM-based evaluation offers scalable assessment for real-world performance without ground truth. Improves cross-dataset generalization.",
+        "Limitations": "Dataset curation is game-specific (Cyberpunk 2077, Black Myth: Wukong). Usage is limited to non-commercial research (CC BY-NC-SA 4.0) via gated access requiring a Terms of Use agreement. VLM evaluation shows lower human agreement for ambiguous cues like roughness.",
+        "Datasets / Benchmarks": "New Dataset: Large-scale 4M-frame G-buffer & RGB video dataset (from Cyberpunk 2077, Black Myth: Wukong). Benchmarks: MPI-Sintel final pass. Evaluation models: DiffusionRenderer, DNF-Intrinsic.",
+        "Results Summary": "Fine-tuning SOTA inverse renderers on the new dataset significantly improves performance on depth, normals, albedo, metallic, and roughness estimation. Model generalizes effectively to unseen game environments. VLM-based evaluation correlates strongly with human expert judgment for material properties.",
+        "Why It Matters": "Addresses the data bottleneck for scalable generative inverse and forward rendering. Provides critical foundation for advanced world simulation and controllable generative editing in games. Enables robust material decomposition and high-fidelity G-buffer-guided video generation in complex, dynamic scenes.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Dataset examples), Figure 3 (Pipeline & Stats), Table 1 (Black Myth Wukong evaluation), Table 3 (VLM evaluation metrics), Figure 4 (Qualitative inverse rendering)",
+        "arxiv_id": "2604.02329v1"
     }
 ]
