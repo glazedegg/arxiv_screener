@@ -1995,5 +1995,33 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (Dataset examples), Figure 3 (Pipeline & Stats), Table 1 (Black Myth Wukong evaluation), Table 3 (VLM evaluation metrics), Figure 4 (Qualitative inverse rendering)",
         "arxiv_id": "2604.02329v1"
+    },
+    {
+        "Title": "PointTPA: Dynamic Network Parameter Adaptation for 3D Scene Understanding",
+        "Field & Subfield": "Computer Vision; 3D Scene Understanding",
+        "Key Contributions": "- Proposes PointTPA, a test-time parameter-dynamic PEFT for 3D scene perception.\n- Enables models to adapt to diverse scene-level point cloud variations with low-cost training.\n- Achieves SOTA performance among PEFTs and highly competitive results to full fine-tuning.",
+        "Methodology": "PointTPA uses Serialization-based Neighborhood Grouping (SNG) to form coherent patches and a Dynamic Parameter Projector (DPP) to generate input-aware adaptive weights. SNG serializes point clouds; DPP learns group-specific projection weights via a dynamic parameter layer & base set. Integrated into PTv3 backbone.",
+        "Strengths": "Highly parameter-efficient (reduces trainable params by >98% vs. FFT). Achieves SOTA results among PEFTs and competitive with full fine-tuning. Robust and adaptable to complex 3D scenes with diverse geometries, imbalanced categories, and varied spatial layouts.",
+        "Limitations": "Increasing dynamic expressivity (larger K) increases training cost and can lead to convergence instability. Optimal balance of dynamic bases and group numbers is crucial. Paper states \"still room for improvement\" for dynamic inference approach.",
+        "Datasets / Benchmarks": "ScanNet [8], ScanNet++ [54], S3DIS [3]",
+        "Results Summary": "Achieved 78.4% mIoU on ScanNet validation, surpassing existing PEFTs by 0.7%. Outperforms PointGST by 0.9% on ScanNet++. Reduced trainable parameters by >98% compared to full fine-tuning, while achieving comparable/better performance.",
+        "Why It Matters": "Addresses challenges in large-scale 3D scene understanding by allowing models to dynamically adapt to varying scene data during inference, without the computational burden of full fine-tuning. Crucial for embodied AI and autonomous driving.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Table 1 (Main Results), Table 2 (ScanNet Val with decoder), Figure 2 (PointTPA Overview), Figure 5 (Qualitative Comparison)",
+        "arxiv_id": "http://arxiv.org/abs/2604.04933v1"
+    },
+    {
+        "Title": "Vanast: Virtual Try-On with Human Image Animation via Synthetic Triplet Supervision",
+        "Field & Subfield": "Computer Vision, Generative Models, Virtual Try-On Animation",
+        "Key Contributions": "- First unified framework for single-stage virtual try-on animation.\n- Scalable synthetic triplet supervision dataset generation pipeline.\n- Dual Module architecture for video Diffusion Transformers (DiT) for stability & accuracy.\n- Supports zero-shot garment interpolation & multi-garment transfer.",
+        "Methodology": "Unified single-stage diffusion framework with Dual Module architecture (Human Animation & Garment Transfer Modules) built on a T2V DiT backbone. Uses synthetic triplet supervision generated via identity-preserving alternative outfit synthesis and in-the-wild video processing.",
+        "Strengths": "Eliminates identity drift, garment distortion, & temporal inconsistency of two-stage methods. Achieves high-fidelity, identity-consistent animation with accurate garment transfer & pose adherence. Supports zero-shot garment interpolation and multi-garment transfer.",
+        "Limitations": "Relies on complex synthetic triplet dataset generation due to lack of public data. Performance on extremely novel or highly occluded poses/garments not explicitly detailed. Computational cost of diffusion transformers may be high.",
+        "Datasets / Benchmarks": "Custom large-scale synthetic triplet dataset (9,135 videos) from online shopping, captured data, and in-the-wild videos. Evaluated on 'Internet' and 'ViViD' datasets.",
+        "Results Summary": "Vanast consistently outperforms all baseline two-stage pipelines (combining S-to-I gen/VTO with animation models) across L1, PSNR, SSIM, LPIPS, FID, VFID metrics. Achieves superior pose following, garment transfer, and identity preservation.",
+        "Why It Matters": "Revolutionizes virtual try-on by enabling realistic, animated videos of users in new clothes from a single image. Critical for e-commerce, virtual fashion, and creating dynamic, identity-consistent digital avatars.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Vanast overview), Figure 2 (Pipeline), Figure 3 (Triplet Samples), Table 1 & 2 (Quantitative Comparisons), Figure 7 (Ablation Study).",
+        "arxiv_id": "http://arxiv.org/abs/2604.04934v1"
     }
 ]
