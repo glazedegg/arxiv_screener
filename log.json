@@ -2023,5 +2023,33 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (Vanast overview), Figure 2 (Pipeline), Figure 3 (Triplet Samples), Table 1 & 2 (Quantitative Comparisons), Figure 7 (Ablation Study).",
         "arxiv_id": "http://arxiv.org/abs/2604.04934v1"
+    },
+    {
+        "Title": "Action Images: End-to-End Policy Learning via Multiview Video Generation",
+        "Field & Subfield": "Robotics, Computer Vision, Deep Learning, World Models, Policy Learning",
+        "Key Contributions": "• Addresses gap between video and policy generalization. • Proposes multi-view pixel-grounded action images from 7-DoF robot control. • Enables zero-shot policy learning with unified video backbone, eliminating separate action modules. • Supports video-action joint generation, action-conditioned video, and action labeling.",
+        "Methodology": "Translates 7-DoF robot actions into pixel-grounded, multi-view 'action images' (RGB Gaussian heatmaps for 3D points + gripper openness). Uses a pre-trained video generator (Wan 2.2 backbone) fine-tuned with a multi-mask strategy to jointly model robot videos & action videos for various tasks.",
+        "Strengths": "Strong zero-shot generalization across viewpoints, motion patterns, & robot embodiments. Unifies observation and action modeling within a single video backbone, supporting multiple tasks without separate policy heads. Pixel-grounded actions are interpretable.",
+        "Limitations": "Current system demonstrates strong open-loop results, but not yet fully developed into a closed-loop policy. Requires future work on diffusion acceleration and distillation for faster inference and closed-loop integration.",
+        "Datasets / Benchmarks": "Trained on RLBench, DROID, BridgeV2 (mixture). Evaluated on RLBench, real-world xArm platform, & FR3M rooms. Compared to MV-Policy, π0.5, MolmoAct, TesserAct, Cosmos-Policy, Tora, TAPIR, CoTracker3.",
+        "Results Summary": "Achieves strongest zero-shot success rates on RLBench and real-world tasks. Outperforms prior world models in video-action joint generation quality (PSNR, SSIM, FVD, LPIPS) and video-to-action labeling (Trajectory Error, Jaccard) while maintaining action accuracy.",
+        "Why It Matters": "Presents a novel, generalizable approach to robot policy learning by grounding actions directly in pixels, bridging the gap between video understanding and robotic control. Enables unified world action models that simplify complex robot learning tasks.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig 1 (Action Images concept), Fig 5 (Real-world zero-shot rollouts), Table 2 (Zero-shot evaluation results on RLBench & Real-world).",
+        "arxiv_id": "http://arxiv.org/abs/2604.06168v1"
+    },
+    {
+        "Title": "In-Place Test-Time Training",
+        "Field & Subfield": "Machine Learning: Large Language Models, Continual Learning, Test-Time Training",
+        "Key Contributions": "1. In-Place TTT using MLP blocks as fast weights. 2. LM-aligned Next-Token Prediction objective. 3. Efficient chunk-wise updates & Context Parallelism. 4. Theoretical validation. 5. Drop-in for pre-trained LLMs, outperforming baselines from scratch.",
+        "Methodology": "Repurposes LLM MLP block's final projection matrix as \"fast weights.\" Employs a novel, theoretically-grounded Next-Token Prediction objective. Utilizes efficient chunk-wise updates compatible with context parallelism for on-the-fly adaptation.",
+        "Strengths": "Seamless \"drop-in\" for pre-trained LLMs without retraining. Enhances long-context (up to 128k+ extrapolation) performance significantly. Achieves superior perplexity & reasoning from scratch vs. TTT baselines. Computationally efficient with negligible overhead.",
+        "Limitations": "Requires careful initialization/clipping mechanisms for fast-weight stability. Current loss/optimizer choices not fully explored. Does not fundamentally alter attention's quadratic complexity, though it augments MLP blocks.",
+        "Datasets / Benchmarks": "RULER benchmark for long-context. Pile & Proof-Pile-2 for perplexity. HellaSwag, ARC-E/C, MMLU, PIQA for common sense. Evaluated using OpenCompass & lm-evaluation-harness.",
+        "Results Summary": "Significant long-context gains (e.g., Qwen3-4B: +2.7% acc at 64k). Outperforms competitive TTT/efficient attention methods in perplexity & reasoning. Achieves lower perplexity across contexts (500M/1.5B). Negligible throughput & memory overhead.",
+        "Why It Matters": "Enables LLMs to dynamically adapt & continually learn from new data at inference, extending context capabilities without costly architectural changes. A practical step towards dynamic, continually learning LLMs for long-horizon tasks.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Framework), Figure 2 (Perplexity Comparison), Table 1 (Drop-in Performance), Figure 3 (Ablation Studies)",
+        "arxiv_id": "http://arxiv.org/abs/2604.06169v1"
     }
 ]
