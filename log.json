@@ -2051,5 +2051,47 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (Framework), Figure 2 (Perplexity Comparison), Table 1 (Drop-in Performance), Figure 3 (Ablation Studies)",
         "arxiv_id": "http://arxiv.org/abs/2604.06169v1"
+    },
+    {
+        "Title": "OmniShotCut: Holistic Relational Shot Boundary Detection with Shot-Query Transformer",
+        "Field & Subfield": "Computer Vision & Video Understanding",
+        "Key Contributions": "- Reformulates SBD with intra-shot and inter-shot relational information.\n- Proposes a Shot Query-based Transformer for joint range/relation prediction.\n- Introduces a fully synthetic transition synthesis pipeline for precise labels.\n- Curates OmniShotCutBench, a modern, wide-domain SBD benchmark.",
+        "Methodology": "A Shot Query-based Dense Video Transformer (ResNet encoder + Transformer encoder/decoder) predicts shot ranges, intra-shot (e.g., dissolve) and inter-shot (e.g., hard cut) relations. Uses a synthetic data generation pipeline for diverse transitions.",
+        "Strengths": "Achieves state-of-the-art SBD performance, significantly improving transition localization and sudden jump detection. Provides interpretable, relation-aware shot boundaries, addressing limitations of prior methods. Scalable via synthetic data.",
+        "Limitations": "Current synthetic parameterization may not fully capture more sophisticated artistic and semantically dynamic cinematic transition patterns; requires industry-level transition templates.",
+        "Datasets / Benchmarks": "OmniShotCutBench (newly introduced, 114 diverse videos, 110 mins), Synthetic training data (11.9M transitions).",
+        "Results Summary": "Outperforms baselines (PySceneDetect, TransNetV2, AutoShot) with Range F1 of 0.883 (vs. 0.814). Achieves Transition IoU of 0.632 (vs. 0.252) and Sudden Jump Acc. of 0.761. Reports 0.959 intra-shot and 0.836 inter-shot accuracy.",
+        "Why It Matters": "Provides more precise, interpretable, and relation-aware SBD, crucial for downstream video tasks like video generation, motion tracking, and scene segmentation, which demand accurate temporal units.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig. 1 (Limitations of traditional SBD), Fig. 5 (Shot Query-based Dense Video Transformer), Table 1 (Quantitative comparison).",
+        "arxiv_id": "http://arxiv.org/abs/2604.24762v1"
+    },
+    {
+        "Title": "Tuna-2: Pixel Embeddings Beat Vision Encoders for Multimodal Understanding and Generation",
+        "Field & Subfield": "Multimodal AI, Computer Vision, Natural Language Processing",
+        "Key Contributions": "Proposes TUNA-2, an encoder-free unified multimodal model using pixel embeddings. Achieves SOTA in fine-grained multimodal understanding & competitive generation. Demonstrates encoder-free design's scalability & offers insights into pixel-space UMM training.",
+        "Methodology": "Introduces TUNA-2, progressively simplifying from TUNA by removing VAE/representation encoders. Uses simple patch embedding layers, a single transformer, and pixel-space flow matching for generation. Employs a masking-based visual feature learning scheme for robust representations.",
+        "Strengths": "Achieves SOTA in multimodal understanding (especially fine-grained visual perception) & competitive in generation. Simplifies architecture with end-to-end pixel-space learning. Demonstrates scalability & robustness to misleading linguistic/visual contexts. Generates diverse images.",
+        "Limitations": "Slightly lower performance in image generation compared to encoder-based variants (TUNA-R), particularly in early pretraining. Pretrained visual priors *may* still offer benefits for fine-grained editing fidelity.",
+        "Datasets / Benchmarks": "GQA, RealWorldQA, MMVet, MMMU, MMVP, SEED-Bench2+, AI2D, ChartQA, OCRBench, V*, CountBench, VisuLogic (understanding). GenEval, DPG-Bench, ImgEdit (generation). ImageNet (reconstruction).",
+        "Results Summary": "TUNA-2 achieves SOTA in diverse multimodal understanding benchmarks, outperforming latent-space models. It's competitive with SOTA in image generation and editing, and shows strong image reconstruction. Masking-based learning consistently improves performance.",
+        "Why It Matters": "Challenges the paradigm of relying on pretrained vision encoders for multimodal AI. Proposes end-to-end pixel-space learning as a scalable and effective path for stronger visual representations in both understanding and generation, simplifying UMM architectures.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Architecture Evolution), Table 1 (Understanding Benchmarks), Table 2 (Generation Benchmarks), Figure 7 (Attention Map Visualizations).",
+        "arxiv_id": "http://arxiv.org/abs/2604.24763v1"
+    },
+    {
+        "Title": "World-R1: Reinforcing 3D Constraints for Text-to-Video Generation",
+        "Field & Subfield": "Computer Vision: Text-to-Video Generation with 3D Consistency",
+        "Key Contributions": "- RL for 3D-consistent text-to-video without architectural changes. - Novel reward system (3D foundation models + VLMs) optimized by Flow-GRPO. - Pure text dataset for camera-controlled video post-training. - Achieves superior 3D consistency while maintaining high visual quality.",
+        "Methodology": "Reinforcement Learning (Flow-GRPO-Fast) fine-tunes pre-trained T2V models. Uses implicit camera conditioning via noise wrapping. Novel composite reward: 3D-aware (meta-view VLM, 3DGS fidelity, trajectory alignment) + general aesthetic. Periodic decoupled training balances rigidity & dynamics.",
+        "Strengths": "Achieves superior 3D consistency in T2V without architectural changes or costly 3D datasets. Preserves visual quality and dynamic content. Implicit camera control is effective. Scalable and data-efficient via RL fine-tuning and a custom text dataset.",
+        "Limitations": "High computational cost for online RL (repeated video rollouts). Generative capacity is bounded by underlying T2V foundation models, limiting performance on complex scenes (dense multi-object, fine-grained non-rigid motion, long-horizon evolution).",
+        "Datasets / Benchmarks": "Custom Pure Text Dataset (3K prompts) for training. Evaluated against Wan 2.1, CogVideoX, CameraCtrl on PSNR, SSIM, LPIPS, MVCS, VBench (Aesthetic, Imaging, Motion Smoothness, Subject/Background Consistency), and User Studies.",
+        "Results Summary": "Significantly improved 3D consistency (10.23dB PSNR gain) and MVCS. Maintained high general video quality on VBench, surpassing baselines. Achieved 92% user preference for geometric consistency & 86% overall. Generalizes well to longer videos.",
+        "Why It Matters": "Transforms T2V models into geometrically consistent world simulators, enabling high-accuracy applications like autonomous driving, robotics, and immersive content. Provides a scalable & efficient solution without architectural changes or expensive 3D datasets.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (World-R1 Overview), Figure 3 (Qualitative Comparison & 3D Visualization), Table 2 (Quantitative 3D Consistency), Table A (User Study Results).",
+        "arxiv_id": "http://arxiv.org/abs/2604.24764v1"
     }
 ]
