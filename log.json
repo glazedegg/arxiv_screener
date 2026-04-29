@@ -2093,5 +2093,47 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (World-R1 Overview), Figure 3 (Qualitative Comparison & 3D Visualization), Table 2 (Quantitative 3D Consistency), Table A (User Study Results).",
         "arxiv_id": "http://arxiv.org/abs/2604.24764v1"
+    },
+    {
+        "Title": "How Fast Should a Model Commit to Supervision? Training Reasoning Models on the Tsallis Loss Continuum",
+        "Field & Subfield": "Artificial Intelligence, Reinforcement Learning, Natural Language Processing",
+        "Key Contributions": "- Introduces Tsallis loss family Jq unifying RLVR (q=0) and log-marginal-likelihood (q=1).\n- Develops two gradient estimators: GARL (Gradient-Amplified RL) and PAFT (Posterior-Attenuated Fine-Tuning).\n- Demonstrates GARL mitigates cold-start stalling, and PAFT provides warm-start stability for reasoning models.",
+        "Methodology": "Defines a loss family Jq using Tsallis q-logarithm, interpolating between exploitation (q=0) and density estimation (q=1). Derives two Monte Carlo gradient estimators (GARL via prior sampling & amplification, PAFT via posterior resampling & attenuation) based on gradient factorizations.",
+        "Strengths": "Addresses cold-start stalling in RLVR via per-instance gradient amplification (P_theta^q). Unifies diverse training objectives. Offers complementary estimators for cold-start (GARL) and warm-start stability (PAFT). Provides theoretical analysis for escape rates & bias.",
+        "Limitations": "Evaluated on single model scale (Qwen 3 0.6B) and fixed q values. Stylized convergence analysis. Assumes exact-match supervision; extension to general rewards is open. Mechanism for GARL's zero-collapse is unverified.",
+        "Datasets / Benchmarks": "FinQA, HotPotQA, MuSiQue (subsets of official splits).",
+        "Results Summary": "Cold-start: GARL (q=0.75) escapes cold-start where GRPO fails, outperforming GRPO. Warm-start: GARL (low q) works on stable FinQA. PAFT (q=0.75) provides best stable results on HotPotQA/MuSiQue where GARL destabilizes and collapses.",
+        "Why It Matters": "Provides a principled framework for training reasoning models with output-level supervision, addressing critical challenges like cold-start stalling and mode collapse in RLVR, leading to more robust and effective learning across different training regimes.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Jq loss continuum), Figure 2 (Gradient estimators), Tables 1, 2, 3 (Cold-start and Warm-start empirical results).",
+        "arxiv_id": "2604.25907v1"
+    },
+    {
+        "Title": "Recursive Multi-Agent Systems",
+        "Field & Subfield": "Artificial Intelligence, Multi-Agent Systems, Large Language Models",
+        "Key Contributions": "- Introduces RecursiveMAS, a recursive multi-agent framework.\n- Proposes RecursiveLink (inner/outer) for efficient latent state transfer & refinement.\n- Develops inner-outer loop learning for system-wide co-optimization.\n- Achieves significant accuracy, speedup, and token reduction over baselines.",
+        "Methodology": "Casts MAS as a unified latent-space recursive computation. Uses RecursiveLink (2-layer residual projection) for in-agent latent thought generation (inner) & cross-agent transfer (outer). Optimizes via inner-outer loop training with shared gradient-based credit assignment.",
+        "Strengths": "8.3% avg. accuracy improvement; 1.2-2.4x inference speedup; 34.6-75.6% token reduction. Maintains stable gradients, offers efficient runtime complexity, is structure-agnostic, and generalizes across collaboration patterns.",
+        "Limitations": "Effectiveness relies on tuning of latent thought length (m); while efficient, very deep recursions inherently increase computational cost; framework performance still contingent on base LLM capabilities.",
+        "Datasets / Benchmarks": "MATH500, AIME2025/2026, GPQA-D, MedQA, LiveCodeBench-v6, MBPP Plus, HotpotQA, Bamboogle (9 benchmarks across math, science, medical, code, search).",
+        "Results Summary": "RecursiveMAS consistently outperforms baselines, improving accuracy by 8.3% while speeding up inference by 1.2-2.4x and reducing token usage by 34.6-75.6%. Performance scales positively with recursion depth. Adapts to diverse agent collaboration patterns.",
+        "Why It Matters": "Addresses key challenges in MAS: scaling agent collaboration efficiently. By enabling latent-space recursion, it allows deeper reasoning and seamless interaction, making multi-agent systems more capable, faster, and cheaper to operate.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Performance Landscape), Table 2 (Scaling via Recursion), Table 3 (Comparison with Other Methods)",
+        "arxiv_id": "http://arxiv.org/abs/2604.25917v1"
+    },
+    {
+        "Title": "Teacher Forcing as Generalized Bayes: Optimization Geometry Mismatch in Switching Surrogates for Chaotic Dynamics",
+        "Field & Subfield": "Machine Learning, Dynamical Systems Reconstruction (DSR)",
+        "Key Contributions": "• ITF induces sharper local curvature than ambiguity-aware marginal likelihood. • ITF's fixed-path conditioning inflates curvature, while marginal likelihood is flattened by missing-information. • Windowed evidence fine-tuning improves held-out evidence but degrades QoIs in chaotic systems.",
+        "Methodology": "Compares ITF (generalized Bayes) curvature with marginal likelihood via Louis' identity in probabilistic switching AL-RNNs (PAL-RNNs). Uses Rao-Blackwellized particle smoother (RBPF) for ambiguity-aware observed information and SAEM for fine-tuning experiments on Lorenz-63.",
+        "Strengths": "Addresses the training paradox in chaotic DSR. Provides a statistical interpretation of Teacher Forcing. Offers novel insights into objective geometry mismatches. Highlights misalignment between evidence and dynamical QoIs. Uses interpretable AL-RNNs.",
+        "Limitations": "Curvature summaries are local. Relies on Monte Carlo approximations (RBPF/Louis) which can suffer from particle degeneracy/high variance. Windowed evidence is not a full-sequence likelihood. Uses simplified, isotropic noise structure. Experiments are focused on Lorenz-63.",
+        "Datasets / Benchmarks": "Lorenz-63 chaotic dynamical system (simulated trajectories).",
+        "Results Summary": "ITF's conditioning on a single forced path inflates curvature compared to marginal likelihood, which is flattened by missing-information correction. Windowed marginal likelihood fine-tuning improved held-out evidence but degraded key dynamical quantities of interest (LEs, attractor geometry) for chaotic systems.",
+        "Why It Matters": "Challenges the assumption of a canonical posterior for chaotic DSR, revealing objective geometry is task-dependent. Motivates QoI-aware post-Bayesian learning and geometry-aware active data collection for more robust DSR, rather than solely optimizing prediction error.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Summary of results: MIR vs. entropy, curvature gap, SAEM fine-tuning impacts).",
+        "arxiv_id": "http://arxiv.org/abs/2604.25904v1"
     }
 ]
