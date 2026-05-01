@@ -2135,5 +2135,47 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (Summary of results: MIR vs. entropy, curvature gap, SAEM fine-tuning impacts).",
         "arxiv_id": "http://arxiv.org/abs/2604.25904v1"
+    },
+    {
+        "Title": "Generalizable Sparse-View 3D Reconstruction from Unconstrained Images",
+        "Field & Subfield": "Computer Vision; 3D Reconstruction, Novel View Synthesis, Gaussian Splatting",
+        "Key Contributions": "- First feed-forward, generalizable model for sparse-view outdoor 3D reconstruction.\n- Integrates appearance and occlusion modeling without per-scene optimization.\n- Novel appearance adapter for target lighting conditions.\n- Robust occlusion handling via semantic segmentation.\n- Curriculum learning strategy for stable training.",
+        "Methodology": "Feed-forward framework built on AnySplat; VGGT transformer extracts multi-view features. Specialized heads predict depth, camera, & canonical 3D Gaussians. Appearance Adapter modulates Gaussian colors using a light encoder. YOLOv8 segmentation handles transient objects. Trained with curriculum learning on synthetic data.",
+        "Strengths": "Real-time (3s) inference without test-time optimization. Strong generalization to unseen scenes, diverse illumination, and transient occlusions. Produces photorealistic, view-consistent renderings from sparse, unposed images. Outperforms prior optimization-based methods.",
+        "Limitations": "Incomplete geometry in sparsely observed regions. Artifacts for test views distant from training distribution. Degraded performance in indoor scenes with imperfect occlusion masks. Lacks shadow modeling or realistic relighting.",
+        "Datasets / Benchmarks": "Training: DL3DV (700+ outdoor scenes, augmented with DiffusionRenderer for relighting, COCO for occlusions). Evaluation: PhotoTourism, MegaScenes.",
+        "Results Summary": "GenWildSplat achieves state-of-the-art feed-forward rendering quality, surpassing optimization-based methods on PhotoTourism and MegaScenes datasets. It produces clean, consistent renderings under diverse conditions in ~3 seconds.",
+        "Why It Matters": "Enables practical, real-time 3D reconstruction from unconstrained, sparse 'in-the-wild' images, addressing critical challenges of varying illumination and dynamic objects. Important for applications like AR/VR and navigation.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Method Overview), Table 2 (Quantitative comparison on MegaScenes)",
+        "arxiv_id": "http://arxiv.org/abs/2604.28193v1"
+    },
+    {
+        "Title": "HERMES++: Toward a Unified Driving World Model for 3D Scene Understanding and Generation",
+        "Field & Subfield": "Computer Vision & Autonomous Driving, World Models, Vision-Language Models",
+        "Key Contributions": "• Unified framework integrating 3D scene understanding & future geometry prediction via shared BEV representation. • Joint Geometric Optimization strategy for structural integrity in predictions. • LLM-enhanced world queries & Textual Injection for knowledge transfer. • Adaptive adjustment of spatial features based on ego-motion.",
+        "Methodology": "HERMES++ uses a BEV representation for multi-view spatial info & LLM compatibility. It employs LLM-enhanced world queries for knowledge transfer via a Current-to-Future Link, propagating BEV features to future states. A Joint Geometric Optimization ensures structural integrity.",
+        "Strengths": "Achieves state-of-the-art in 3s future point cloud generation (8.2% error reduction vs. DriveX) and 3D scene understanding (9.2% CIDEr gain vs. Omni-Q) without auxiliary supervision. Scales well with larger LLMs, demonstrating strong generalization.",
+        "Limitations": "Future work needed to leverage semantic priors from pre-trained multi-modal large models for BEV input. Expanding generation paradigm to diverse modalities for comprehensive scene simulation requires further investigation.",
+        "Datasets / Benchmarks": "NuScenes, OmniDrive-nuScenes, NuScenes-QA, DriveLM, NuInteract",
+        "Results Summary": "HERMES++ significantly reduces 3s Chamfer Distance (0.97) and boosts CIDEr (0.772) on NuScenes (3.8B model). Outperforms specialists in both generation and understanding, and achieves SOTA on NuScenes-QA (61.3% Acc.) and competitive scores on DriveLM leaderboard.",
+        "Why It Matters": "HERMES++ provides a unified, interpretable, and predictive world model for autonomous driving. It bridges the gap between semantic understanding and geometric prediction, crucial for safety-critical scenarios like collision avoidance and informed decision-making.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig. 1 (Unified framework & quantitative comparison), Fig. 3 (Qualitative results), Table II (Comparison to SOTA)",
+        "arxiv_id": "http://arxiv.org/abs/2604.28196v1"
+    },
+    {
+        "Title": "OMNIROBOTHOME: A Multi-Camera Platform for Real-Time Multiadic Human-Robot Interaction",
+        "Field & Subfield": "Robotics, Human-Robot Interaction (HRI), Computer Vision. Focus: Multiadic HRI platforms, real-time room-scale 3D perception, and anticipatory robotic assistance in shared environments.",
+        "Key Contributions": "First room-scale HRI platform (48 synchronized cameras, 2 robot arms). End-to-end real-time sensing pipeline for perception, data acquisition, human motion prediction. Studies show wide-area sensing, real-time perception, & behavioral modeling improve safety & anticipatory assistance.",
+        "Methodology": "23.1 m² space with 48 hardware-synchronized RGB cameras (30 Hz) and two Franka arms. Distributed 2D human/object detection + central 3D triangulation/6D pose in unified world frame. Custom calibration. Continuous capture builds human behavior memory. Evaluated safety & anticipatory assistance in kitchen sorting.",
+        "Strengths": "First platform for multiadic HRI in natural home environments. Real-time, occlusion-robust, room-scale 3D perception of multiple humans/objects. Unified world frame for multi-agent coord. Long-term behavior memory for anticipatory assistance. Robust calibration pipeline.",
+        "Limitations": "Evaluated in single instrumented room with two fixed-base arms. Task-specific controllers. Generalization across diverse layouts, robot embodiments, and control interfaces remains open. Further studies needed for HRI models (e.g., vision-language-action).",
+        "Datasets / Benchmarks": "No public dataset yet. Custom behavioral data collected. Benchmarked safety coexistence (collisions, cycle time, triggers, fallback time) and intent-aware placement accuracy (correct placement ratio) in a kitchen organization scenario.",
+        "Results Summary": "Dynamic safety policy + behavior learning reduces collisions by 2.6x with no cycle-time penalty. LLM-based intent inference achieves 100% placement accuracy from partial demos (vs. lookup requiring full history). 48 cameras provide 80%+ volumetric coverage & robust 3D tracking.",
+        "Why It Matters": "Addresses underexplored multiadic HRI, enabling systematic study of complex human-robot collaboration in homes. Provides crucial real-time, room-scale, occlusion-robust perception and behavior modeling for safer, more anticipatory robotic assistance.",
+        "Should Read Fully?": "Yes. Essential for HRI researchers, roboticists, and computer vision experts focused on real-time, robust, large-scale perception and multi-agent interaction in domestic environments.",
+        "Key Figures or Tables": "Fig. 1 (OMNIROBOTHOME overview), Fig. 3 (Real-Time Perception), Fig. 5 (Behavior Learning, safety/intent inference), Table 1 (Safety coexistence benchmark), Table 2 (Intent-Aware Placement Accuracy).",
+        "arxiv_id": "http://arxiv.org/abs/2604.28197v1"
     }
 ]
