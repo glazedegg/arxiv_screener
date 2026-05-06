@@ -2177,5 +2177,33 @@
         "Should Read Fully?": "Yes. Essential for HRI researchers, roboticists, and computer vision experts focused on real-time, robust, large-scale perception and multi-agent interaction in domestic environments.",
         "Key Figures or Tables": "Fig. 1 (OMNIROBOTHOME overview), Fig. 3 (Real-Time Perception), Fig. 5 (Behavior Learning, safety/intent inference), Table 1 (Safety coexistence benchmark), Table 2 (Intent-Aware Placement Accuracy).",
         "arxiv_id": "http://arxiv.org/abs/2604.28197v1"
+    },
+    {
+        "Title": "Audio-Visual Intelligence in Large Foundation Models: A Comprehensive Survey",
+        "Field & Subfield": "Artificial Intelligence; Multimodal AI, Computer Vision, Speech & Audio Processing",
+        "Key Contributions": "• First systematic survey of Audio-Visual Intelligence (AVI) within large foundation models.\n• Unified taxonomy covering AVI perception, generation, and interaction tasks.\n• Consolidated methodological foundations (tokenization, fusion, generation, alignment).\n• Curated datasets, benchmarks, and evaluation metrics.\n• Identified open challenges & future directions (causal grounding, world models, safety).",
+        "Methodology": "The survey synthesizes foundation techniques: representation-centric (tokenization, VAE, contrastive learning), generation-centric (GANs, Diffusion, autoregressive/masked AR models), and LLM-centric (Encoder+LLM, LLM+Generator, Unified, Agentic, VLA models).",
+        "Strengths": "Provides a comprehensive, structured overview of a rapidly evolving field. Unifies fragmented literature, clarifies terminology, and offers a systematic comparison of methods and benchmarks. Highlights critical future research directions and ethical considerations.",
+        "Limitations": "Literature is fragmented, lacking consistent taxonomies and heterogeneous evaluation practices. Open challenges include temporal synchronization, spatial reasoning, multimodal controllability, safety, watermarking, data governance, and sim-to-real transfer for embodied AI.",
+        "Datasets / Benchmarks": "AVE, LLP, AudioSet, VGGSound, AVSBench, AVQA, MUSIC-AVQA, T2AV-Compass, OmniBench, LRS2/LRS3, VoxCeleb2, HDTF, FoleyBench, SoundSpaces. Many listed with scale and primary use.",
+        "Results Summary": "AVI has advanced significantly, moving from modality-specific to unified, multimodal models, particularly with LLMs. Progress in perception, generation, and interaction is driven by diffusion models and transformers, with a trend towards causal, grounded, and interactive systems.",
+        "Why It Matters": "Consolidates a critical AI frontier for building truly intelligent machines that perceive, generate, and interact multimodally. Establishes a coherent framework and actionable standards for future research & responsible deployment in applications like AIGC, robotics, and immersive experiences.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Evolutionary Tree of AVI), Figure 2 (Taxonomy of AVI), Figure 4 (Overview of AVI Tasks), Figure 13 (Roadmap of AVI Development Stages).",
+        "arxiv_id": "http://arxiv.org/abs/2605.04045v1"
+    },
+    {
+        "Title": "UniCorrn: Unified Correspondence Transformer Across 2D and 3D",
+        "Field & Subfield": "Computer Vision, Geometric Matching, Transformers",
+        "Key Contributions": "- First unified correspondence model with shared weights for 2D-2D, 2D-3D, and 3D-3D tasks.\n- Novel dual-stream Transformer decoder separating appearance and positional features.\n- Achieves SOTA on 7Scenes (2D-3D) by 8% and 3DLoMatch (3D-3D) by 10% RR.",
+        "Methodology": "Transformer-based model with modality-specific backbones (ViT for 2D, PTv3 for 3D), a shared feature fusion encoder, and a novel dual-stream matching decoder. Trained jointly on diverse data, including pseudo point clouds from depth maps.",
+        "Strengths": "Unified model for heterogeneous modalities, robust cross-modal learning, flexible query-based interface, end-to-end learnable via stackable layers, competitive/SOTA performance on multiple benchmarks, 3.5x less memory than combined specialized models.",
+        "Limitations": "Joint training does not always outperform single-task performance on all 2D-2D metrics. Normalization layers can struggle with differing statistical properties across modalities, requiring further research on cross-modality alignment.",
+        "Datasets / Benchmarks": "ARKitScenes, BlendedMVS, CO3D-v2, MegaDepth, StaticThings3D, Waymo, ScanNet++, 7Scenes, RGB-D Scenes v2, 3DMatch, ModelNet. Pseudo point clouds from depth maps also used.",
+        "Results Summary": "UniCorrn surpasses SOTA by 8% on 7Scenes (2D-3D) and 10% on 3DLoMatch (3D-3D) in registration recall. Achieves competitive performance in 2D-2D matching benchmarks like MegaDepth-1500 and ScanNet-1500.",
+        "Why It Matters": "This work represents a significant step towards general-purpose visual perception by providing a single model for fundamental geometric matching tasks across 2D and 3D, reducing complexity and enabling seamless cross-modal pipelines.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (UniCorrn overview), Figure 2 (Architecture), Table 2 (Ablation study of design choices), Table 5 (2D-3D results), Table 6 (3D-3D results).",
+        "arxiv_id": "http://arxiv.org/abs/2605.04044v1"
     }
 ]
