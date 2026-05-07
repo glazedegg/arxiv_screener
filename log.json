@@ -2205,5 +2205,33 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (UniCorrn overview), Figure 2 (Architecture), Table 2 (Ablation study of design choices), Table 5 (2D-3D results), Table 6 (3D-3D results).",
         "arxiv_id": "http://arxiv.org/abs/2605.04044v1"
+    },
+    {
+        "Title": "D-OPSD: On-Policy Self-Distillation for Continuously Tuning Step-Distilled Diffusion Models",
+        "Field & Subfield": "Computer Vision; Generative AI; Diffusion Models; Self-Distillation",
+        "Key Contributions": "- Identifies emergent in-context capability of LLM/VLM encoders in modern diffusion models.\n- Proposes D-OPSD, a novel on-policy self-distillation framework for diffusion models without external rewards/modules.\n- Validates D-OPSD for learning new concepts/styles while preserving original few-step inference and prior knowledge.",
+        "Methodology": "D-OPSD uses a single diffusion model as both student (text-only conditioned) and teacher (multimodal text+image conditioned). It distills teacher's velocity predictions into the student on the student's own generated roll-outs, minimizing MSE, leveraging LLM/VLM encoder's in-context ability.",
+        "Strengths": "Preserves original few-step inference capability; effectively learns new concepts, styles, and domain preferences; avoids external reward functions; on-policy learning reduces train-inference mismatch; demonstrates strong generalization across unseen prompts.",
+        "Limitations": "Higher computational cost (4x FLOPs, 2x training time vs. vanilla SFT); success relies on the base model's in-context capabilities; future work needed for richer teacher-side context and combining with other training targets.",
+        "Datasets / Benchmarks": "DreamBooth dataset (small customized LoRA); In-house high-quality anime dataset (large-scale finetuning); Baselines: Z-Image-Turbo 6B, FLUX.2-klein 4B. Metrics: DINO-D, LPIPS-D, VLM-J, CLIP-S, Quality-S, Aesthetic-S, FID, Geneval, DPG.",
+        "Results Summary": "D-OPSD substantially outperforms SFT, Dreambooth, and PSO in LoRA and full finetuning. It achieves superior image quality, consistency, and generalization (lower FID/DINO-D, higher VLM-J/Quality-S/Aesthetic-S) while preserving few-step inference and prior knowledge, unlike baselines.",
+        "Why It Matters": "Enables continuous, efficient adaptation of state-of-the-art few-step diffusion models to new concepts/styles/domains without sacrificing their crucial fast generation ability. This is vital for practical production and personalization in T2I applications.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (Multimodal Conditioning Examples), Figure 3 (Visual Comparison of LoRA Finetuning), Table 1 (LoRA Training Results), Table 2 (Full Finetuning Results)",
+        "arxiv_id": "http://arxiv.org/abs/2605.05204v1"
+    },
+    {
+        "Title": "Syn4D: A Multiview Synthetic 4D Dataset",
+        "Field & Subfield": "Computer Vision: 4D Reconstruction, Dynamic Scene Understanding, Datasets, Human Pose Estimation, Novel View Synthesis, 3D Tracking.",
+        "Key Contributions": "- First large-scale multiview synthetic 4D dataset of dynamic scenes.\n- Dense, complete, and accurate geometric annotations (camera motion, depth, dense tracking, parametric human pose).\n- Efficient dynamic point map representation for querying any pixel's 3D position at any time.\n- Improves SOTA 2D/3D tracking and 4D reconstruction models.\n- Enables training new models like geometry-aware multiview diffusion models.",
+        "Methodology": "Procedurally generated using Unreal Engine 5. Combines 30 3D environments, 1,674 animated Objaverse-XL assets, and 585 Bedlam2 dynamic human assets. Designs diverse camera trajectories (orbit, dolly, paired, static-orbit) and uses Tarsier2-7B for captioning. Annotations are efficiently stored via barycentric maps on animated meshes.",
+        "Strengths": "Large-scale (4.7K clips, 1.4M frames) with rich, accurate ground-truth 4D annotations. Multiview setup allows querying 3D position of any pixel at any time/camera. Diverse dynamic objects (humans, animals, robots) and scenes. Publicly available and licensed for AI training.",
+        "Limitations": "Camera accuracy could benefit from more diverse paired camera patterns. As a synthetic dataset, its generalization to extremely complex real-world scenarios might be a consideration, though realism is high.",
+        "Datasets / Benchmarks": "SYN4D, Kubric. Compared against PointOdyssey, Sintel, TUM-dynamics, ScanNet, KITTI, Hi4D, 3DPW, CHI3D. Evaluated on 4D reconstruction, 3D tracking, video depth, camera pose, human pose estimation, and geometry-aware novel view synthesis.",
+        "Results Summary": "Training with Syn4D significantly improves SOTA models for 3D tracking, depth estimation, camera pose, multiview reconstruction, and human pose estimation across various benchmarks. It outperforms Kubric for geometry-aware novel view synthesis, demonstrating its effectiveness for learning spatiotemporal representations.",
+        "Why It Matters": "Addresses the critical scarcity of high-quality 4D datasets, a major bottleneck for progress in learning-based dynamic scene understanding. Provides a strong foundation for future research in advanced 4D vision tasks, spatiotemporal modeling, and geometry-aware video generation.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig 1 (Dataset overview); Fig 2 (Diverse dynamic objects); Table 1 (Dataset comparison); Table 2 (Novel view synthesis evaluation); Fig 7 (Qualitative novel view); Fig 10 (Qualitative human pose).",
+        "arxiv_id": "http://arxiv.org/abs/2605.05207v1"
     }
 ]
