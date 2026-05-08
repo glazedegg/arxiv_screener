@@ -2233,5 +2233,33 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Fig 1 (Dataset overview); Fig 2 (Diverse dynamic objects); Table 1 (Dataset comparison); Table 2 (Novel view synthesis evaluation); Fig 7 (Qualitative novel view); Fig 10 (Qualitative human pose).",
         "arxiv_id": "http://arxiv.org/abs/2605.05207v1"
+    },
+    {
+        "Title": "ActCam: Zero-Shot Joint Camera and 3D Motion Control for Video Generation",
+        "Field & Subfield": "Computer Vision; Video Generation & Human Animation",
+        "Key Contributions": "- Zero-shot joint control of acting motion and camera trajectory in image-conditioned video generation. - Novel geometry-grounded conditioning pipeline for pose/depth alignment. - Two-phase conditioning schedule for flexible denoising.",
+        "Methodology": "A zero-shot method building on pretrained image-to-video diffusion models (e.g., VACE) conditioned on depth/keypoints. It constructs camera-aligned pose and depth conditions from a reference image, acting video, and target camera trajectory, using a two-phase denoising schedule.",
+        "Strengths": "Zero-shot and training-free, applicable to any compatible backbone. Achieves superior camera adherence and motion fidelity. Preserves identity and scene consistency under diverse motions and challenging viewpoint changes. Outperforms finetuned methods.",
+        "Limitations": "Monocular depth estimates are often coarse and inaccurate. Early depth maps can produce implausible occlusions/unstable layouts in scenes with strong depth variation or large viewpoint changes. Over-constraining with depth can lead to artifacts.",
+        "Datasets / Benchmarks": "RealisDance-Val for moving & static camera evaluation. Evaluated using VBench (Subject/Background/Appearance/Imaging/Temporal Consistency, Motion Smoothness) and WorldScore (3D-C, Object Control).",
+        "Results Summary": "ActCam outperforms Uni3C on MPJPE (0.2087 vs 0.2121), SE (0.4546 vs 0.5665), and most VBench metrics (e.g., Subject Consistency 0.9212 vs 0.8370). It also excels in static camera scenarios and is preferred in human evaluations.",
+        "Why It Matters": "Enables fine-grained, joint control over character motion and camera trajectory in video generation without training. This advances controllable video synthesis, crucial for content production in areas like experimental filmmaking and virtual reality.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig 1 (Overview), Fig 2 (Pipeline), Table 1 (Joint control comparison), Fig 3 (User study), Fig 6 (Importance of depth).",
+        "arxiv_id": "http://arxiv.org/abs/2605.06667v1"
+    },
+    {
+        "Title": "BAMI: Training-Free Bias Mitigation in GUI Grounding",
+        "Field & Subfield": "Computer Vision, GUI Grounding; Multimodal Large Language Models (MLLMs)",
+        "Key Contributions": "- Introduces MPD method to diagnose GUI grounding failures (precision & ambiguity bias).\n- Proposes Coarse-to-Fine Focus for hierarchical refinement, mitigating precision bias.\n- Develops Candidate Selection with prompt rules to correct ambiguity bias.\n- Demonstrates training-free, consistent accuracy improvements across SOTA MLLMs.",
+        "Methodology": "Diagnoses errors via Masked Prediction Distribution (MPD) heatmaps. BAMI applies coarse-to-fine focus by iterative cropping & refinement. It then uses candidate selection: generates multiple bounding boxes (masking predicted areas) and selects the best via a correction model (e.g., GPT-5 or fine-tuned Qwen3-VL-8B) with GUI-specific prompt rules.",
+        "Strengths": "Training-free, applicable to existing MLLMs. Significantly boosts accuracy on complex GUI benchmarks (ScreenSpot-Pro). Robust across various backbones & parameter settings. Addresses key inductive biases. Offers a local, privacy-preserving correction model.",
+        "Limitations": "Does not address \"knowledge deficiency\" errors (14% of failures). Performance is sensitive to hyperparameters like crop ratio & iteration count. Language-space enhancement proved suboptimal.",
+        "Datasets / Benchmarks": "ScreenSpot-Pro, ScreenSpot-V2",
+        "Results Summary": "BAMI boosts TianXi-Action-7B's ScreenSpot-Pro accuracy from 51.9% to 57.8%, a 5.9% gain. Consistently improves OS-Atlas-7B, UI-TARS-7B, etc. Ablation studies confirm both coarse-to-fine focus and candidate selection are vital. A local Qwen3-VL-8B correction model achieves 56.2%.",
+        "Why It Matters": "Enables more accurate and reliable GUI agents without costly retraining, crucial for automating complex tasks in high-resolution, dense UIs. Bridges the gap between MLLM capabilities and real-world GUI challenges by addressing fundamental biases.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1 (BAMI overview), Figure 2 (Bias Mitigation Strategy), Figure 3 (Accuracy comparison), Table 2 & 3 (SOTA comparisons), Table 4 (Ablation studies)",
+        "arxiv_id": "2605.06664v1"
     }
 ]
