@@ -2261,5 +2261,47 @@
         "Should Read Fully?": "Yes",
         "Key Figures or Tables": "Figure 1 (BAMI overview), Figure 2 (Bias Mitigation Strategy), Figure 3 (Accuracy comparison), Table 2 & 3 (SOTA comparisons), Table 4 (Ablation studies)",
         "arxiv_id": "2605.06664v1"
+    },
+    {
+        "Title": "Covering Human Action Space for Computer Use: Data Synthesis and Benchmark",
+        "Field & Subfield": "AI, Computer Vision, Human-Computer Interaction, GUI Grounding, Large Language Models",
+        "Key Contributions": "- Introduced CUActSpot: a benchmark for complex GUI grounding across 5 modalities.\n- Proposed a scalable, renderer-based data synthesis pipeline (50M+ samples).\n- Developed Phi-Ground-Any-4B model outperforming peers <32B params.\n- Demonstrated \"variety scaling\": diversity > scale for CUA generalization.",
+        "Methodology": "Manually curated CUActSpot (206 samples, 5 modalities, diverse actions). Renderer-based data synthesis using LLMs (OpenAI O3/40) for instructions/traces. Trained Phi-Ground-Any-4B (4B VLM) on 50M+ synthetic and OpenCUA data.",
+        "Strengths": "CUActSpot offers diverse tasks (click, drag, draw) & 5 modalities, better reflecting real-world CUA needs. Scalable synthetic data pipeline addresses data scarcity. \"Variety scaling\" insight shows data diversity is key for generalizable grounding, not just volume.",
+        "Limitations": "CUActSpot is diagnostic, manually curated, not exhaustive for real-world, long-horizon, or stateful scenarios. Synthetic data needs better alignment with real-world distributions. Model shows limited compositional generalization.",
+        "Datasets / Benchmarks": "**New**: CUActSpot (206 samples, 5 modalities, 12 tasks, 33 detailed tasks).\n**Synthetic Training Data**: 50M+ samples generated across GUI, Text, Table, Canvas, Image.\n**Comparison**: ScreenSpot-Pro, UI-Vision, OSWorld, OpenCUA.",
+        "Results Summary": "Phi-Ground-Any-4B achieved SOTA (44.4%) on CUActSpot among models < 32B params (GPT-5.4: 63.6%). Data diversity proved more crucial than scale for grounding. Fine-tuning on application-specific data improved traditional benchmarks but degraded CUActSpot.",
+        "Why It Matters": "This work tackles the core challenge of complex action grounding for Computer-Using Agents. By offering a realistic benchmark and a scalable data synthesis approach, it enables development of more generalizable and robust CUAs for automating digital work.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 1: Overview of contributions & action space.\nFigure 2: GPT-5.4 failure study & benchmark mismatch.\nTable 2: Model performance on CUActSpot vs. other benchmarks.\nFigure 4: General data synthesis pipeline.\nFigure 5: Data ablation results on variety scaling.",
+        "arxiv_id": "2605.12501v1"
+    },
+    {
+        "Title": "EcoForce: Forearm-Guided Camera-Space 3D Hand Pose from a Monocular Egocentric Camera",
+        "Field & Subfield": "Computer Vision & AI; 3D Hand Pose Estimation",
+        "Key Contributions": "- Hand-Arm Latent-Shape & Orientation (HALO) for joint hand/forearm pose/shape regression.\n- Differentiable forearm representation for metric cues & absolute 3D hand-pose estimation.\n- Cross-camera ray space solver for absolute 3D pose recovery across diverse optics.",
+        "Methodology": "EGOFORCE uses a Transformer-based HALO architecture with a novel FARM (ForeArm Representation Model) for unified hand-forearm estimation. It employs a Ray Space Solver (RSS) for camera-model-agnostic 3D pose lifting & Crop Intrinsics Tokens (CIT) for geometric context.",
+        "Strengths": "Achieves state-of-the-art absolute 3D hand pose & shape, robust across fisheye/perspective/distorted wide-FOV cameras. Mitigates depth-scale ambiguity using forearm context, stable under occlusion & temporal fluctuations.",
+        "Limitations": "Relies on calibrated 3D datasets, limiting generalization to in-the-wild imagery. Sensitive to camera intrinsics, forearm modeling simplifies axial twist, and does not optimize for precise hand-forearm localization.",
+        "Datasets / Benchmarks": "ARCTIC, HOT3D, H2O, HO3D, Re:InterHand, HandCO for training/evaluation.",
+        "Results Summary": "EGOFORCE achieved SOTA 3D accuracy, reducing camera-space MPJPE by up to 28% on HOT3D vs. prior methods. Improved CS-MJE by 62.9% and RS-MJE by 64.4% on HOT3D with geometry modeling. Arm context improved hand pose and temporal stability.",
+        "Why It Matters": "Enables robust, metrically meaningful 3D hand tracking for AR/VR, telepresence, & manipulation tasks with compact egocentric cameras. Addresses challenges of depth ambiguity and diverse optics in head-mounted devices.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Fig. 1 (EgoForce overview), Fig. 2 (Framework), Fig. 3 (Ray Space Solver), Table 1 (Quantitative results)",
+        "arxiv_id": "http://arxiv.org/abs/2605.12498v1"
+    },
+    {
+        "Title": "SenseNova-U1: Unifying Multimodal Understanding and Generation with NEO-unify Architecture",
+        "Field & Subfield": "Artificial Intelligence, Multimodal AI, Vision-Language Models",
+        "Key Contributions": "• Native unified multimodal paradigm on NEO-unify, breaking VLM dichotomies. • Encoder-free design preserving semantic structure & pixel detail. • Mixture-of-Transformers (MoT) for synergistic U&G. • Achieves SOTA on diverse U&G, X2I, infographics, interleaved V+L. • Shows strong VLA & world modeling capabilities.",
+        "Methodology": "NEO-unify architecture. Near-lossless visual interface with patch encoding/decoding. MoT backbone for unified understanding & generation. Joint training objective (autoregressive text loss & pixel-space flow matching). Classifier-Free Guidance. Disaggregated inference architecture.",
+        "Strengths": "Unified end-to-end design without VEs/VAEs. Strong performance across diverse multimodal tasks (U&G, X2I, editing, VLA, WM). Achieves robust semantic consistency & visual fidelity. High data-scaling efficiency. Efficient MoT scaling.",
+        "Limitations": "Performance gap in complex hybrid image editing due to current editing data (open-source, lack of diverse pipelines, aligned optimization). A3B variant not fully converged in some long-text tasks.",
+        "Datasets / Benchmarks": "Multimodal: MMMU, MMBench-EN, HallusionBench, VSI-Bench. Generation: GenEval, DPG-Bench, OneIG-Bench, TIIF-Bench, CVTG-2K, LongText-Bench, IGenBench, BizGenEval, WISE, ImgEdit, OpenING, VBVR-Image. MS-COCO.",
+        "Results Summary": "SenseNova-U1 (8B-MoT & A3B-MoT variants) consistently outperforms SOTA open-source models across understanding (VQA, OCR, reasoning) and generation (text-to-image, editing, infographics, interleaved V+L). Demonstrates strong VLA/WM capabilities.",
+        "Why It Matters": "Represents a paradigm shift towards native unified multimodal AI, where understanding, generation, & reasoning emerge from a single architecture. Moves AI beyond connecting separate systems to embodied, goal-directed intelligence with shared latent space.",
+        "Should Read Fully?": "Yes",
+        "Key Figures or Tables": "Figure 3 (Architecture Overview), Table 3 (Image Understanding Results), Table 5 (GenEval Results), Tables 7,8 (OneIG-Bench Results), Figure 12 (U&G Co-training Curves).",
+        "arxiv_id": "http://arxiv.org/abs/2605.12500v1"
     }
 ]
